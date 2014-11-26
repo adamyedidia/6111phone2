@@ -1,0 +1,13 @@
+MO mybram NULL ../../labkit.v vlg48/mybram.bin 1416976094
+MO display_16hex NULL ../../../../Lab4/Sources/lab4/display_16hex.v vlg51/display__16hex.bin 1416976094
+MO receiveFrame NULL ../../../verilog-dumbserial/serial.v vlg0E/receive_frame.bin 1416976094
+MO ac97commands NULL ../../labkit.v vlg5A/ac97commands.bin 1416976094
+MO lab5audio NULL ../../labkit.v vlg16/lab5audio.bin 1416976094
+MO ac97 NULL ../../labkit.v vlg5C/ac97.bin 1416976094
+MO debounce NULL ../../labkit.v vlg1D/debounce.bin 1416976094
+MO sendBit NULL ../../../verilog-dumbserial/serial.v vlg49/send_bit.bin 1416976094
+MO labkit NULL ../../labkit.v vlg7B/labkit.bin 1416976094
+MO receiveBit NULL ../../../verilog-dumbserial/serial.v vlg4A/receive_bit.bin 1416976094
+MO randomnessExtractor NULL randomnessExtractor.v vlg7E/randomness_extractor.bin 1416976094
+MO tone750hz NULL ../../labkit.v vlg18/tone750hz.bin 1416976094
+MO sendFrame NULL ../../../verilog-dumbserial/serial.v vlg75/send_frame.bin 1416976094

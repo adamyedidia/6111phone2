@@ -1,0 +1,3 @@
+verilog work "../../../../Lab4/Sources/lab4/display_16hex.v"
+verilog work "../ise/randomnessExtractor.v"
+verilog work "my_labkit.v"

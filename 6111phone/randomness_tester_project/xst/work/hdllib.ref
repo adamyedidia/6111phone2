@@ -1,0 +1,9 @@
+MO mybram NULL my_labkit.v vlg48/mybram.bin 1416972381
+MO display_16hex NULL ../../../../Lab4/Sources/lab4/display_16hex.v vlg51/display__16hex.bin 1416972381
+MO ac97commands NULL my_labkit.v vlg5A/ac97commands.bin 1416972381
+MO lab5audio NULL my_labkit.v vlg16/lab5audio.bin 1416972381
+MO ac97 NULL my_labkit.v vlg5C/ac97.bin 1416972381
+MO debounce NULL my_labkit.v vlg1D/debounce.bin 1416972381
+MO labkit NULL my_labkit.v vlg7B/labkit.bin 1416972381
+MO randomnessExtractor NULL ../ise/randomnessExtractor.v vlg7E/randomness_extractor.bin 1416972381
+MO tone750hz NULL my_labkit.v vlg18/tone750hz.bin 1416972381

@@ -1,0 +1,4 @@
+verilog work "../../../../Lab4/Sources/lab4/display_16hex.v"
+verilog work "../../../verilog-dumbserial/serial.v"
+verilog work "randomnessExtractor.v"
+verilog work "../../labkit.v"

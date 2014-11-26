@@ -1,0 +1,15 @@
+NUM_USER_FILES
+4
+s
+user_file_1
+../ise/randomnessExtractor.v
+s
+user_file_2
+../../../../Lab4/Sources/lab4/display_16hex.v
+s
+user_file_3
+my_labkit.v
+s
+user_file_4
+../../../../Lab4/Sources/lab4/labkit.ucf
+s
