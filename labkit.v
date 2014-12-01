@@ -705,6 +705,7 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire [WIDTH-1:0] doutPB;
 	
 	wire sendReadyAtNext, receiveReady;
+	
 	sendFrame #(.WIDTH(WIDTH), .LOGSIZE(LOGSIZE)) sendFrame
                 (.clock(clock_27mhz),
 					 .start(sendStart),
@@ -735,12 +736,14 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 					 .index(receiveAddr),
 					 .sampleReady(sampleReady),
                 .ready(receiveReady));
+	
 	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) bufPA
               (.addr((!receivingToB) ? receiveAddr : playbackAddr),
                .clk(clock_27mhz),
                .din(receiveData),
                .dout(doutPA),
                .we((!receivingToB) ? sampleReady : 0));
+	
 	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) bufPB
               (.addr(( receivingToB) ? receiveAddr : playbackAddr),
                .clk(clock_27mhz),
@@ -814,11 +817,12 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	curve_25519 curve_25519(
 		.clock(clock_27mhz),
 		.start(~randomness_counter_going),
-		.n(buffer),
-		.q(9),
+		.n(buffer), // this is the random number
+		.q(9), 
 		.done(curve_done),
 		.out(curve_out)
 	);
+	
 	assign led = 8'hFF;
 
 //	assign led = playbackData;
