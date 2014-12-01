@@ -753,20 +753,21 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		if (ready) begin
 			recordData <= from_ac97_data;
 			writeR <= 1;
+		end
+		if (writeR) begin
+            writeR <= 0;
+            recordAddr <= recordAddr + 1;
 			if (&recordAddr) begin // buffer full
 				recordingToB <= !recordingToB;
 				sendStart <= 1;
 			end
-		end
-		if (writeR) begin writeR <= 0; recordAddr <= recordAddr + 1;	end
+        end
 		if (sendStart) sendStart <= 0;
 		
 		if (ready) begin
+            playbackAddr <= playbackAddr + 1;
 			if (&playbackAddr) begin // buffer full
 				receivingToB <= !receivingToB;
-				playbackAddr <= 0;
-			end else begin
-				playbackAddr <= playbackAddr + 1;
 			end
 		end
 	end
