@@ -764,11 +764,11 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
         end
 		if (sendStart) sendStart <= 0;
 		
-		if (ready) begin
+        if (receiveReady) begin
+            receivingToB <= !receivingToB;
+            playbackAddr <= 0;
+        else if (ready) begin
             playbackAddr <= playbackAddr + 1;
-			if (&playbackAddr) begin // buffer full
-				receivingToB <= !receivingToB;
-			end
 		end
 	end
 	
