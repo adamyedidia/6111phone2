@@ -842,11 +842,21 @@ proc restore { { project_dir "" } } {
       "../../../curve25519-verilog/feexp.v" 
       "../../../curve25519-verilog/femul.v" 
       "../../../curve25519-verilog/fesub.v" 
+      "../../../sha3-verilog-mirror/low_throughput_core/rtl/f_permutation.v" 
+      "../../../sha3-verilog-mirror/low_throughput_core/rtl/keccak.v" 
+      "../../../sha3-verilog-mirror/low_throughput_core/rtl/padder.v" 
+      "../../../sha3-verilog-mirror/low_throughput_core/rtl/padder1.v" 
+      "../../../sha3-verilog-mirror/low_throughput_core/rtl/rconst.v" 
+      "../../../sha3-verilog-mirror/low_throughput_core/rtl/round.v" 
       "../../../verilog-dumbserial/serial.v" 
       "../../../verilog-dumbserial/serial_test.v" 
       "../../labkit.ucf" 
       "../../labkit.v" 
-      "randomnessExtractor.v"}
+      "randomnessExtractor.v" 
+      "randomnessExtractorKeccak.v" 
+      "randomnessExtractorXORBuf.v" 
+      "sending_fsm.v" 
+      "sending_fsm_tb.v"}
 
   HandleException {
     AddUserFiles $iProjHelper $user_files
@@ -867,7 +877,7 @@ proc restore { { project_dir "" } } {
       "A" "" "" "" "PROPEXT_xilxSynthAddBufg_virtex2" "16" 
       "A" "" "" "" "PROPEXT_xilxSynthMaxFanout_virtex2" "500" 
       "A" "" "" "" "PROP_AutoGenFile" "false" 
-      "A" "" "" "" "PROP_BehavioralSimTop" "Module|labkit" 
+      "A" "" "" "" "PROP_BehavioralSimTop" "Module|sending_fsm_tb" 
       "A" "" "" "" "PROP_CPLDFitkeepio" "false" 
       "A" "" "" "" "PROP_CompxlibAbelLib" "true" 
       "A" "" "" "" "PROP_CompxlibCPLDDetLib" "true" 

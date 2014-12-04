@@ -18,9 +18,9 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module randomnessExtractor(
+module randomnessExtractor #(parameter WIDTH=9) (
 	 input wire clock,
-    input wire [7:0] from_ac97_data,
+    input wire [WIDTH-1:0] from_ac97_data,
     input wire ready,
     output reg [255:0] buffer = 0
     );

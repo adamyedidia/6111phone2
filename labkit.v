@@ -650,7 +650,7 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire [7:0] to_ac97_data;
 	wire [17:0] to_ac97_wide_data = {to_ac97_data, 10'b0};
    wire ready;
-
+	
    // allow user to adjust volume
    wire vup,vdown;
    reg old_vup,old_vdown;
@@ -658,7 +658,7 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    debounce bdown(.reset(reset),.clock(clock_27mhz),.noisy(~button_down),.clean(vdown));
    reg [4:0] volume;
    always @ (posedge clock_27mhz) begin
-     if (reset) volume <= 5'd8;
+     if (reset) volume <= 5'd13;
      else begin
 	if (vup & ~old_vup & volume != 5'd31) volume <= volume+1;       
 	if (vdown & ~old_vdown & volume != 5'd0) volume <= volume-1;       
@@ -691,42 +691,41 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire [LOGSIZE-1:0] sendAddr;
 	wire [LOGSIZE-1:0] receiveAddr;
 	
-	reg recordingToB = 0, writeR = 0, sendStart = 0;
-	reg [WIDTH-1:0] recordData = 0;
-	reg [LOGSIZE-1:0] recordAddr = 0;
-	wire [WIDTH-1:0] doutRA;
-	wire [WIDTH-1:0] doutRB;
+	reg recordingToB = 0, sendBufWriteEnable = 0, sendStart = 0;
+	reg [WIDTH-1:0] sendBufWriteData = 0;
+	reg [LOGSIZE-1:0] sendBufWriteAddr = 0;
+	wire [WIDTH-1:0] sendBufAReadData;
+	wire [WIDTH-1:0] sendBufBReadData;
 	
 	reg receivingToB = 0;
 	wire sampleReady;
 	wire [WIDTH-1:0] receiveData;
-	reg [LOGSIZE-1:0] playbackAddr = 0;
-	wire [WIDTH-1:0] doutPA;
-	wire [WIDTH-1:0] doutPB;
+	reg [LOGSIZE-1:0] receiveBufReadAddr = 0;
+	wire [WIDTH-1:0] receiveBufAReadData;
+	wire [WIDTH-1:0] receiveBufBReadData;
 	
 	wire sendReadyAtNext, receiveReady;
 	
 	sendFrame #(.WIDTH(WIDTH), .LOGSIZE(LOGSIZE)) sendFrame
                 (.clock(clock_27mhz),
 					 .start(sendStart),
-//					 .data(switch),
-                .data(recordingToB ? doutRA : doutRB),
+                .data(recordingToB ? sendBufAReadData : sendBufBReadData),
 					 .index(sendAddr),
                 .serialClock(user1[1]),
 					 .serialData(user1[0]),
                 .readyAtNext(sendReadyAtNext));
 	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) bufRA
-              (.addr((!recordingToB) ? recordAddr : sendAddr),
+              (.addr((!recordingToB) ? sendBufWriteAddr : sendAddr),
                .clk(clock_27mhz),
-               .din(recordData),
-               .dout(doutRA),
-               .we((!recordingToB) ? writeR : 0));
+               .din(sendBufWriteData),
+               .dout(sendBufAReadData),
+               .we((!recordingToB) ? sendBufWriteEnable : 0));
 	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) bufRB
-              (.addr(( recordingToB) ? recordAddr : sendAddr),
+              (.addr(( recordingToB) ? sendBufWriteAddr : sendAddr),
                .clk(clock_27mhz),
-               .din(recordData),
-               .dout(doutRB),
-               .we(( recordingToB) ? writeR : 0));
+               .din(sendBufWriteData),
+               .dout(sendBufBReadData),
+               .we(( recordingToB) ? sendBufWriteEnable : 0));
 					
 	receiveFrame #(.WIDTH(WIDTH), .LOGSIZE(LOGSIZE)) receiveFrame
                 (.clock(clock_27mhz),
@@ -737,63 +736,65 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 					 .sampleReady(sampleReady),
                 .ready(receiveReady));
 	
-	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) bufPA
-              (.addr((!receivingToB) ? receiveAddr : playbackAddr),
+	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) receiveBufA
+              (.addr((!receivingToB) ? receiveAddr : receiveBufReadAddr),
                .clk(clock_27mhz),
                .din(receiveData),
-               .dout(doutPA),
+               .dout(receiveBufAReadData),
                .we((!receivingToB) ? sampleReady : 0));
 	
-	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) bufPB
-              (.addr(( receivingToB) ? receiveAddr : playbackAddr),
+	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) receiveBufB
+              (.addr(( receivingToB) ? receiveAddr : receiveBufReadAddr),
                .clk(clock_27mhz),
                .din(receiveData),
-               .dout(doutPB),
+               .dout(receiveBufBReadData),
                .we(( receivingToB) ? sampleReady : 0));
-	wire [WIDTH-1:0] playbackData = ( receivingToB) ? doutPA : doutPB;
+					
+	wire [WIDTH-1:0] receiveBufReadData = ( receivingToB) ? receiveBufAReadData: receiveBufBReadData;
 	
 	always @(posedge clock_27mhz) begin
 		if (ready) begin
-			recordData <= from_ac97_data;
-			writeR <= 1;
+			sendBufWriteData <= from_ac97_data;
+			sendBufWriteEnable <= 1;
 		end
-		if (writeR) begin
-            writeR <= 0;
-            recordAddr <= recordAddr + 1;
-			if (&recordAddr) begin // buffer full
+		if (sendBufWriteEnable) begin
+            sendBufWriteEnable <= 0;
+            sendBufWriteAddr <= sendBufWriteAddr + 1;
+			if (&sendBufWriteAddr) begin // buffer full
 				recordingToB <= !recordingToB;
 				sendStart <= 1;
 			end
         end
 		if (sendStart) sendStart <= 0;
-		
-		if (ready) begin
-            playbackAddr <= playbackAddr + 1;
-			if (&playbackAddr) begin // buffer full
-				receivingToB <= !receivingToB;
-			end
+	end
+	
+	reg playbackRewind = 0;
+	always @(posedge clock_27mhz) begin
+		if (receiveReady) begin
+			playbackRewind <= 1;
+			receiveBufReadAddr <= 0;
+			receivingToB <= !receivingToB;
+		end else if (ready) begin
+			if (playbackRewind) playbackRewind <= 0;
+         else receiveBufReadAddr <= receiveBufReadAddr + 1;
 		end
 	end
 	
-	wire [255:0] buffer;
-	reg [20:0] wait_for_enough_randomness_counter = 1;
-	
-	wire ok_to_extract;
-	
-	randomnessExtractor re (
-		.clock(clock_27mhz),
-		.from_ac97_data(from_ac97_data),
-		.ready(ok_to_extract),
-		.buffer(buffer)
-	);
-	reg randomness_counter_going = 1;
-
-	assign ok_to_extract = randomness_counter_going & ready;
+	wire random_ready;
+	wire [255:0] random_out;
+	reg [255:0] secret_key_seed = 64'hDEADBEEF;
+	randomnessExtractorXORBuf randomnessExtractorXORBuf(.clock(clock_27mhz), .n_samples(200*48),
+		.entropy(from_ac97_data), .entropy_bytes(2), .entropy_ready(ready),
+		.out(random_out), .ready(random_ready));
+		
+	always @(posedge clock_27mhz) begin
+		if ((~|secret_key_seed) == 0 && random_ready) secret_key_seed <= random_out;
+	end
 
 	display_16hex d16h (
 		.reset(reset),
 		.clock_27mhz(clock_27mhz),
-		.data(buffer),
+		.data({secret_key_seed, random_out[0+:16], receiveBufReadAddr, receiveAddr}),
 		.disp_blank(disp_blank),
 		.disp_clock(disp_clock),
 		.disp_rs(disp_rs),
@@ -801,38 +802,13 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 		.disp_reset_b(disp_reset_b),
 		.disp_data_out(disp_data_out)
 	);
-
-	always @(posedge clock_27mhz) begin
-		if (wait_for_enough_randomness_counter != 0) 
-			wait_for_enough_randomness_counter <= wait_for_enough_randomness_counter + 1;
 		
-		if (&wait_for_enough_randomness_counter) begin
-			wait_for_enough_randomness_counter <= 0;
-			randomness_counter_going <= 0;
-		end
-	end
-	
-	wire curve_done;
-	wire curve_out;
-	
-	curve_25519 curve_25519(
-		.clock(clock_27mhz),
-		.start(~randomness_counter_going),
-		.n(buffer), // this is the random number
-		.q(9), 
-		.done(curve_done),
-		.out(curve_out)
-	);
-	
-	assign led = 8'hFF;
-
-//	assign led = playbackData;
-	assign to_ac97_data = playbackData;	
-//	assign to_ac97_data = from_ac97_data;
+	assign led = volume;
+	assign to_ac97_data = receiveBufReadData;	
 	
    assign analyzer1_clock = clock_27mhz;
-	assign analyzer1_data[15:8] = {recordingToB, recordAddr[0], sendAddr[0], sendStart,
-	                                  receivingToB, receiveAddr[0], playbackAddr[0], receiveReady};
+	assign analyzer1_data[15:8] = {recordingToB, sendBufWriteAddr[0], sendAddr[0], sendStart,
+	                                  receivingToB, receiveAddr[0], receiveBufReadAddr[0], receiveReady};
    assign analyzer1_data[7:0] = to_ac97_data;
 
    assign analyzer3_clock = ready;

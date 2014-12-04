@@ -4,15 +4,15 @@ Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to /afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111phone/ise/xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to /afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111phone/ise/xst
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: labkit.prj
@@ -117,10 +117,10 @@ Module <receiveBit> compiled
 WARNING:HDLCompilers:301 - "../../../verilog-dumbserial/serial.v" line 65 Too many digits specified in hex constant
 Module <sendFrame> compiled
 WARNING:HDLCompilers:301 - "../../../verilog-dumbserial/serial.v" line 106 Too many digits specified in hex constant
-Compiling verilog file "randomnessExtractor.v" in library work
+Compiling verilog file "randomnessExtractorXORBuf.v" in library work
 Module <receiveFrame> compiled
 Compiling verilog file "../../labkit.v" in library work
-Module <randomnessExtractor> compiled
+Module <randomnessExtractorXORBuf> compiled
 Module <debounce> compiled
 Module <lab5audio> compiled
 Module <ac97> compiled
@@ -155,7 +155,7 @@ Analyzing hierarchy for module <receiveFrame> in library <work> with parameters.
 	LOGSIZE = "00000000000000000000000000000100"
 	WIDTH = "00000000000000000000000000001000"
 
-Analyzing hierarchy for module <randomnessExtractor> in library <work> with parameters.
+Analyzing hierarchy for module <randomnessExtractorXORBuf> in library <work> with parameters.
 	BUFFER_LOGSIZE = "00000000000000000000000000001000"
 
 Analyzing hierarchy for module <display_16hex> in library <work>.
@@ -231,9 +231,9 @@ Module <receiveFrame> is correct for synthesis.
 Analyzing module <receiveBit> in library <work>.
 Module <receiveBit> is correct for synthesis.
  
-Analyzing module <randomnessExtractor> in library <work>.
+Analyzing module <randomnessExtractorXORBuf> in library <work>.
 	BUFFER_LOGSIZE = 32'sb00000000000000000000000000001000
-Module <randomnessExtractor> is correct for synthesis.
+Module <randomnessExtractorXORBuf> is correct for synthesis.
  
 Analyzing module <display_16hex> in library <work>.
 INFO:Xst:1433 - Contents of array <dots> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
@@ -274,17 +274,23 @@ Synthesizing Unit <mybram>.
 Unit <mybram> synthesized.
 
 
-Synthesizing Unit <randomnessExtractor>.
-    Related source file is "randomnessExtractor.v".
-    Found 256-bit register for signal <buffer>.
+Synthesizing Unit <randomnessExtractorXORBuf>.
+    Related source file is "randomnessExtractorXORBuf.v".
+WARNING:Xst:1305 - Output <out<511:256>> is never assigned. Tied to value 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.
+WARNING:Xst:647 - Input <entropy_bytes> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 256-bit register for signal <out<255:0>>.
+    Found 1-bit register for signal <ready>.
     Found 8-bit up counter for signal <buffer_index_counter>.
-    Found 1-bit register for signal <old_ready>.
+    Found 1-bit register for signal <old_entropy_ready>.
+    Found 32-bit comparator equal for signal <ready$cmp_eq0000> created at line 27.
+    Found 32-bit up counter for signal <sample_count>.
     Summary:
-	inferred   1 Counter(s).
-	inferred 257 D-type flip-flop(s).
+	inferred   2 Counter(s).
+	inferred 258 D-type flip-flop(s).
+	inferred   1 Comparator(s).
 	inferred   1 Multiplexer(s).
 	inferred   1 Xor(s).
-Unit <randomnessExtractor> synthesized.
+Unit <randomnessExtractorXORBuf> synthesized.
 
 
 Synthesizing Unit <display_16hex>.
@@ -769,22 +775,22 @@ WARNING:Xst:646 - Signal <sendReadyAtNext> is assigned but never used. This unco
 WARNING:Xst:646 - Signal <playback> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <from_ac97_wide_data<9:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <filter> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <buffer<255:64>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <old_vdown>.
     Found 1-bit register for signal <old_vup>.
     Found 4-bit up counter for signal <playbackAddr>.
-    Found 1-bit register for signal <randomness_counter_going>.
+    Found 1-bit register for signal <playbackRewind>.
     Found 1-bit register for signal <receivingToB>.
-    Found 4-bit up counter for signal <recordAddr>.
-    Found 8-bit register for signal <recordData>.
     Found 1-bit register for signal <recordingToB>.
+    Found 256-bit register for signal <secret_key_seed>.
+    Found 4-bit up counter for signal <sendBufWriteAddr>.
+    Found 8-bit register for signal <sendBufWriteData>.
+    Found 1-bit register for signal <sendBufWriteEnable>.
     Found 1-bit register for signal <sendStart>.
     Found 5-bit updown counter for signal <volume>.
-    Found 21-bit up counter for signal <wait_for_enough_randomness_counter>.
-    Found 1-bit register for signal <writeR>.
+INFO:Xst:738 - HDL ADVISOR - 256 flip-flops were inferred for signal <secret_key_seed>. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
     Summary:
-	inferred   4 Counter(s).
-	inferred  15 D-type flip-flop(s).
+	inferred   3 Counter(s).
+	inferred 271 D-type flip-flop(s).
 Unit <labkit> synthesized.
 
 INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
@@ -808,29 +814,31 @@ Macro Statistics
  10-bit up counter                                     : 1
  19-bit up counter                                     : 4
  2-bit up counter                                      : 2
- 21-bit up counter                                     : 1
+ 32-bit up counter                                     : 1
  4-bit up counter                                      : 4
  5-bit down counter                                    : 1
  5-bit up counter                                      : 1
  5-bit updown counter                                  : 1
  8-bit down counter                                    : 1
  8-bit up counter                                      : 2
-# Registers                                            : 320
- 1-bit register                                        : 298
+# Registers                                            : 322
+ 1-bit register                                        : 299
  10-bit register                                       : 1
  16-bit register                                       : 2
  18-bit register                                       : 1
  20-bit register                                       : 6
  24-bit register                                       : 1
+ 256-bit register                                      : 1
  3-bit register                                        : 2
  32-bit register                                       : 1
  4-bit register                                        : 2
  8-bit register                                        : 6
-# Comparators                                          : 25
+# Comparators                                          : 26
  16-bit comparator greatequal                          : 1
  16-bit comparator less                                : 1
  2-bit comparator greater                              : 1
  2-bit comparator less                                 : 1
+ 32-bit comparator equal                               : 1
  5-bit comparator greatequal                           : 1
  5-bit comparator lessequal                            : 1
  8-bit comparator greatequal                           : 5
@@ -845,7 +853,7 @@ Macro Statistics
  4-bit 16-to-1 multiplexer                             : 1
 # Xors                                                 : 5
  1-bit xor2                                            : 4
- 1-bit xor9                                            : 1
+ 1-bit xor33                                           : 1
 
 =========================================================================
 
@@ -916,8 +924,6 @@ INFO:Xst:2261 - The FF/Latch <command_4> in Unit <ac97commands> is equivalent to
 INFO:Xst:2261 - The FF/Latch <command_2> in Unit <ac97commands> is equivalent to the following FF/Latch, which will be removed : <command_10> 
 INFO:Xst:2261 - The FF/Latch <command_1> in Unit <ac97commands> is equivalent to the following FF/Latch, which will be removed : <command_9> 
 WARNING:Xst:2677 - Node <seekBuffer_7> of sequential type is unconnected in block <receiveFrame>.
-WARNING:Xst:1426 - The value init of the FF/Latch randomness_counter_going hinder the constant cleaning in the block labkit.
-   You should achieve better results by setting this init to 0.
 WARNING:Xst:1710 - FF/Latch <l_right_data_11> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <l_right_data_10> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <l_right_data_9> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
@@ -987,20 +993,21 @@ Macro Statistics
  10-bit up counter                                     : 1
  19-bit up counter                                     : 4
  2-bit up counter                                      : 2
- 21-bit up counter                                     : 1
+ 32-bit up counter                                     : 1
  4-bit up counter                                      : 4
  5-bit down counter                                    : 1
  5-bit up counter                                      : 1
  5-bit updown counter                                  : 1
  8-bit down counter                                    : 1
  8-bit up counter                                      : 2
-# Registers                                            : 540
- Flip-Flops                                            : 540
-# Comparators                                          : 25
+# Registers                                            : 797
+ Flip-Flops                                            : 797
+# Comparators                                          : 26
  16-bit comparator greatequal                          : 1
  16-bit comparator less                                : 1
  2-bit comparator greater                              : 1
  2-bit comparator less                                 : 1
+ 32-bit comparator equal                               : 1
  5-bit comparator greatequal                           : 1
  5-bit comparator lessequal                            : 1
  8-bit comparator greatequal                           : 5
@@ -1015,7 +1022,7 @@ Macro Statistics
  4-bit 16-to-1 multiplexer                             : 1
 # Xors                                                 : 5
  1-bit xor2                                            : 4
- 1-bit xor9                                            : 1
+ 1-bit xor33                                           : 1
 
 =========================================================================
 
@@ -1033,7 +1040,7 @@ WARNING:Xst:2677 - Node <benter/new> of sequential type is unconnected in block 
 
 Optimizing unit <labkit> ...
 
-Optimizing unit <randomnessExtractor> ...
+Optimizing unit <randomnessExtractorXORBuf> ...
 
 Optimizing unit <display_16hex> ...
 
@@ -1089,7 +1096,7 @@ INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_4> in Unit <labkit> is equivalen
 INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_5> in Unit <labkit> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_13> 
 INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_6> in Unit <labkit> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_14> 
 INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_8> in Unit <labkit> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_16> 
-Found area constraint ratio of 100 (+ 5) on block labkit, actual ratio is 1.
+Found area constraint ratio of 100 (+ 5) on block labkit, actual ratio is 2.
 FlipFlop a/ac97/bit_count_3 has been replicated 1 time(s)
 FlipFlop d16h/char_index_0 has been replicated 1 time(s)
 FlipFlop d16h/char_index_1 has been replicated 1 time(s)
@@ -1109,8 +1116,8 @@ Unit <labkit> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 573
- Flip-Flops                                            : 573
+# Registers                                            : 841
+ Flip-Flops                                            : 841
 # Shift Registers                                      : 6
  12-bit shift register                                 : 1
  2-bit shift register                                  : 1
@@ -1143,34 +1150,34 @@ Design Statistics
 # IOs                              : 576
 
 Cell Usage :
-# BELS                             : 1561
+# BELS                             : 1672
 #      GND                         : 1
-#      INV                         : 63
-#      LUT1                        : 84
-#      LUT2                        : 358
+#      INV                         : 62
+#      LUT1                        : 94
+#      LUT2                        : 357
 #      LUT2_L                      : 1
 #      LUT3                        : 308
 #      LUT3_D                      : 3
 #      LUT3_L                      : 4
-#      LUT4                        : 242
-#      LUT4_D                      : 8
-#      LUT4_L                      : 17
-#      MUXCY                       : 143
-#      MUXF5                       : 122
+#      LUT4                        : 307
+#      LUT4_D                      : 9
+#      LUT4_L                      : 33
+#      MUXCY                       : 150
+#      MUXF5                       : 125
 #      MUXF6                       : 50
 #      MUXF7                       : 23
 #      MUXF8                       : 8
 #      VCC                         : 1
-#      XORCY                       : 125
-# FlipFlops/Latches                : 589
+#      XORCY                       : 136
+# FlipFlops/Latches                : 857
 #      FD                          : 22
-#      FDE                         : 408
+#      FDE                         : 695
 #      FDE_1                       : 9
 #      FDR                         : 19
-#      FDRE                        : 97
+#      FDRE                        : 75
 #      FDRS                        : 14
 #      FDS                         : 5
-#      FDSE                        : 15
+#      FDSE                        : 18
 # RAMS                             : 4
 #      RAMB16_S9                   : 4
 # Shift Registers                  : 7
@@ -1190,10 +1197,10 @@ Device utilization summary:
 
 Selected Device : 2v6000bf957-4 
 
- Number of Slices:                      583  out of  33792     1%  
- Number of Slice Flip Flops:            589  out of  67584     0%  
- Number of 4 input LUTs:               1095  out of  67584     1%  
-    Number used as logic:              1088
+ Number of Slices:                      751  out of  33792     2%  
+ Number of Slice Flip Flops:            857  out of  67584     1%  
+ Number of 4 input LUTs:               1185  out of  67584     1%  
+    Number used as logic:              1178
     Number used as Shift registers:       7
  Number of IOs:                         576
  Number of bonded IOBs:                 249  out of    684    36%  
@@ -1221,7 +1228,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clock_27mhz                        | IBUF+BUFG              | 485   |
+clock_27mhz                        | IBUF+BUFG              | 753   |
 d16h/clock1                        | BUFG                   | 45    |
 ac97_bit_clock                     | BUFGP                  | 66    |
 -----------------------------------+------------------------+-------+
@@ -1246,29 +1253,29 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock_27mhz'
   Clock period: 7.857ns (frequency: 127.269MHz)
-  Total number of paths / destination ports: 139832 / 1036
+  Total number of paths / destination ports: 205375 / 1552
 -------------------------------------------------------------------------
 Delay:               7.857ns (Levels of Logic = 9)
-  Source:            re/buffer_index_counter_0 (FF)
-  Destination:       re/buffer_0 (FF)
+  Source:            randomnessExtractorXORBuf/buffer_index_counter_0 (FF)
+  Destination:       randomnessExtractorXORBuf/out_0 (FF)
   Source Clock:      clock_27mhz rising
   Destination Clock: clock_27mhz rising
 
-  Data Path: re/buffer_index_counter_0 to re/buffer_0
+  Data Path: randomnessExtractorXORBuf/buffer_index_counter_0 to randomnessExtractorXORBuf/out_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q            145   0.568   1.665  re/buffer_index_counter_0 (re/buffer_index_counter_0)
-     LUT3:I0->O            1   0.439   0.000  re/Mmux__COND_8_11 (re/Mmux__COND_8_11)
-     MUXF5:I1->O           1   0.436   0.000  re/Mmux__COND_8_10_f5 (re/Mmux__COND_8_10_f5)
-     MUXF6:I1->O           1   0.447   0.000  re/Mmux__COND_8_9_f6 (re/Mmux__COND_8_9_f6)
-     MUXF7:I1->O           1   0.447   0.000  re/Mmux__COND_8_8_f7 (re/Mmux__COND_8_8_f7)
-     MUXF8:I1->O           1   0.447   0.726  re/Mmux__COND_8_7_f8 (re/Mmux__COND_8_7_f8)
-     LUT3:I1->O            1   0.439   0.000  re/Mmux__COND_8_4 (re/Mmux__COND_8_4)
-     MUXF5:I1->O           1   0.436   0.000  re/Mmux__COND_8_3_f5 (re/Mmux__COND_8_3_f5)
-     MUXF6:I1->O           1   0.447   0.551  re/Mmux__COND_8_2_f6 (re/_COND_8)
-     LUT3:I2->O          256   0.439   0.000  re/_COND_939 (re/_COND_9)
-     FDE:D                     0.370          re/buffer_2
+     FDE:C->Q            145   0.568   1.665  randomnessExtractorXORBuf/buffer_index_counter_0 (randomnessExtractorXORBuf/buffer_index_counter_0)
+     LUT3:I0->O            1   0.439   0.000  randomnessExtractorXORBuf/Mmux__COND_10_11 (randomnessExtractorXORBuf/Mmux__COND_10_11)
+     MUXF5:I1->O           1   0.436   0.000  randomnessExtractorXORBuf/Mmux__COND_10_10_f5 (randomnessExtractorXORBuf/Mmux__COND_10_10_f5)
+     MUXF6:I1->O           1   0.447   0.000  randomnessExtractorXORBuf/Mmux__COND_10_9_f6 (randomnessExtractorXORBuf/Mmux__COND_10_9_f6)
+     MUXF7:I1->O           1   0.447   0.000  randomnessExtractorXORBuf/Mmux__COND_10_8_f7 (randomnessExtractorXORBuf/Mmux__COND_10_8_f7)
+     MUXF8:I1->O           1   0.447   0.726  randomnessExtractorXORBuf/Mmux__COND_10_7_f8 (randomnessExtractorXORBuf/Mmux__COND_10_7_f8)
+     LUT3:I1->O            1   0.439   0.000  randomnessExtractorXORBuf/Mmux__COND_10_4 (randomnessExtractorXORBuf/Mmux__COND_10_4)
+     MUXF5:I1->O           1   0.436   0.000  randomnessExtractorXORBuf/Mmux__COND_10_3_f5 (randomnessExtractorXORBuf/Mmux__COND_10_3_f5)
+     MUXF6:I1->O           1   0.447   0.551  randomnessExtractorXORBuf/Mmux__COND_10_2_f6 (randomnessExtractorXORBuf/_COND_10)
+     LUT3:I2->O          256   0.439   0.000  randomnessExtractorXORBuf/_COND_1139 (randomnessExtractorXORBuf/_COND_11)
+     FDE:D                     0.370          randomnessExtractorXORBuf/out_2
     ----------------------------------------
     Total                      7.857ns (4.915ns logic, 2.942ns route)
                                        (62.6% logic, 37.4% route)
@@ -1308,7 +1315,7 @@ Delay:               10.250ns (Levels of Logic = 11)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'ac97_bit_clock'
   Clock period: 10.333ns (frequency: 96.777MHz)
-  Total number of paths / destination ports: 1658 / 98
+  Total number of paths / destination ports: 1662 / 98
 -------------------------------------------------------------------------
 Delay:               5.166ns (Levels of Logic = 3)
   Source:            a/ac97/bit_count_6 (FF)
@@ -1371,7 +1378,7 @@ Offset:              1.712ns (Levels of Logic = 1)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clock_27mhz'
-  Total number of paths / destination ports: 53 / 29
+  Total number of paths / destination ports: 58 / 34
 -------------------------------------------------------------------------
 Offset:              10.859ns (Levels of Logic = 7)
   Source:            recordingToB (FF)
@@ -1453,15 +1460,15 @@ Delay:               5.887ns (Levels of Logic = 2)
 =========================================================================
 
 
-Total REAL time to Xst completion: 21.00 secs
-Total CPU time to Xst completion: 20.17 secs
+Total REAL time to Xst completion: 26.00 secs
+Total CPU time to Xst completion: 24.42 secs
  
 --> 
 
 
-Total memory usage is 502388 kilobytes
+Total memory usage is 497084 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  433 (   0 filtered)
-Number of infos    :   26 (   0 filtered)
+Number of warnings :  436 (   0 filtered)
+Number of infos    :   27 (   0 filtered)
 
