@@ -836,7 +836,7 @@ proc restore { { project_dir "" } } {
   } "A problem occured while restoring project settings."
 
   set user_files { 
-      "../../../../Lab4/Sources/lab4/display_16hex.v" 
+      "../../../../lab4/display_16hex.v" 
       "../../../curve25519-verilog/curve25519.v" 
       "../../../curve25519-verilog/feadd.v" 
       "../../../curve25519-verilog/feexp.v" 
@@ -846,7 +846,6 @@ proc restore { { project_dir "" } } {
       "../../../verilog-dumbserial/serial_test.v" 
       "../../labkit.ucf" 
       "../../labkit.v" 
-      "dummy_curve25519.v" 
       "randomnessExtractor.v" 
       "sending_fsm.v" 
       "sending_fsm_tb.v"}

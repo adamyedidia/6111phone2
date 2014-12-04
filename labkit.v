@@ -766,19 +766,6 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 			end
         end
 		if (sendStart) sendStart <= 0;
-
-
-// Hey Andres, there was a merge conflict, centering around
-// whether or not to keep the below six lines. I decided to keep them;
-// might have been right to get rid of them, though.		
-        if (receiveReady) begin
-            receivingToB <= !receivingToB;
-            playbackAddr <= 0;
-        else if (ready) begin
-            playbackAddr <= playbackAddr + 1;
-		end
-// end lines I'm talking about
-
 	end
 	
 	reg playbackRewind = 0;

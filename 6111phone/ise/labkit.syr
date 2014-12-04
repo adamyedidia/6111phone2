@@ -1,18 +1,18 @@
 Release 10.1.03 - xst K.39 (lin64)
 Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
 --> 
-Parameter TMPDIR set to /afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111phone/ise/xst/projnav.tmp
+Parameter TMPDIR set to /afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111phone2/6111phone/ise/xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
-Parameter xsthdpdir set to /afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111phone/ise/xst
+Parameter xsthdpdir set to /afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111phone2/6111phone/ise/xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Reading design: labkit.prj
@@ -109,18 +109,16 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling verilog file "../../../../Lab4/Sources/lab4/display_16hex.v" in library work
 Compiling verilog file "../../../verilog-dumbserial/serial.v" in library work
-Module <display_16hex> compiled
 Module <sendBit> compiled
 Module <receiveBit> compiled
-WARNING:HDLCompilers:301 - "../../../verilog-dumbserial/serial.v" line 65 Too many digits specified in hex constant
+WARNING:HDLCompilers:301 - "../../../verilog-dumbserial/serial.v" line 50 Too many digits specified in hex constant
 Module <sendFrame> compiled
-WARNING:HDLCompilers:301 - "../../../verilog-dumbserial/serial.v" line 106 Too many digits specified in hex constant
-Compiling verilog file "randomnessExtractorXORBuf.v" in library work
+WARNING:HDLCompilers:301 - "../../../verilog-dumbserial/serial.v" line 89 Too many digits specified in hex constant
+Compiling verilog file "../../../../lab4/display_16hex.v" in library work
 Module <receiveFrame> compiled
 Compiling verilog file "../../labkit.v" in library work
-Module <randomnessExtractorXORBuf> compiled
+Module <display_16hex> compiled
 Module <debounce> compiled
 Module <lab5audio> compiled
 Module <ac97> compiled
@@ -294,7 +292,7 @@ Unit <randomnessExtractorXORBuf> synthesized.
 
 
 Synthesizing Unit <display_16hex>.
-    Related source file is "../../../../Lab4/Sources/lab4/display_16hex.v".
+    Related source file is "../../../../lab4/display_16hex.v".
     Found finite state machine <FSM_0> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 7                                              |
@@ -405,17 +403,12 @@ Unit <sendBit> synthesized.
 
 Synthesizing Unit <receiveBit>.
     Related source file is "../../../verilog-dumbserial/serial.v".
+WARNING:Xst:646 - Signal <serialClockHistory<5>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <ready>.
     Found 1-bit register for signal <data>.
-    Found 2-bit comparator greater for signal <data$cmp_gt0000> created at line 44.
-    Found 2-bit up counter for signal <num_of_bits_read>.
-    Found 3-bit register for signal <serialClockHistory>.
-    Found 2-bit comparator less for signal <serialClockHistory$cmp_lt0000> created at line 38.
-    Found 2-bit up counter for signal <sum_of_bits_read>.
+    Found 6-bit register for signal <serialClockHistory>.
     Summary:
-	inferred   2 Counter(s).
-	inferred   5 D-type flip-flop(s).
-	inferred   2 Comparator(s).
+	inferred   8 D-type flip-flop(s).
 Unit <receiveBit> synthesized.
 
 
@@ -436,12 +429,12 @@ Unit <lab5audio> synthesized.
 Synthesizing Unit <sendFrame>.
     Related source file is "../../../verilog-dumbserial/serial.v".
     Found 4-bit register for signal <index>.
-    Found 1-bit 16-to-1 multiplexer for signal <$varindex0000> created at line 66.
+    Found 1-bit 16-to-1 multiplexer for signal <$varindex0000> created at line 51.
     Found 16-bit register for signal <i>.
-    Found 16-bit subtractor for signal <i$addsub0000> created at line 75.
-    Found 16-bit comparator greatequal for signal <i$cmp_ge0000> created at line 74.
-    Found 16-bit comparator less for signal <i$cmp_lt0000> created at line 74.
-    Found 4-bit adder for signal <index$addsub0000> created at line 79.
+    Found 16-bit subtractor for signal <i$addsub0000> created at line 60.
+    Found 16-bit comparator greatequal for signal <i$cmp_ge0000> created at line 59.
+    Found 16-bit comparator less for signal <i$cmp_lt0000> created at line 59.
+    Found 4-bit adder for signal <index$addsub0000> created at line 64.
     Found 1-bit register for signal <startBit>.
     Summary:
 	inferred  21 D-type flip-flop(s).
@@ -459,7 +452,7 @@ WARNING:Xst:646 - Signal <seekBuffer<7>> is assigned but never used. This unconn
     Found 1-bit register for signal <ready>.
     Found 4-bit up counter for signal <index>.
     Found 8-bit register for signal <data>.
-    Found 16-bit subtractor for signal <i$addsub0000> created at line 115.
+    Found 16-bit subtractor for signal <i$addsub0000> created at line 98.
     Found 1-bit register for signal <receiving>.
     Found 8-bit register for signal <seekBuffer>.
     Summary:
@@ -810,10 +803,9 @@ Macro Statistics
  4-bit subtractor                                      : 1
  5-bit adder                                           : 1
  9-bit adder                                           : 3
-# Counters                                             : 18
+# Counters                                             : 16
  10-bit up counter                                     : 1
  19-bit up counter                                     : 4
- 2-bit up counter                                      : 2
  32-bit up counter                                     : 1
  4-bit up counter                                      : 4
  5-bit down counter                                    : 1
@@ -829,15 +821,14 @@ Macro Statistics
  20-bit register                                       : 6
  24-bit register                                       : 1
  256-bit register                                      : 1
- 3-bit register                                        : 2
+ 3-bit register                                        : 1
  32-bit register                                       : 1
  4-bit register                                        : 2
+ 6-bit register                                        : 1
  8-bit register                                        : 6
-# Comparators                                          : 26
+# Comparators                                          : 24
  16-bit comparator greatequal                          : 1
  16-bit comparator less                                : 1
- 2-bit comparator greater                              : 1
- 2-bit comparator less                                 : 1
  32-bit comparator equal                               : 1
  5-bit comparator greatequal                           : 1
  5-bit comparator lessequal                            : 1
@@ -923,6 +914,7 @@ INFO:Xst:2261 - The FF/Latch <command_0> in Unit <ac97commands> is equivalent to
 INFO:Xst:2261 - The FF/Latch <command_4> in Unit <ac97commands> is equivalent to the following FF/Latch, which will be removed : <command_12> 
 INFO:Xst:2261 - The FF/Latch <command_2> in Unit <ac97commands> is equivalent to the following FF/Latch, which will be removed : <command_10> 
 INFO:Xst:2261 - The FF/Latch <command_1> in Unit <ac97commands> is equivalent to the following FF/Latch, which will be removed : <command_9> 
+WARNING:Xst:2677 - Node <serialClockHistory_5> of sequential type is unconnected in block <receiveBit>.
 WARNING:Xst:2677 - Node <seekBuffer_7> of sequential type is unconnected in block <receiveFrame>.
 WARNING:Xst:1710 - FF/Latch <l_right_data_11> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <l_right_data_10> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
@@ -989,10 +981,9 @@ Macro Statistics
  4-bit adder                                           : 1
  4-bit subtractor                                      : 1
  5-bit adder                                           : 4
-# Counters                                             : 18
+# Counters                                             : 16
  10-bit up counter                                     : 1
  19-bit up counter                                     : 4
- 2-bit up counter                                      : 2
  32-bit up counter                                     : 1
  4-bit up counter                                      : 4
  5-bit down counter                                    : 1
@@ -1000,13 +991,11 @@ Macro Statistics
  5-bit updown counter                                  : 1
  8-bit down counter                                    : 1
  8-bit up counter                                      : 2
-# Registers                                            : 797
- Flip-Flops                                            : 797
-# Comparators                                          : 26
+# Registers                                            : 799
+ Flip-Flops                                            : 799
+# Comparators                                          : 24
  16-bit comparator greatequal                          : 1
  16-bit comparator less                                : 1
- 2-bit comparator greater                              : 1
- 2-bit comparator less                                 : 1
  32-bit comparator equal                               : 1
  5-bit comparator greatequal                           : 1
  5-bit comparator lessequal                            : 1
@@ -1097,378 +1086,3 @@ INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_5> in Unit <labkit> is equivalen
 INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_6> in Unit <labkit> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_14> 
 INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_8> in Unit <labkit> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_16> 
 Found area constraint ratio of 100 (+ 5) on block labkit, actual ratio is 2.
-FlipFlop a/ac97/bit_count_3 has been replicated 1 time(s)
-FlipFlop d16h/char_index_0 has been replicated 1 time(s)
-FlipFlop d16h/char_index_1 has been replicated 1 time(s)
-
-Final Macro Processing ...
-
-Processing Unit <labkit> :
-	Found 7-bit shift register for signal <d16h/control_30>.
-	Found 7-bit shift register for signal <d16h/control_22>.
-	Found 7-bit shift register for signal <d16h/control_14>.
-	Found 7-bit shift register for signal <d16h/control_6>.
-	Found 12-bit shift register for signal <a/ac97/left_in_data_12>.
-	Found 2-bit shift register for signal <a/ready_sync_1>.
-Unit <labkit> processed.
-
-=========================================================================
-Final Register Report
-
-Macro Statistics
-# Registers                                            : 841
- Flip-Flops                                            : 841
-# Shift Registers                                      : 6
- 12-bit shift register                                 : 1
- 2-bit shift register                                  : 1
- 7-bit shift register                                  : 4
-
-=========================================================================
-
-=========================================================================
-*                           Partition Report                             *
-=========================================================================
-
-Partition Implementation Status
--------------------------------
-
-  No Partitions were found in this design.
-
--------------------------------
-
-=========================================================================
-*                            Final Report                               *
-=========================================================================
-Final Results
-RTL Top Level Output File Name     : labkit.ngr
-Top Level Output File Name         : labkit
-Output Format                      : NGC
-Optimization Goal                  : Speed
-Keep Hierarchy                     : NO
-
-Design Statistics
-# IOs                              : 576
-
-Cell Usage :
-# BELS                             : 1672
-#      GND                         : 1
-#      INV                         : 62
-#      LUT1                        : 94
-#      LUT2                        : 357
-#      LUT2_L                      : 1
-#      LUT3                        : 308
-#      LUT3_D                      : 3
-#      LUT3_L                      : 4
-#      LUT4                        : 307
-#      LUT4_D                      : 9
-#      LUT4_L                      : 33
-#      MUXCY                       : 150
-#      MUXF5                       : 125
-#      MUXF6                       : 50
-#      MUXF7                       : 23
-#      MUXF8                       : 8
-#      VCC                         : 1
-#      XORCY                       : 136
-# FlipFlops/Latches                : 857
-#      FD                          : 22
-#      FDE                         : 695
-#      FDE_1                       : 9
-#      FDR                         : 19
-#      FDRE                        : 75
-#      FDRS                        : 14
-#      FDS                         : 5
-#      FDSE                        : 18
-# RAMS                             : 4
-#      RAMB16_S9                   : 4
-# Shift Registers                  : 7
-#      SRL16                       : 2
-#      SRL16E                      : 4
-#      SRL16E_1                    : 1
-# Clock Buffers                    : 3
-#      BUFG                        : 2
-#      BUFGP                       : 1
-# IO Buffers                       : 248
-#      IBUF                        : 6
-#      OBUF                        : 242
-=========================================================================
-
-Device utilization summary:
----------------------------
-
-Selected Device : 2v6000bf957-4 
-
- Number of Slices:                      751  out of  33792     2%  
- Number of Slice Flip Flops:            857  out of  67584     1%  
- Number of 4 input LUTs:               1185  out of  67584     1%  
-    Number used as logic:              1178
-    Number used as Shift registers:       7
- Number of IOs:                         576
- Number of bonded IOBs:                 249  out of    684    36%  
- Number of BRAMs:                         4  out of    144     2%  
- Number of GCLKs:                         3  out of     16    18%  
-
----------------------------
-Partition Resource Summary:
----------------------------
-
-  No Partitions were found in this design.
-
----------------------------
-
-
-=========================================================================
-TIMING REPORT
-
-NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
-      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
-      GENERATED AFTER PLACE-and-ROUTE.
-
-Clock Information:
-------------------
------------------------------------+------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)  | Load  |
------------------------------------+------------------------+-------+
-clock_27mhz                        | IBUF+BUFG              | 753   |
-d16h/clock1                        | BUFG                   | 45    |
-ac97_bit_clock                     | BUFGP                  | 66    |
------------------------------------+------------------------+-------+
-
-Asynchronous Control Signals Information:
-----------------------------------------
-No asynchronous control signals found in this design
-
-Timing Summary:
----------------
-Speed Grade: -4
-
-   Minimum period: 10.333ns (Maximum Frequency: 96.777MHz)
-   Minimum input arrival time before clock: 4.458ns
-   Maximum output required time after clock: 10.859ns
-   Maximum combinational path delay: 5.887ns
-
-Timing Detail:
---------------
-All values displayed in nanoseconds (ns)
-
-=========================================================================
-Timing constraint: Default period analysis for Clock 'clock_27mhz'
-  Clock period: 7.857ns (frequency: 127.269MHz)
-  Total number of paths / destination ports: 205375 / 1552
--------------------------------------------------------------------------
-Delay:               7.857ns (Levels of Logic = 9)
-  Source:            randomnessExtractorXORBuf/buffer_index_counter_0 (FF)
-  Destination:       randomnessExtractorXORBuf/out_0 (FF)
-  Source Clock:      clock_27mhz rising
-  Destination Clock: clock_27mhz rising
-
-  Data Path: randomnessExtractorXORBuf/buffer_index_counter_0 to randomnessExtractorXORBuf/out_0
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDE:C->Q            145   0.568   1.665  randomnessExtractorXORBuf/buffer_index_counter_0 (randomnessExtractorXORBuf/buffer_index_counter_0)
-     LUT3:I0->O            1   0.439   0.000  randomnessExtractorXORBuf/Mmux__COND_10_11 (randomnessExtractorXORBuf/Mmux__COND_10_11)
-     MUXF5:I1->O           1   0.436   0.000  randomnessExtractorXORBuf/Mmux__COND_10_10_f5 (randomnessExtractorXORBuf/Mmux__COND_10_10_f5)
-     MUXF6:I1->O           1   0.447   0.000  randomnessExtractorXORBuf/Mmux__COND_10_9_f6 (randomnessExtractorXORBuf/Mmux__COND_10_9_f6)
-     MUXF7:I1->O           1   0.447   0.000  randomnessExtractorXORBuf/Mmux__COND_10_8_f7 (randomnessExtractorXORBuf/Mmux__COND_10_8_f7)
-     MUXF8:I1->O           1   0.447   0.726  randomnessExtractorXORBuf/Mmux__COND_10_7_f8 (randomnessExtractorXORBuf/Mmux__COND_10_7_f8)
-     LUT3:I1->O            1   0.439   0.000  randomnessExtractorXORBuf/Mmux__COND_10_4 (randomnessExtractorXORBuf/Mmux__COND_10_4)
-     MUXF5:I1->O           1   0.436   0.000  randomnessExtractorXORBuf/Mmux__COND_10_3_f5 (randomnessExtractorXORBuf/Mmux__COND_10_3_f5)
-     MUXF6:I1->O           1   0.447   0.551  randomnessExtractorXORBuf/Mmux__COND_10_2_f6 (randomnessExtractorXORBuf/_COND_10)
-     LUT3:I2->O          256   0.439   0.000  randomnessExtractorXORBuf/_COND_1139 (randomnessExtractorXORBuf/_COND_11)
-     FDE:D                     0.370          randomnessExtractorXORBuf/out_2
-    ----------------------------------------
-    Total                      7.857ns (4.915ns logic, 2.942ns route)
-                                       (62.6% logic, 37.4% route)
-
-=========================================================================
-Timing constraint: Default period analysis for Clock 'd16h/clock1'
-  Clock period: 10.250ns (frequency: 97.561MHz)
-  Total number of paths / destination ports: 3001 / 76
--------------------------------------------------------------------------
-Delay:               10.250ns (Levels of Logic = 11)
-  Source:            d16h/char_index_0_1 (FF)
-  Destination:       d16h/disp_data_out (FF)
-  Source Clock:      d16h/clock1 rising
-  Destination Clock: d16h/clock1 rising
-
-  Data Path: d16h/char_index_0_1 to d16h/disp_data_out
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDE:C->Q             32   0.568   1.122  d16h/char_index_0_1 (d16h/char_index_0_1)
-     LUT3:I2->O            1   0.439   0.000  d16h/Mmux_nibble_51 (d16h/Mmux_nibble_51)
-     MUXF5:I1->O           1   0.436   0.000  d16h/Mmux_nibble_4_f5_0 (d16h/Mmux_nibble_4_f51)
-     MUXF6:I1->O           1   0.447   0.000  d16h/Mmux_nibble_3_f6_0 (d16h/Mmux_nibble_3_f61)
-     MUXF7:I1->O          29   0.447   1.365  d16h/Mmux_nibble_2_f7_0 (d16h/nibble<1>)
-     LUT4:I0->O            2   0.439   0.735  d16h/Mrom_dots1311 (d16h/Mrom_dots12)
-     LUT3:I2->O            1   0.439   0.000  d16h/Mmux__varindex0000_16 (d16h/Mmux__varindex0000_16)
-     MUXF5:I0->O           1   0.436   0.000  d16h/Mmux__varindex0000_14_f5 (d16h/Mmux__varindex0000_14_f5)
-     MUXF6:I0->O           1   0.447   0.551  d16h/Mmux__varindex0000_12_f6 (d16h/Mmux__varindex0000_12_f6)
-     LUT3:I2->O            1   0.439   0.558  d16h/disp_data_out_mux000032 (d16h/disp_data_out_mux000032)
-     LUT4_L:I3->LO         1   0.439   0.134  d16h/disp_data_out_mux000078 (d16h/disp_data_out_mux000078)
-     LUT4:I2->O            1   0.439   0.000  d16h/disp_data_out_mux0000169 (d16h/disp_data_out_mux0000)
-     FDE:D                     0.370          d16h/disp_data_out
-    ----------------------------------------
-    Total                     10.250ns (5.785ns logic, 4.465ns route)
-                                       (56.4% logic, 43.6% route)
-
-=========================================================================
-Timing constraint: Default period analysis for Clock 'ac97_bit_clock'
-  Clock period: 10.333ns (frequency: 96.777MHz)
-  Total number of paths / destination ports: 1662 / 98
--------------------------------------------------------------------------
-Delay:               5.166ns (Levels of Logic = 3)
-  Source:            a/ac97/bit_count_6 (FF)
-  Destination:       a/ac97/Mshreg_left_in_data_12 (FF)
-  Source Clock:      ac97_bit_clock rising
-  Destination Clock: ac97_bit_clock falling
-
-  Data Path: a/ac97/bit_count_6 to a/ac97/Mshreg_left_in_data_12
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FD:C->Q              14   0.568   1.186  a/ac97/bit_count_6 (a/ac97/bit_count_6)
-     LUT4:I1->O            1   0.439   0.552  a/ac97/left_in_data_and000024 (a/ac97/left_in_data_and000024)
-     LUT4_L:I2->LO         1   0.439   0.134  a/ac97/left_in_data_and000026 (a/ac97/left_in_data_and000026)
-     LUT4:I2->O           10   0.439   0.885  a/ac97/left_in_data_and000049 (a/ac97/left_in_data_and0000)
-     SRL16E_1:CE               0.525          a/ac97/Mshreg_left_in_data_12
-    ----------------------------------------
-    Total                      5.166ns (2.410ns logic, 2.757ns route)
-                                       (46.6% logic, 53.4% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'clock_27mhz'
-  Total number of paths / destination ports: 63 / 60
--------------------------------------------------------------------------
-Offset:              4.458ns (Levels of Logic = 3)
-  Source:            user4<1> (PAD)
-  Destination:       receiveFrame/receive/sum_of_bits_read_1 (FF)
-  Destination Clock: clock_27mhz rising
-
-  Data Path: user4<1> to receiveFrame/receive/sum_of_bits_read_1
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             3   0.825   0.758  user4_1_IBUF (user4_1_IBUF)
-     LUT4:I2->O            5   0.439   1.055  receiveFrame/receive/ready_not000115 (receiveFrame/N21)
-     LUT2:I0->O            2   0.439   0.701  receiveFrame/receive/sum_of_bits_read_not00011 (receiveFrame/receive/sum_of_bits_read_not0001)
-     FDRE:CE                   0.240          receiveFrame/receive/sum_of_bits_read_0
-    ----------------------------------------
-    Total                      4.458ns (1.943ns logic, 2.515ns route)
-                                       (43.6% logic, 56.4% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'ac97_bit_clock'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              1.712ns (Levels of Logic = 1)
-  Source:            ac97_sdata_in (PAD)
-  Destination:       a/ac97/left_in_data_0 (FF)
-  Destination Clock: ac97_bit_clock falling
-
-  Data Path: ac97_sdata_in to a/ac97/left_in_data_0
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             1   0.825   0.517  ac97_sdata_in_IBUF (ac97_sdata_in_IBUF)
-     FDE_1:D                   0.370          a/ac97/left_in_data_0
-    ----------------------------------------
-    Total                      1.712ns (1.195ns logic, 0.517ns route)
-                                       (69.8% logic, 30.2% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'clock_27mhz'
-  Total number of paths / destination ports: 58 / 34
--------------------------------------------------------------------------
-Offset:              10.859ns (Levels of Logic = 7)
-  Source:            recordingToB (FF)
-  Destination:       user1<0> (PAD)
-  Source Clock:      clock_27mhz rising
-
-  Data Path: recordingToB to user1<0>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDE:C->Q             20   0.568   1.326  recordingToB (recordingToB)
-     LUT3:I0->O            1   0.439   0.725  _mux0000<6>1 (_mux0000<6>)
-     LUT3:I1->O            1   0.439   0.000  sendFrame/Mmux__varindex0000_7 (sendFrame/Mmux__varindex0000_7)
-     MUXF5:I1->O           1   0.436   0.000  sendFrame/Mmux__varindex0000_6_f5 (sendFrame/Mmux__varindex0000_6_f5)
-     MUXF6:I1->O           1   0.447   0.726  sendFrame/Mmux__varindex0000_5_f6 (sendFrame/Mmux__varindex0000_5_f6)
-     LUT2:I1->O            1   0.439   0.000  sendFrame/sendBit/serialData2 (sendFrame/sendBit/serialData1)
-     MUXF5:I0->O           1   0.436   0.517  sendFrame/sendBit/serialData_f5 (user1_0_OBUF)
-     OBUF:I->O                 4.361          user1_0_OBUF (user1<0>)
-    ----------------------------------------
-    Total                     10.859ns (7.565ns logic, 3.294ns route)
-                                       (69.7% logic, 30.3% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'd16h/clock1'
-  Total number of paths / destination ports: 4 / 4
--------------------------------------------------------------------------
-Offset:              5.630ns (Levels of Logic = 1)
-  Source:            d16h/disp_rs (FF)
-  Destination:       disp_rs (PAD)
-  Source Clock:      d16h/clock1 rising
-
-  Data Path: d16h/disp_rs to disp_rs
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDE:C->Q              2   0.568   0.701  d16h/disp_rs (d16h/disp_rs)
-     OBUF:I->O                 4.361          disp_rs_OBUF (disp_rs)
-    ----------------------------------------
-    Total                      5.630ns (4.929ns logic, 0.701ns route)
-                                       (87.5% logic, 12.5% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'ac97_bit_clock'
-  Total number of paths / destination ports: 10 / 10
--------------------------------------------------------------------------
-Offset:              5.677ns (Levels of Logic = 1)
-  Source:            a/ac97/left_in_data_18 (FF)
-  Destination:       analyzer3_data<14> (PAD)
-  Source Clock:      ac97_bit_clock falling
-
-  Data Path: a/ac97/left_in_data_18 to analyzer3_data<14>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDE_1:C->Q            4   0.568   0.747  a/ac97/left_in_data_18 (a/ac97/left_in_data_18)
-     OBUF:I->O                 4.361          analyzer3_data_14_OBUF (analyzer3_data<14>)
-    ----------------------------------------
-    Total                      5.677ns (4.929ns logic, 0.747ns route)
-                                       (86.8% logic, 13.2% route)
-
-=========================================================================
-Timing constraint: Default path analysis
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Delay:               5.887ns (Levels of Logic = 2)
-  Source:            clock_27mhz (PAD)
-  Destination:       analyzer1_clock (PAD)
-
-  Data Path: clock_27mhz to analyzer1_clock
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             2   0.825   0.701  clock_27mhz_IBUF (analyzer1_clock_OBUF1)
-     OBUF:I->O                 4.361          analyzer1_clock_OBUF (analyzer1_clock)
-    ----------------------------------------
-    Total                      5.887ns (5.186ns logic, 0.701ns route)
-                                       (88.1% logic, 11.9% route)
-
-=========================================================================
-
-
-Total REAL time to Xst completion: 25.00 secs
-Total CPU time to Xst completion: 24.36 secs
- 
---> 
-
-
-Total memory usage is 497052 kilobytes
-
-Number of errors   :    0 (   0 filtered)
-Number of warnings :  436 (   0 filtered)
-Number of infos    :   27 (   0 filtered)
-

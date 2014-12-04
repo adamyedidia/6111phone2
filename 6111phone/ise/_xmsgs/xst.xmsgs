@@ -5,10 +5,10 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompilers" num="301" delta="unknown" ><arg fmt="%s" index="1">&quot;../../../verilog-dumbserial/serial.v&quot; line 65 </arg>Too many digits specified in hex constant
+<msg type="warning" file="HDLCompilers" num="301" delta="unknown" ><arg fmt="%s" index="1">&quot;../../../verilog-dumbserial/serial.v&quot; line 50 </arg>Too many digits specified in hex constant
 </msg>
 
-<msg type="warning" file="HDLCompilers" num="301" delta="unknown" ><arg fmt="%s" index="1">&quot;../../../verilog-dumbserial/serial.v&quot; line 106 </arg>Too many digits specified in hex constant
+<msg type="warning" file="HDLCompilers" num="301" delta="unknown" ><arg fmt="%s" index="1">&quot;../../../verilog-dumbserial/serial.v&quot; line 89 </arg>Too many digits specified in hex constant
 </msg>
 
 <msg type="warning" file="HDLCompilers" num="259" delta="unknown" ><arg fmt="%s" index="1">&quot;../../labkit.v&quot; line 722 </arg>Connection to input port &apos;<arg fmt="%s" index="2">we</arg>&apos; does not match port size
@@ -81,6 +81,9 @@
 </msg>
 
 <msg type="warning" file="Xst" num="647" delta="unknown" >Input &lt;<arg fmt="%s" index="1">entropy_bytes</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">serialClockHistory&lt;5&gt;</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="646" delta="unknown" >Signal &lt;<arg fmt="%s" index="1">right_in_data</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
@@ -1098,6 +1101,9 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 <msg type="info" file="Xst" num="2261" delta="unknown" >The FF/Latch &lt;<arg fmt="%s" index="1">command_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">ac97commands</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;command_9&gt; </arg>
 </msg>
 
+<msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">serialClockHistory_5</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">receiveBit</arg>&gt;.
+</msg>
+
 <msg type="warning" file="Xst" num="2677" delta="unknown" >Node &lt;<arg fmt="%s" index="1">seekBuffer_7</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">receiveFrame</arg>&gt;.
 </msg>
 
@@ -1396,4 +1402,3 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 </msg>
 
 </messages>
-
