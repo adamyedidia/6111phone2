@@ -4,15 +4,15 @@ Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to /afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111phone/ise/xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Parameter xsthdpdir set to /afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111phone/ise/xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Reading design: labkit.prj
@@ -777,8 +777,8 @@ WARNING:Xst:646 - Signal <from_ac97_wide_data<9:0>> is assigned but never used. 
 WARNING:Xst:646 - Signal <filter> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <old_vdown>.
     Found 1-bit register for signal <old_vup>.
-    Found 4-bit up counter for signal <playbackAddr>.
     Found 1-bit register for signal <playbackRewind>.
+    Found 4-bit up counter for signal <receiveBufReadAddr>.
     Found 1-bit register for signal <receivingToB>.
     Found 1-bit register for signal <recordingToB>.
     Found 256-bit register for signal <secret_key_seed>.
@@ -1460,13 +1460,13 @@ Delay:               5.887ns (Levels of Logic = 2)
 =========================================================================
 
 
-Total REAL time to Xst completion: 26.00 secs
-Total CPU time to Xst completion: 24.42 secs
+Total REAL time to Xst completion: 25.00 secs
+Total CPU time to Xst completion: 24.36 secs
  
 --> 
 
 
-Total memory usage is 497084 kilobytes
+Total memory usage is 497052 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  436 (   0 filtered)

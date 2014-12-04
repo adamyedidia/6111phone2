@@ -11,6 +11,11 @@
 # do {sending_fsm_tb.fdo} 
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim SE vlog 6.4a Compiler 2008.08 Aug 28 2008
+# -- Compiling module dummy_curve25519
+# 
+# Top level modules:
+# 	dummy_curve25519
+# Model Technology ModelSim SE vlog 6.4a Compiler 2008.08 Aug 28 2008
 # -- Compiling module sending_fsm
 # 
 # Top level modules:
@@ -27,23 +32,24 @@
 # 	glbl
 # vsim -L xilinxcorelib_ver -L unisims_ver -L unimacro_ver -lib work -t 1ps sending_fsm_tb glbl 
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: adamy  Hostname: eecs-digital-21  ProcessID: 7823
-#           Attempting to use alternate WLF file "./wlftxyd03D".
+#           File in use by: adamy  Hostname: eecs-digital-21  ProcessID: 12165
+#           Attempting to use alternate WLF file "./wlft23J3E7".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftxyd03D
+#           Using alternate file: ./wlft23J3E7
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftxyd03D
-# Design is being optimized...
+#           Using alternate file: ./wlft23J3E7
+# Design is being optimized due to module recompilation...
 # Loading work.sending_fsm_tb(fast)
 # Loading work.sending_fsm(fast)
+# Loading work.dummy_curve25519(fast)
 # Loading work.glbl(fast)
 # .main_pane.mdi.interior.cs.vm.paneset.cli_0.wf.clip.cs.pw.wf
 # .main_pane.workspace.interior.cs.nb.canvas.notebook.cs.page2.cs
 # .main_pane.signals.interior.cs
+add wave -r /*
 restart -f
 # Loading work.sending_fsm_tb(fast)
 # Loading work.sending_fsm(fast)
+# Loading work.dummy_curve25519(fast)
 # Loading work.glbl(fast)
-add wave -r /*
-run 1000ns
 run 2000ns

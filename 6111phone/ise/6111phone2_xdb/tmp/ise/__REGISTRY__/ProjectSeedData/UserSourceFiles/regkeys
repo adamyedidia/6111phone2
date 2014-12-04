@@ -1,5 +1,5 @@
 NUM_USER_FILES
-21
+14
 s
 user_file_1
 ../../labkit.ucf
@@ -17,7 +17,7 @@ user_file_13
 sending_fsm_tb.v
 s
 user_file_14
-../../../sha3-verilog-mirror/low_throughput_core/rtl/f_permutation.v
+dummy_curve25519.v
 s
 user_file_15
 ../../../sha3-verilog-mirror/low_throughput_core/rtl/keccak.v

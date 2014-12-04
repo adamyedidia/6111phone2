@@ -2,19 +2,24 @@ library verilog;
 use verilog.vl_types.all;
 entity sending_fsm is
     generic(
-        PUBLIC_KEY_SIZE : integer := 256;
+        SECRET_KEY_SIZE : integer := 255;
+        PUBLIC_KEY_SIZE : integer := 255;
         WIDTH           : integer := 16;
         LOG_PUBLIC_KEY_SIZE: integer := 8;
         LOGSIZE         : integer := 4
     );
     port(
         clock           : in     vl_logic;
-        curve_out       : in     vl_logic_vector;
-        curve_done      : in     vl_logic;
-        incoming_packet_header: in     vl_logic_vector;
-        recordingToB    : out    vl_logic;
-        recordAddr      : out    vl_logic_vector;
-        recordData      : out    vl_logic_vector;
+        start           : in     vl_logic;
+        secret_key_seed : in     vl_logic_vector;
+        incoming_packet_new: in     vl_logic;
+        incoming_packet_read_index: out    vl_logic_vector;
+        incoming_packet_read_data: in     vl_logic_vector;
+        outgoing_packet_write_index: out    vl_logic_vector;
+        outgoing_packet_write_data: out    vl_logic_vector;
+        outgoing_packet_write_enable: out    vl_logic;
+        outgoing_packet_sending: out    vl_logic;
+        shared_key      : out    vl_logic_vector;
         done            : out    vl_logic
     );
 end sending_fsm;

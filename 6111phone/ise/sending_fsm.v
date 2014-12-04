@@ -21,7 +21,7 @@
 
 module sending_fsm #(parameter
 	SECRET_KEY_SIZE=255,
-   PUBLIC_KEY_SIZE=256,
+   PUBLIC_KEY_SIZE=255,
 	WIDTH=16, 
 	LOG_PUBLIC_KEY_SIZE = 8,
 	LOGSIZE = 4) (
@@ -29,33 +29,35 @@ module sending_fsm #(parameter
 		
 		input wire start,
 		input wire [SECRET_KEY_SIZE-1:0] secret_key_seed,
-		
-		input wire curve_done,
-		
+				
 		input wire incoming_packet_new,
 		output reg [LOGSIZE-1:0] incoming_packet_read_index,
 		input wire [WIDTH-1:0] incoming_packet_read_data,
 		
 		output reg [LOGSIZE-1:0] outgoing_packet_write_index,
 		output reg [WIDTH-1:0] outgoing_packet_write_data,
-		output wire outgoing_packet_write_enable,
-		output wire outgoing_packet_sending,
+		output reg outgoing_packet_write_enable,
+		output reg outgoing_packet_sending,
 		
 		output wire [PUBLIC_KEY_SIZE-1:0] shared_key,
 		output wire done
     );
 	
 	reg keygen;
+	reg curve_start;
 	
-	localparam [PUBLIC_KEY_SIZE-1:0] basepoint = 9;
+	wire curve_done;
+	
+	localparam [PUBLIC_KEY_SIZE-1:0] BASEPOINT = 9;
 	reg [PUBLIC_KEY_SIZE-1:0] their_pk;
 	
 	wire [254:0] secret_key = {1'b1, secret_key_seed[0+:251], 3'b000};
-	curve25519 curve25519(
+	dummy_curve25519 curve25519(
 		.clock(clock),
 		.start(curve_start), // 1-cycle pulse
 		.n(secret_key),
-		.q(keygen ? basepoint : their_pk),
+		.q(keygen ? BASEPOINT : their_pk),
+		// ?? SOMETHING IS BIZARRE, their_pk is 256 bits but q is a 255-bit input
 		.done(curve_done),
 		.out(shared_key)
 	);
@@ -72,18 +74,22 @@ module sending_fsm #(parameter
 	
 	reg [2:0] state = WAITING_FOR_PK_GENERATION_STATE;
 	
+	
 	reg [7:0] pk_index;
 	reg [7:0] their_pk_index;
+	
+	reg just_entered_state;
 	
 	always @(posedge clock) begin
 		if (start) begin
 			state <= WAITING_FOR_PK_GENERATION_STATE;
 			outgoing_packet_write_index <= 0;
 			incoming_packet_read_index <= 0;
-			pk_index <= 0;
+			pk_index <= WIDTH-1;
 			curve_start <= 1;
 			keygen <= 1;
 			their_pk_index <= WIDTH-1;
+			outgoing_packet_write_enable <= 0;
 		end
 			
 		case (state)
@@ -92,59 +98,64 @@ module sending_fsm #(parameter
 				if (curve_done) begin
 					state <= SENDING_PK_NO_ACK_STATE;
 					outgoing_packet_sending <= 0;
+					just_entered_state <= 1;
 				end
 			end
 			
 			SENDING_PK_NO_ACK_STATE: begin
 				if (~outgoing_packet_sending) begin
-					if (outgoing_packet_write_index == 0) begin
+					if (just_entered_state) begin
 						outgoing_packet_write_enable <= 1;
 						outgoing_packet_write_data <= NO_ACK_MESSAGE;
+						just_entered_state <= 0;
 					end
 					
 					else begin
 						pk_index <= pk_index + WIDTH;
 						
-						if (pk_index == -WIDTH) begin
+						if (&outgoing_packet_write_index) begin
 							outgoing_packet_write_enable <= 0;
 							outgoing_packet_sending <= 1;
 						end
 						
-						outgoing_packet_write_data <= shared_key[pk_index-1-:WIDTH];
+						outgoing_packet_write_data <= shared_key[pk_index-:WIDTH];
+						outgoing_packet_write_index <= outgoing_packet_write_index + 1;
 					end
-					
-					outgoing_packet_write_index <= outgoing_packet_write_index + 1;
 				end
 				
-				if ((incoming_packet_read_data == ACK_MESSAGE) | 
+				else if ((incoming_packet_read_data == ACK_MESSAGE) | 
 					(incoming_packet_read_data == NO_ACK_MESSAGE)) begin
 					state <= SENDING_PK_WITH_ACK_STATE;
 					outgoing_packet_sending <= 0;
 					outgoing_packet_write_index <= 0;
+					pk_index <= WIDTH - 1;
+					just_entered_state <= 1;
 				end	
 			end
 			
 			SENDING_PK_WITH_ACK_STATE: begin
 				if (~outgoing_packet_sending) begin
-					if (outgoing_packet_write_index == 0) begin
+					if (just_entered_state) begin
 						outgoing_packet_write_enable <= 1;
 						outgoing_packet_write_data <= ACK_MESSAGE;
+						just_entered_state <= 0;
 					end
 					
 					else begin
 						pk_index <= pk_index + WIDTH;
 						 
-						if (pk_index == -WIDTH) begin
+						if (&outgoing_packet_write_index) begin
 							outgoing_packet_write_enable <= 0;
 							outgoing_packet_sending <= 1;
 						end
 						
+						
+						outgoing_packet_write_data <= shared_key[pk_index-:WIDTH];
+						outgoing_packet_write_index <= outgoing_packet_write_index + 1;
 					end
-					
-					outgoing_packet_write_index <= outgoing_packet_write_index + 1;
 				end
 				
-				if (incoming_packet_read_data == ACK_MESSAGE) begin
+				else if (incoming_packet_read_data == ACK_MESSAGE) begin
 					state <= READING_THEIR_PK_STATE;
 					outgoing_packet_sending <= 0;
 					incoming_packet_read_index <= 1;
@@ -156,7 +167,7 @@ module sending_fsm #(parameter
 				incoming_packet_read_index <= incoming_packet_read_index + 1;
 				their_pk_index <= their_pk_index + WIDTH;
 				
-				if (their_pk_index == PUBLIC_KEY_SIZE-1) begin
+				if (&their_pk_index) begin
 					state <= GENERATING_SHARED_KEY_STATE;
 					keygen <= 0;
 					curve_start <= 1;
@@ -165,15 +176,12 @@ module sending_fsm #(parameter
 			
 			GENERATING_SHARED_KEY_STATE: begin
 				if (curve_start) curve_start <= 0;
-				if (curve_done) begin
-					state <= DONE_STATE;
-					done <= 1;
-				end
+				if (curve_done) state <= DONE_STATE;
 			end
 		endcase
 	end
 			
-				
+	assign done = (state == DONE_STATE);			
 	
 /*	reg [LOG_PUBLIC_KEY_SIZE-1+1:0] data_index = 0;
 	

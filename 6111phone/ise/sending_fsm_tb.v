@@ -4,7 +4,7 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   22:51:00 11/30/2014
+// Create Date:   22:03:28 12/03/2014
 // Design Name:   sending_fsm
 // Module Name:   /afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111phone/ise/sending_fsm_tb.v
 // Project Name:  6111phone2
@@ -26,24 +26,33 @@ module sending_fsm_tb;
 
 	// Inputs
 	reg clock;
-	reg [255:0] curve_out;
-	reg curve_done;
-	reg [15:0] incoming_packet_header;
+	reg start;
+	reg [254:0] secret_key_seed;
+	reg incoming_packet_new;
+	reg [15:0] incoming_packet_read_data;
 
 	// Outputs
-	wire recordingToB;
-	wire [3:0] recordAddr;
-	wire [15:0] recordData;
+	wire [3:0] incoming_packet_read_index;
+	wire [3:0] outgoing_packet_write_index;
+	wire [15:0] outgoing_packet_write_data;
+	wire outgoing_packet_write_enable;
+	wire outgoing_packet_sending;
+	wire [254:0] shared_key;
+	wire done;
 
 	// Instantiate the Unit Under Test (UUT)
 	sending_fsm uut (
 		.clock(clock), 
-		.curve_out(curve_out), 
-		.curve_done(curve_done), 
-		.incoming_packet_header(incoming_packet_header), 
-		.recordingToB(recordingToB), 
-		.recordAddr(recordAddr), 
-		.recordData(recordData),
+		.start(start), 
+		.secret_key_seed(secret_key_seed), 
+		.incoming_packet_new(incoming_packet_new), 
+		.incoming_packet_read_index(incoming_packet_read_index), 
+		.incoming_packet_read_data(incoming_packet_read_data), 
+		.outgoing_packet_write_index(outgoing_packet_write_index), 
+		.outgoing_packet_write_data(outgoing_packet_write_data), 
+		.outgoing_packet_write_enable(outgoing_packet_write_enable), 
+		.outgoing_packet_sending(outgoing_packet_sending), 
+		.shared_key(shared_key), 
 		.done(done)
 	);
 
@@ -52,25 +61,29 @@ module sending_fsm_tb;
 	initial begin
 		// Initialize Inputs
 		clock = 0;
-		curve_out = 0;
-		curve_done = 0;
-		incoming_packet_header = 0;
+		start = 0;
+		secret_key_seed = 0;
+		incoming_packet_new = 0;
+		incoming_packet_read_data = 0;
 
 		// Wait 100 ns for global reset to finish
 		#100;
         
-		curve_out = 256'h5555555555555555555555555555555555555555555555555555555555555555; 
-		
-		#50;
-		
-		curve_done = 1;
-		  
-		#50;
-		
-		incoming_packet_header = 1;
-		
-		  
 		// Add stimulus here
+
+		start = 1;
+		
+		#10;
+		
+		start = 0;
+
+		#100;
+		
+		incoming_packet_read_data = 16'h5555;
+		
+		#600;
+		
+		incoming_packet_read_data = 16'hAAAA;
 
 	end
       
