@@ -4,54 +4,54 @@ K3
 cModel Technology
 Z0 d/afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111phone/ise
 T_opt
-Z1 V>lTJ=i0m@2^omY=7WWH3;2
-Z2 04 14 4 work sending_fsm_tb fast 0
-Z3 04 4 4 work glbl fast 0
-Z4 =1-f04da20f0d40-547fd889-9f19e-2f85
-Z5 o-quiet -auto_acc_if_foreign -work work -L xilinxcorelib_ver -L unisims_ver -L unimacro_ver
-Z6 OE;O;6.4a;39
+VjZJF<h:Ed49PQh;2CQ0HL3
+Z1 04 14 4 work sending_fsm_tb fast 0
+Z2 04 4 4 work glbl fast 0
+Z3 =1-f04da20f0d2f-5480c8eb-48b17-e58
+Z4 o-quiet -auto_acc_if_foreign -work work -L xilinxcorelib_ver -L unisims_ver -L unimacro_ver
+Z5 OE;O;6.4a;39
 T_opt1
-Z7 V<aSDI5kDW?`Sbf]?UJiUS0
+Z6 V<aSDI5kDW?`Sbf]?UJiUS0
+R1
 R2
-R3
-Z8 =1-f04da20f0d40-547fd9d9-88e40-2fb7
+Z7 =1-f04da20f0d40-547fd9d9-88e40-2fb7
+R4
 R5
-R6
 T_opt2
-Z9 Vh[c<WSL?1TA`[BSb]=[?W0
+Z8 Vh[c<WSL?1TA`[BSb]=[?W0
+R1
 R2
-R3
-Z10 =1-f04da20f0d40-547fda71-ac64f-2fd6
+Z9 =1-f04da20f0d40-547fda71-ac64f-2fd6
+R4
 R5
-R6
 T_opt3
-Z11 VWd>9;N;PD;3c3EF4[ADgA1
+Z10 VWd>9;N;PD;3c3EF4[ADgA1
+R1
 R2
-R3
-Z12 =1-f04da20f0d40-547fdb96-85fb8-2ffe
+Z11 =1-f04da20f0d40-547fdb96-85fb8-2ffe
+R4
 R5
-R6
 T_opt4
-Z13 VNF8MMI]MAX^?P_fniQPBo3
-Z14 04 13 4 work receiveBit_tb fast 0
-R3
-Z15 =1-f04da20f0d40-54750cd0-4151d-14a3
+Z12 VNF8MMI]MAX^?P_fniQPBo3
+Z13 04 13 4 work receiveBit_tb fast 0
+R2
+Z14 =1-f04da20f0d40-54750cd0-4151d-14a3
+R4
 R5
-R6
 T_opt5
-Z16 VI=Q>2P6n7W7Vk]_Bf?haN3
+Z15 VI=Q>2P6n7W7Vk]_Bf?haN3
+R1
 R2
-R3
-Z17 =1-f04da20f0d40-547fdd3a-ad0a5-3076
+Z16 =1-f04da20f0d40-547fdd3a-ad0a5-3076
+R4
 R5
-R6
 T_opt6
-VWCR7O[YcU>db]JB`8Sez>1
+Z17 VWCR7O[YcU>db]JB`8Sez>1
+R1
 R2
-R3
 Z18 =1-f04da20f0d40-547fe135-87e4c-312f
+R4
 R5
-R6
 vac97
 Z19 I8Do@:Sdi01MPnZ;Wz:lg33
 Z20 VYXk6kHT]QSF:^OA@:mF2J1
@@ -79,21 +79,22 @@ R26
 Z31 !s100 @OcCEK^n3J7;63F2;7=mW3
 !s85 0
 vcurve25519
-Z32 I]>Q^7G;^nFa[ZgR<m^W161
+Z32 Io12:cBVon]eDQMMVPcNmT3
 Z33 VMO<XPW:Qe1Fo]E5T08Vhg1
-Z34 w1417396587
-Z35 8../../../curve25519-verilog/curve25519.v
-Z36 F../../../curve25519-verilog/curve25519.v
+Z34 d/afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111phone2/6111phone/ise
+Z35 w1417725100
+Z36 8../../../curve25519-verilog/curve25519.v
+Z37 F../../../curve25519-verilog/curve25519.v
 L0 7
 R25
 r1
 31
 R26
-Z37 !s100 f<]FAb]nF=ODBaC;eU^XM0
+Z38 !s100 ]n:W9G]FCjEE4OC:>lA810
 !s85 0
 vdebounce
-Z38 I82EaBlS?^?Ehak3eMIlAQ2
-Z39 VnlDBH;]395Ea:=dmAZD@M2
+Z39 I82EaBlS?^?Ehak3eMIlAQ2
+Z40 VnlDBH;]395Ea:=dmAZD@M2
 R21
 R22
 R23
@@ -102,102 +103,106 @@ R25
 r1
 31
 R26
-Z40 !s100 M[_W2R5l=cGg<W^mm1kTh3
+Z41 !s100 M[_W2R5l=cGg<W^mm1kTh3
 !s85 0
 vdisplay_16hex
-Z41 IG1@bAd0bWTXjlh^9hSeAC2
-Z42 VQ7[0V=D<VIXMJAa8=^4h?2
-Z43 w1412804347
-Z44 8../../../../Lab4/Sources/lab4/display_16hex.v
-Z45 F../../../../Lab4/Sources/lab4/display_16hex.v
+Z42 IG1@bAd0bWTXjlh^9hSeAC2
+Z43 VQ7[0V=D<VIXMJAa8=^4h?2
+Z44 w1412804347
+Z45 8../../../../Lab4/Sources/lab4/display_16hex.v
+Z46 F../../../../Lab4/Sources/lab4/display_16hex.v
 L0 21
 R25
 r1
 31
 R26
-Z46 !s100 zFUGPk?dYd7K3A;eM4Dhm1
+Z47 !s100 zFUGPk?dYd7K3A;eM4Dhm1
 !s85 0
 vdummy_curve25519
-Z47 IjD^3f6e^cXkzm`L@X>G?l1
-Z48 VT5cKSec<EZJ_f<k3ng6NC3
-Z49 w1417664641
-Z50 8dummy_curve25519.v
-Z51 Fdummy_curve25519.v
+Z48 IjD^3f6e^cXkzm`L@X>G?l1
+Z49 VT5cKSec<EZJ_f<k3ng6NC3
+Z50 w1417664641
+Z51 8dummy_curve25519.v
+Z52 Fdummy_curve25519.v
 L0 21
 R25
 r1
 31
 R26
-Z52 !s100 ^ia_hokTHe1RQS<^i[BKY1
+Z53 !s100 ^ia_hokTHe1RQS<^i[BKY1
 !s85 0
 vfeadd
-Z53 I`koW]ob=LeRh7S7:58TlU2
-Z54 Vk9QRLYX@0P9=n0aW=MlVg1
-Z55 w1414522319
-Z56 8../../../curve25519-verilog/feadd.v
-Z57 F../../../curve25519-verilog/feadd.v
+Z54 I`koW]ob=LeRh7S7:58TlU2
+Z55 Vk9QRLYX@0P9=n0aW=MlVg1
+R34
+Z56 w1417722873
+Z57 8../../../curve25519-verilog/feadd.v
+Z58 F../../../curve25519-verilog/feadd.v
 L0 3
 R25
 r1
 31
 R26
-Z58 !s100 eh2HjFN0AN73ThkklS=@n0
+Z59 !s100 eh2HjFN0AN73ThkklS=@n0
 !s85 0
 vfeexp
-Z59 IU=LfMP]aeJJf;9LLi<i;X0
-Z60 V5BO[C4HKL^3FAmHg^aLW_3
-Z61 w1415936201
-Z62 8../../../curve25519-verilog/feexp.v
-Z63 F../../../curve25519-verilog/feexp.v
+Z60 IU=LfMP]aeJJf;9LLi<i;X0
+Z61 V5BO[C4HKL^3FAmHg^aLW_3
+Z62 w1415936201
+Z63 8../../../curve25519-verilog/feexp.v
+Z64 F../../../curve25519-verilog/feexp.v
 L0 3
 R25
 r1
 31
 R26
-Z64 !s100 1LOVh[3>X0ndcjKY73Zlb1
+Z65 !s100 1LOVh[3>X0ndcjKY73Zlb1
 !s85 0
 vfemul
-Z65 IQN4>zef^Wmg<48BJB5ni91
-Z66 VCfNFBMLa]SSE:W0c4nInP1
-R55
-Z67 8../../../curve25519-verilog/femul.v
-Z68 F../../../curve25519-verilog/femul.v
+Z66 IQN4>zef^Wmg<48BJB5ni91
+Z67 VCfNFBMLa]SSE:W0c4nInP1
+R34
+R56
+Z68 8../../../curve25519-verilog/femul.v
+Z69 F../../../curve25519-verilog/femul.v
 L0 3
 R25
 r1
 31
 R26
-Z69 !s100 7<ccHdG`F49XVaK4KY@dM3
+Z70 !s100 7<ccHdG`F49XVaK4KY@dM3
 !s85 0
 vfesub
-Z70 I9FaCTLCZnSiXO`8kfRlgn1
-Z71 V4Fd4k<8o;?Pb]h`<1aLV03
-R55
-Z72 8../../../curve25519-verilog/fesub.v
-Z73 F../../../curve25519-verilog/fesub.v
+Z71 I9FaCTLCZnSiXO`8kfRlgn1
+Z72 V4Fd4k<8o;?Pb]h`<1aLV03
+R34
+R56
+Z73 8../../../curve25519-verilog/fesub.v
+Z74 F../../../curve25519-verilog/fesub.v
 L0 3
 R25
 r1
 31
 R26
-Z74 !s100 X7J9bEjf4HiOcOXUU`b?G2
+Z75 !s100 X7J9bEjf4HiOcOXUU`b?G2
 !s85 0
 vglbl
-Z75 IB;@1jEXmEfQXL`;Kf0IBZ3
-Z76 VnN]4Gon>inod6>M^M2[SV1
-Z77 w1202685744
-Z78 8/afs/csail.mit.edu/proj/redsocs/Xilinx10.1/ISE/verilog/src/glbl.v
-Z79 F/afs/csail.mit.edu/proj/redsocs/Xilinx10.1/ISE/verilog/src/glbl.v
+Z76 IB;@1jEXmEfQXL`;Kf0IBZ3
+Z77 VnN]4Gon>inod6>M^M2[SV1
+R34
+Z78 w1202685744
+Z79 8/afs/csail.mit.edu/proj/redsocs/Xilinx10.1/ISE/verilog/src/glbl.v
+Z80 F/afs/csail.mit.edu/proj/redsocs/Xilinx10.1/ISE/verilog/src/glbl.v
 L0 5
 R25
 r1
 31
 R26
-Z80 !s100 T?5S;>bN`@zG_25]R_4A33
+Z81 !s100 T?5S;>bN`@zG_25]R_4A33
 !s85 0
 vlab5audio
-Z81 IH[oi_MNhdk5JH^PJC8_Si3
-Z82 Vi2V5RS4:Il44D[0_IdeF_0
+Z82 IH[oi_MNhdk5JH^PJC8_Si3
+Z83 Vi2V5RS4:Il44D[0_IdeF_0
 R21
 R22
 R23
@@ -206,169 +211,171 @@ R25
 r1
 31
 R26
-Z83 !s100 hk9j^9hKIC=bC54TENcJG3
+Z84 !s100 hk9j^9hKIC=bC54TENcJG3
 !s85 0
 vmybram
-Z84 IU1;dkZ>T5WWzH=PAg>lNS3
-Z85 VGM9]TZo^RUBWUlL>G2B`40
+Z85 IU1;dkZ>T5WWzH=PAg>lNS3
+Z86 VGM9]TZo^RUBWUlL>G2B`40
 w0
 R22
 R23
-Z86 L0 826
+Z87 L0 826
 R25
 r1
 31
 R26
-Z87 !s100 0YUTU?U_]z6OiUAX1=ZJ;3
+Z88 !s100 0YUTU?U_]z6OiUAX1=ZJ;3
 !s85 0
 vrandomnessExtractor
-Z88 IF8FHiFdHETBcTm>1fdACg0
-Z89 Vke5^:o]XW9HVUm_>=kiKl0
-Z90 w1416969709
-Z91 8randomnessExtractor.v
-Z92 FrandomnessExtractor.v
+Z89 IF8FHiFdHETBcTm>1fdACg0
+Z90 Vke5^:o]XW9HVUm_>=kiKl0
+Z91 w1416969709
+Z92 8randomnessExtractor.v
+Z93 FrandomnessExtractor.v
 L0 21
 R25
 r1
 31
 R26
-Z93 nrandomness@extractor
-Z94 !s100 LXe26z@3e58PnTPhW6;c^0
+Z94 nrandomness@extractor
+Z95 !s100 LXe26z@3e58PnTPhW6;c^0
 !s85 0
 vrandomnessExtractor_tb
-Z95 IZ8ji1B51d[dODQTZ^L^z22
-Z96 V^FH19zY`cW@<Ih:^OCQa`1
-Z97 w1416966673
-Z98 8randomnessExtractor_tb.v
-Z99 FrandomnessExtractor_tb.v
+Z96 IZ8ji1B51d[dODQTZ^L^z22
+Z97 V^FH19zY`cW@<Ih:^OCQa`1
+Z98 w1416966673
+Z99 8randomnessExtractor_tb.v
+Z100 FrandomnessExtractor_tb.v
 L0 25
 R25
 r1
 31
 R26
-Z100 nrandomness@extractor_tb
-Z101 !s100 B2BO1VZLacZz3HKLV4omo0
+Z101 nrandomness@extractor_tb
+Z102 !s100 B2BO1VZLacZz3HKLV4omo0
 !s85 0
 vreceiveBit
-Z102 ID<mT8bX2UW>:727SnYEfa3
-Z103 VSEPd0?DL?9h2bVT`8A[Mm3
-Z104 w1417398870
-Z105 8../../../verilog-dumbserial/serial.v
-Z106 F../../../verilog-dumbserial/serial.v
+Z103 ID<mT8bX2UW>:727SnYEfa3
+Z104 VSEPd0?DL?9h2bVT`8A[Mm3
+Z105 w1417398870
+Z106 8../../../verilog-dumbserial/serial.v
+Z107 F../../../verilog-dumbserial/serial.v
 L0 27
 R25
 r1
 31
 R26
-Z107 nreceive@bit
-Z108 !s100 zZh;f?jabi1[>[698E2BB1
+Z108 nreceive@bit
+Z109 !s100 zZh;f?jabi1[>[698E2BB1
 !s85 0
 vreceiveBit_tb
-Z109 IbF=>>h]`UegTOTdWj=]VS1
-Z110 VeokK3mZ`6UF@Ql==TTf;11
-Z111 w1416957118
-Z112 8receiveBit_tb.v
-Z113 FreceiveBit_tb.v
+Z110 IbF=>>h]`UegTOTdWj=]VS1
+Z111 VeokK3mZ`6UF@Ql==TTf;11
+Z112 w1416957118
+Z113 8receiveBit_tb.v
+Z114 FreceiveBit_tb.v
 L0 25
 R25
 r1
 31
 R26
-Z114 nreceive@bit_tb
-Z115 !s100 ^U^YWN5a>aK8eddZT0UYP3
+Z115 nreceive@bit_tb
+Z116 !s100 ^U^YWN5a>aK8eddZT0UYP3
 !s85 0
 vreceiveFrame
-Z116 IQYONDV3N69h9Fm`?5z;j93
-Z117 V]bH7IgH:CN=[=FgUKAfoY2
-R104
+Z117 IQYONDV3N69h9Fm`?5z;j93
+Z118 V]bH7IgH:CN=[=FgUKAfoY2
 R105
 R106
+R107
 L0 89
 R25
 r1
 31
 R26
-Z118 nreceive@frame
-Z119 !s100 =XQ2^GgCBc;nmUSf?JK6B3
+Z119 nreceive@frame
+Z120 !s100 =XQ2^GgCBc;nmUSf?JK6B3
 !s85 0
 vsendBit
-Z120 Ii]`7^AE2?N<8k1^=f;KeV2
-Z121 V]]U9]YWCz;2MaHRd8QODL0
-R104
+Z121 Ii]`7^AE2?N<8k1^=f;KeV2
+Z122 V]]U9]YWCz;2MaHRd8QODL0
 R105
 R106
+R107
 L0 12
 R25
 r1
 31
 R26
-Z122 nsend@bit
-Z123 !s100 I]DFW@VJZ8;ahnLS^gRof2
+Z123 nsend@bit
+Z124 !s100 I]DFW@VJZ8;ahnLS^gRof2
 !s85 0
 vsendFrame
-Z124 IfNc@lZkJO>KmIH3P5ViIF2
-Z125 V4F;;1J07;g?OJ^]RK[Y9i3
-R104
+Z125 IfNc@lZkJO>KmIH3P5ViIF2
+Z126 V4F;;1J07;g?OJ^]RK[Y9i3
 R105
 R106
+R107
 L0 56
 R25
 r1
 31
 R26
-Z126 nsend@frame
-Z127 !s100 gE0GMSfdHTg381nWHPRFR3
+Z127 nsend@frame
+Z128 !s100 gE0GMSfdHTg381nWHPRFR3
 !s85 0
 vsending_fsm
-Z128 I:M>7<i`]gAWWX09oN60nV3
-Z129 VoE:b:8zJo<]8Wo4WXM]@a2
-Z130 w1417666856
-Z131 8sending_fsm.v
-Z132 Fsending_fsm.v
+Z129 IGa8@2:5H^Gnhj30kK=O_h1
+Z130 VoE:b:8zJo<]8Wo4WXM]@a2
+R34
+Z131 w1417725617
+Z132 8sending_fsm.v
+Z133 Fsending_fsm.v
 L0 22
 R25
 r1
 31
 R26
-Z133 !s100 lRR_ZVE0_WLWj=e5b9PGX3
+Z134 !s100 T<<<cZTDgeeSC>DKC[7G40
 !s85 0
 vsending_fsm_tb
-Z134 Ib7JUM7N:bR0bIHU[OT:^^0
-Z135 VEK:>JUW^1AB=D6j8SLOaH2
-Z136 w1417665837
-Z137 8sending_fsm_tb.v
-Z138 Fsending_fsm_tb.v
+Z135 Ib7JUM7N:bR0bIHU[OT:^^0
+Z136 VEK:>JUW^1AB=D6j8SLOaH2
+R34
+Z137 w1417723330
+Z138 8sending_fsm_tb.v
+Z139 Fsending_fsm_tb.v
 L0 25
 R25
 r1
 31
 R26
-Z139 !s100 WZ7569`N<PJzm3_zHeBCX2
+Z140 !s100 WZ7569`N<PJzm3_zHeBCX2
 !s85 0
 vtestSerial
-Z140 I>5GYfNKB50a01eBii_kbV1
-Z141 Vm5;n;VDd^BzU^8Xi0Ez]Y3
-Z142 w1416955430
-Z143 8../../../verilog-dumbserial/serial_test.v
-Z144 F../../../verilog-dumbserial/serial_test.v
+Z141 I>5GYfNKB50a01eBii_kbV1
+Z142 Vm5;n;VDd^BzU^8Xi0Ez]Y3
+Z143 w1416955430
+Z144 8../../../verilog-dumbserial/serial_test.v
+Z145 F../../../verilog-dumbserial/serial_test.v
 L0 8
 R25
 r1
 31
 R26
-Z145 ntest@serial
-Z146 !s100 l_mM1nBg0:II=0n4Hge832
+Z146 ntest@serial
+Z147 !s100 l_mM1nBg0:II=0n4Hge832
 !s85 0
 vtone750hz
-Z147 I@m<5VienkWYc3U]4aGKLf2
-Z148 V_miH[zKPGGdQYg5`n1Z[X3
+Z148 I@m<5VienkWYc3U]4aGKLf2
+Z149 V_miH[zKPGGdQYg5`n1Z[X3
 R21
 R22
 R23
-Z149 L0 284
+Z150 L0 284
 R25
 r1
 31
 R26
-Z150 !s100 c:<QDH0mCF@E4`cEoWARz3
+Z151 !s100 c:<QDH0mCF@E4`cEoWARz3
 !s85 0

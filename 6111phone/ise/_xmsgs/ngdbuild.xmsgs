@@ -5,7 +5,7 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="info" file="ConstraintSystem" num="59" delta="unknown" >Constraint <arg fmt="%s" index="1">&lt;NET &quot;flash_address&lt;24&gt;&quot; LOC=&quot;al7&quot;;&gt; [/afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/labkit.ucf(335)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">flash_address&lt;24&gt;</arg>&quot; not found.  Please verify that:
+<msg type="info" file="ConstraintSystem" num="59" delta="unknown" >Constraint <arg fmt="%s" index="1">&lt;NET &quot;flash_address&lt;24&gt;&quot; LOC=&quot;al7&quot;;&gt; [/afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111phone2/labkit.ucf(335)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">flash_address&lt;24&gt;</arg>&quot; not found.  Please verify that:
 1. The specified design element actually exists in the original design.
 2. The specified object is spelled correctly in the constraint source file.
 </msg>

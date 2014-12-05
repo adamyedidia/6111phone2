@@ -1,5 +1,5 @@
 NUM_USER_FILES
-13
+15
 s
 user_file_1
 ../../labkit.ucf
@@ -15,6 +15,12 @@ sending_fsm.v
 s
 user_file_13
 sending_fsm_tb.v
+s
+user_file_14
+../../../chacha20-verilog/chacha20_test.v
+s
+user_file_15
+../../../chacha20-verilog/chacha20.v
 s
 user_file_2
 ../../labkit.v

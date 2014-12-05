@@ -52,12 +52,13 @@ module sending_fsm #(parameter
 	reg [PUBLIC_KEY_SIZE-1:0] their_pk;
 	
 	wire [254:0] secret_key = {1'b1, secret_key_seed[0+:251], 3'b000};
-	dummy_curve25519 curve25519(
+	curve25519 curve25519(
 		.clock(clock),
 		.start(curve_start), // 1-cycle pulse
 		.n(secret_key),
 		.q(keygen ? BASEPOINT : their_pk),
 		// ?? SOMETHING IS BIZARRE, their_pk is 256 bits but q is a 255-bit input
+		// andres: their_pk is 255 bits (255-1:0)
 		.done(curve_done),
 		.out(shared_key)
 	);
@@ -181,7 +182,7 @@ module sending_fsm #(parameter
 		endcase
 	end
 			
-	assign done = (state == DONE_STATE);			
+	assign done = (state == DONE_STATE);
 	
 /*	reg [LOG_PUBLIC_KEY_SIZE-1+1:0] data_index = 0;
 	

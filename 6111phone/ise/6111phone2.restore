@@ -837,6 +837,8 @@ proc restore { { project_dir "" } } {
 
   set user_files { 
       "../../../../lab4/display_16hex.v" 
+      "../../../chacha20-verilog/chacha20.v" 
+      "../../../chacha20-verilog/chacha20_test.v" 
       "../../../curve25519-verilog/curve25519.v" 
       "../../../curve25519-verilog/feadd.v" 
       "../../../curve25519-verilog/feexp.v" 

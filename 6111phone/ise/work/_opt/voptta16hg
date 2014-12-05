@@ -1,0 +1,381 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111phone/ise
+T_opt
+Z1 VjZJF<h:Ed49PQh;2CQ0HL3
+Z2 04 14 4 work sending_fsm_tb fast 0
+Z3 04 4 4 work glbl fast 0
+Z4 =1-f04da20f0d2f-5480c8eb-48b17-e58
+Z5 o-quiet -auto_acc_if_foreign -work work -L xilinxcorelib_ver -L unisims_ver -L unimacro_ver
+Z6 OE;O;6.4a;39
+T_opt1
+Z7 V<aSDI5kDW?`Sbf]?UJiUS0
+R2
+R3
+Z8 =1-f04da20f0d40-547fd9d9-88e40-2fb7
+R5
+R6
+T_opt2
+Z9 Vh[c<WSL?1TA`[BSb]=[?W0
+R2
+R3
+Z10 =1-f04da20f0d40-547fda71-ac64f-2fd6
+R5
+R6
+T_opt3
+Z11 VWd>9;N;PD;3c3EF4[ADgA1
+R2
+R3
+Z12 =1-f04da20f0d40-547fdb96-85fb8-2ffe
+R5
+R6
+T_opt4
+Z13 VNF8MMI]MAX^?P_fniQPBo3
+Z14 04 13 4 work receiveBit_tb fast 0
+R3
+Z15 =1-f04da20f0d40-54750cd0-4151d-14a3
+R5
+R6
+T_opt5
+Z16 VI=Q>2P6n7W7Vk]_Bf?haN3
+R2
+R3
+Z17 =1-f04da20f0d40-547fdd3a-ad0a5-3076
+R5
+R6
+T_opt6
+Z18 VWCR7O[YcU>db]JB`8Sez>1
+R2
+R3
+Z19 =1-f04da20f0d40-547fe135-87e4c-312f
+R5
+R6
+vac97
+Z20 I8Do@:Sdi01MPnZ;Wz:lg33
+Z21 VYXk6kHT]QSF:^OA@:mF2J1
+Z22 w1417651452
+Z23 8../../labkit.v
+Z24 F../../labkit.v
+Z25 L0 109
+Z26 OE;L;6.4a;39
+r1
+31
+Z27 o+acc -L mtiAvm -L mtiOvm -L mtiUPF
+Z28 !s100 l4oD9X[_IW1<T8[QDnZLR0
+!s85 0
+vac97commands
+Z29 IdeJUU97kgV==VQ;6OFk9W2
+Z30 VfgQQb6>bl@1HVOemOfkS92
+R22
+R23
+R24
+Z31 L0 220
+R26
+r1
+31
+R27
+Z32 !s100 @OcCEK^n3J7;63F2;7=mW3
+!s85 0
+vcurve25519
+Z33 Io12:cBVon]eDQMMVPcNmT3
+Z34 VMO<XPW:Qe1Fo]E5T08Vhg1
+Z35 d/afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111phone2/6111phone/ise
+Z36 w1417725100
+Z37 8../../../curve25519-verilog/curve25519.v
+Z38 F../../../curve25519-verilog/curve25519.v
+L0 7
+R26
+r1
+31
+R27
+Z39 !s100 ]n:W9G]FCjEE4OC:>lA810
+!s85 0
+vdebounce
+Z40 I82EaBlS?^?Ehak3eMIlAQ2
+Z41 VnlDBH;]395Ea:=dmAZD@M2
+R22
+R23
+R24
+L0 9
+R26
+r1
+31
+R27
+Z42 !s100 M[_W2R5l=cGg<W^mm1kTh3
+!s85 0
+vdisplay_16hex
+Z43 IG1@bAd0bWTXjlh^9hSeAC2
+Z44 VQ7[0V=D<VIXMJAa8=^4h?2
+Z45 w1412804347
+Z46 8../../../../Lab4/Sources/lab4/display_16hex.v
+Z47 F../../../../Lab4/Sources/lab4/display_16hex.v
+L0 21
+R26
+r1
+31
+R27
+Z48 !s100 zFUGPk?dYd7K3A;eM4Dhm1
+!s85 0
+vdummy_curve25519
+Z49 IjD^3f6e^cXkzm`L@X>G?l1
+Z50 VT5cKSec<EZJ_f<k3ng6NC3
+Z51 w1417664641
+Z52 8dummy_curve25519.v
+Z53 Fdummy_curve25519.v
+L0 21
+R26
+r1
+31
+R27
+Z54 !s100 ^ia_hokTHe1RQS<^i[BKY1
+!s85 0
+vfeadd
+Z55 I`koW]ob=LeRh7S7:58TlU2
+Z56 Vk9QRLYX@0P9=n0aW=MlVg1
+R35
+Z57 w1417722873
+Z58 8../../../curve25519-verilog/feadd.v
+Z59 F../../../curve25519-verilog/feadd.v
+L0 3
+R26
+r1
+31
+R27
+Z60 !s100 eh2HjFN0AN73ThkklS=@n0
+!s85 0
+vfeexp
+Z61 IU=LfMP]aeJJf;9LLi<i;X0
+Z62 V5BO[C4HKL^3FAmHg^aLW_3
+Z63 w1415936201
+Z64 8../../../curve25519-verilog/feexp.v
+Z65 F../../../curve25519-verilog/feexp.v
+L0 3
+R26
+r1
+31
+R27
+Z66 !s100 1LOVh[3>X0ndcjKY73Zlb1
+!s85 0
+vfemul
+Z67 IQN4>zef^Wmg<48BJB5ni91
+Z68 VCfNFBMLa]SSE:W0c4nInP1
+R35
+R57
+Z69 8../../../curve25519-verilog/femul.v
+Z70 F../../../curve25519-verilog/femul.v
+L0 3
+R26
+r1
+31
+R27
+Z71 !s100 7<ccHdG`F49XVaK4KY@dM3
+!s85 0
+vfesub
+Z72 I9FaCTLCZnSiXO`8kfRlgn1
+Z73 V4Fd4k<8o;?Pb]h`<1aLV03
+R35
+R57
+Z74 8../../../curve25519-verilog/fesub.v
+Z75 F../../../curve25519-verilog/fesub.v
+L0 3
+R26
+r1
+31
+R27
+Z76 !s100 X7J9bEjf4HiOcOXUU`b?G2
+!s85 0
+vglbl
+Z77 IB;@1jEXmEfQXL`;Kf0IBZ3
+Z78 VnN]4Gon>inod6>M^M2[SV1
+R35
+Z79 w1202685744
+Z80 8/afs/csail.mit.edu/proj/redsocs/Xilinx10.1/ISE/verilog/src/glbl.v
+Z81 F/afs/csail.mit.edu/proj/redsocs/Xilinx10.1/ISE/verilog/src/glbl.v
+L0 5
+R26
+r1
+31
+R27
+Z82 !s100 T?5S;>bN`@zG_25]R_4A33
+!s85 0
+vlab5audio
+Z83 IH[oi_MNhdk5JH^PJC8_Si3
+Z84 Vi2V5RS4:Il44D[0_IdeF_0
+R22
+R23
+R24
+L0 42
+R26
+r1
+31
+R27
+Z85 !s100 hk9j^9hKIC=bC54TENcJG3
+!s85 0
+vmybram
+Z86 IU1;dkZ>T5WWzH=PAg>lNS3
+Z87 VGM9]TZo^RUBWUlL>G2B`40
+w0
+R23
+R24
+Z88 L0 826
+R26
+r1
+31
+R27
+Z89 !s100 0YUTU?U_]z6OiUAX1=ZJ;3
+!s85 0
+vrandomnessExtractor
+Z90 IF8FHiFdHETBcTm>1fdACg0
+Z91 Vke5^:o]XW9HVUm_>=kiKl0
+Z92 w1416969709
+Z93 8randomnessExtractor.v
+Z94 FrandomnessExtractor.v
+L0 21
+R26
+r1
+31
+R27
+Z95 nrandomness@extractor
+Z96 !s100 LXe26z@3e58PnTPhW6;c^0
+!s85 0
+vrandomnessExtractor_tb
+Z97 IZ8ji1B51d[dODQTZ^L^z22
+Z98 V^FH19zY`cW@<Ih:^OCQa`1
+Z99 w1416966673
+Z100 8randomnessExtractor_tb.v
+Z101 FrandomnessExtractor_tb.v
+L0 25
+R26
+r1
+31
+R27
+Z102 nrandomness@extractor_tb
+Z103 !s100 B2BO1VZLacZz3HKLV4omo0
+!s85 0
+vreceiveBit
+Z104 ID<mT8bX2UW>:727SnYEfa3
+Z105 VSEPd0?DL?9h2bVT`8A[Mm3
+Z106 w1417398870
+Z107 8../../../verilog-dumbserial/serial.v
+Z108 F../../../verilog-dumbserial/serial.v
+L0 27
+R26
+r1
+31
+R27
+Z109 nreceive@bit
+Z110 !s100 zZh;f?jabi1[>[698E2BB1
+!s85 0
+vreceiveBit_tb
+Z111 IbF=>>h]`UegTOTdWj=]VS1
+Z112 VeokK3mZ`6UF@Ql==TTf;11
+Z113 w1416957118
+Z114 8receiveBit_tb.v
+Z115 FreceiveBit_tb.v
+L0 25
+R26
+r1
+31
+R27
+Z116 nreceive@bit_tb
+Z117 !s100 ^U^YWN5a>aK8eddZT0UYP3
+!s85 0
+vreceiveFrame
+Z118 IQYONDV3N69h9Fm`?5z;j93
+Z119 V]bH7IgH:CN=[=FgUKAfoY2
+R106
+R107
+R108
+L0 89
+R26
+r1
+31
+R27
+Z120 nreceive@frame
+Z121 !s100 =XQ2^GgCBc;nmUSf?JK6B3
+!s85 0
+vsendBit
+Z122 Ii]`7^AE2?N<8k1^=f;KeV2
+Z123 V]]U9]YWCz;2MaHRd8QODL0
+R106
+R107
+R108
+L0 12
+R26
+r1
+31
+R27
+Z124 nsend@bit
+Z125 !s100 I]DFW@VJZ8;ahnLS^gRof2
+!s85 0
+vsendFrame
+Z126 IfNc@lZkJO>KmIH3P5ViIF2
+Z127 V4F;;1J07;g?OJ^]RK[Y9i3
+R106
+R107
+R108
+L0 56
+R26
+r1
+31
+R27
+Z128 nsend@frame
+Z129 !s100 gE0GMSfdHTg381nWHPRFR3
+!s85 0
+vsending_fsm
+Z130 IGa8@2:5H^Gnhj30kK=O_h1
+Z131 VoE:b:8zJo<]8Wo4WXM]@a2
+R35
+Z132 w1417725617
+Z133 8sending_fsm.v
+Z134 Fsending_fsm.v
+L0 22
+R26
+r1
+31
+R27
+Z135 !s100 T<<<cZTDgeeSC>DKC[7G40
+!s85 0
+vsending_fsm_tb
+Z136 Ib7JUM7N:bR0bIHU[OT:^^0
+Z137 VEK:>JUW^1AB=D6j8SLOaH2
+R35
+Z138 w1417723330
+Z139 8sending_fsm_tb.v
+Z140 Fsending_fsm_tb.v
+L0 25
+R26
+r1
+31
+R27
+Z141 !s100 WZ7569`N<PJzm3_zHeBCX2
+!s85 0
+vtestSerial
+Z142 I>5GYfNKB50a01eBii_kbV1
+Z143 Vm5;n;VDd^BzU^8Xi0Ez]Y3
+Z144 w1416955430
+Z145 8../../../verilog-dumbserial/serial_test.v
+Z146 F../../../verilog-dumbserial/serial_test.v
+L0 8
+R26
+r1
+31
+R27
+Z147 ntest@serial
+Z148 !s100 l_mM1nBg0:II=0n4Hge832
+!s85 0
+vtone750hz
+Z149 I@m<5VienkWYc3U]4aGKLf2
+Z150 V_miH[zKPGGdQYg5`n1Z[X3
+R22
+R23
+R24
+Z151 L0 284
+R26
+r1
+31
+R27
+Z152 !s100 c:<QDH0mCF@E4`cEoWARz3
+!s85 0

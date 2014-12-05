@@ -703,8 +703,48 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	reg [LOGSIZE-1:0] receiveBufReadAddr = 0;
 	wire [WIDTH-1:0] receiveBufAReadData;
 	wire [WIDTH-1:0] receiveBufBReadData;
+	wire [WIDTH-1:0] receiveBufReadData = ( receivingToB) ? receiveBufAReadData: receiveBufBReadData;
 	
 	wire sendReadyAtNext, receiveReady;
+	
+	wire random_ready;
+	wire [255:0] random_out;
+	reg [255:0] secret_key_seed = 64'hDEADBEEF;
+	randomnessExtractorXORBuf randomnessExtractorXORBuf(.clock(clock_27mhz), .n_samples(200*48),
+		.entropy(from_ac97_data), .entropy_bytes(2), .entropy_ready(ready),
+		.out(random_out), .ready(random_ready));
+		
+	always @(posedge clock_27mhz) begin
+		if ((~|secret_key_seed) == 0 && random_ready) secret_key_seed <= random_out;
+	end
+	
+	wire [LOGSIZE-1:0] fsmReadAddr;
+	wire [LOGSIZE-1:0] fsmWriteAddr;
+	wire [WIDTH-1:0] fsmWriteData;
+	wire fsmWriteEnable, fsmSendEnable, handshakeDone;
+	wire [255:0] shared_key_send = 255'hDEADBEEF;
+	wire [255:0] shared_key_recv = 255'hDEADBEEF;
+	
+	/*
+	sending_fsm sending_fsm (
+		.clock(clock_27mhz), 
+		.start(reset), 
+		
+		.secret_key_seed(secret_key_seed), 
+		
+		.incoming_packet_new(receiveReady), 
+		.incoming_packet_read_index(fsmReadAddr), 
+		.incoming_packet_read_data(receiveBufReadData), 
+		
+		.outgoing_packet_write_index(fsmWriteAddr), 
+		.outgoing_packet_write_data(fsmWriteData), 
+		.outgoing_packet_write_enable(fsmWriteEnable), 
+		.outgoing_packet_sending(fsmSendEnable), 
+		
+		.shared_key(shared_key),
+		.done(handshakeDone)
+	);
+	*/
 	
 	sendFrame #(.WIDTH(WIDTH), .LOGSIZE(LOGSIZE)) sendFrame
                 (.clock(clock_27mhz),
@@ -749,46 +789,54 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
                .din(receiveData),
                .dout(receiveBufBReadData),
                .we(( receivingToB) ? sampleReady : 0));
-					
-	wire [WIDTH-1:0] receiveBufReadData = ( receivingToB) ? receiveBufAReadData: receiveBufBReadData;
+
+	reg send_chacha_start; wire send_chacha_done; wire [511:0] send_chacha_out;
+	reg [31:0] sendPacketCount = 1;
+	chacha20 chacha20send(.clock(clock_27mhz), .start(send_chacha_start),
+		.key(shared_key_send), .index(sendBufWriteAddr), .nonce(sendPacketCount),
+		.done(send_chacha_done), .out(send_chacha_out));
+		
+	reg recv_chacha_start; wire recv_chacha_done; wire [511:0] recv_chacha_out;
+	reg [31:0] recvPacketCount = 0;
+	chacha20 chacha20recv(.clock(clock_27mhz), .start(recv_chacha_start),
+		.key(shared_key_recv), .index(receiveBufReadAddr), .nonce(recvPacketCount),
+		.done(recv_chacha_done), .out(recv_chacha_out));
 	
 	always @(posedge clock_27mhz) begin
 		if (ready) begin
-			sendBufWriteData <= from_ac97_data;
+			sendBufWriteData <= from_ac97_data ^ send_chacha_out;
 			sendBufWriteEnable <= 1;
 		end
 		if (sendBufWriteEnable) begin
             sendBufWriteEnable <= 0;
             sendBufWriteAddr <= sendBufWriteAddr + 1;
+				send_chacha_start <= 1;
 			if (&sendBufWriteAddr) begin // buffer full
 				recordingToB <= !recordingToB;
 				sendStart <= 1;
+				sendPacketCount <= sendPacketCount + 1;
 			end
         end
 		if (sendStart) sendStart <= 0;
+		if (send_chacha_start) send_chacha_start <= 0;
 	end
 	
+	reg [WIDTH-1:0] playbackData = 0;
 	reg playbackRewind = 0;
 	always @(posedge clock_27mhz) begin
 		if (receiveReady) begin
 			playbackRewind <= 1;
-			receiveBufReadAddr <= 0;
-			receivingToB <= !receivingToB;
+			recvPacketCount <= recvPacketCount + 1;
 		end else if (ready) begin
-			if (playbackRewind) playbackRewind <= 0;
-         else receiveBufReadAddr <= receiveBufReadAddr + 1;
+			playbackData <= receiveBufReadData ^ recv_chacha_out;
+			if (playbackRewind) begin
+				playbackRewind <= 0;
+				receiveBufReadAddr <= 0;
+				receivingToB <= !receivingToB;
+			end else receiveBufReadAddr <= receiveBufReadAddr + 1;
+			recv_chacha_start <= 1;
 		end
-	end
-	
-	wire random_ready;
-	wire [255:0] random_out;
-	reg [255:0] secret_key_seed = 64'hDEADBEEF;
-	randomnessExtractorXORBuf randomnessExtractorXORBuf(.clock(clock_27mhz), .n_samples(200*48),
-		.entropy(from_ac97_data), .entropy_bytes(2), .entropy_ready(ready),
-		.out(random_out), .ready(random_ready));
-		
-	always @(posedge clock_27mhz) begin
-		if ((~|secret_key_seed) == 0 && random_ready) secret_key_seed <= random_out;
+		if (recv_chacha_start) recv_chacha_start <= 0;
 	end
 
 	display_16hex d16h (
@@ -804,15 +852,16 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	);
 		
 	assign led = volume;
-	assign to_ac97_data = receiveBufReadData;	
+	assign to_ac97_data = playbackData;	
 	
    assign analyzer1_clock = clock_27mhz;
-	assign analyzer1_data[15:8] = {recordingToB, sendBufWriteAddr[0], sendAddr[0], sendStart,
-	                                  receivingToB, receiveAddr[0], receiveBufReadAddr[0], receiveReady};
-   assign analyzer1_data[7:0] = to_ac97_data;
+	 // assign analyzer1_data[15:8] = {recordingToB, sendBufWriteAddr[0], sendAddr[0], sendStart, receivingToB, receiveAddr[0], receiveBufReadAddr[0], receiveReady};
+	 assign analyzer1_data[15:8] = send_chacha_out;
+   assign analyzer1_data[7:0] = recv_chacha_out;
 
    assign analyzer3_clock = ready;
-   assign analyzer3_data = {from_ac97_data, to_ac97_data};
+   // assign analyzer3_data = {from_ac97_data, to_ac97_data};
+	assign analyzer3_data = {from_ac97_data[7:4], sendPacketCount[3:0], to_ac97_data[7:4], recvPacketCount[3:0]};
 endmodule
 
 ///////////////////////////////////////////////////////////////////////////////

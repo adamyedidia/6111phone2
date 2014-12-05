@@ -4,14 +4,14 @@ Xilinx Map Application Log File for Design 'labkit'
 Design Information
 ------------------
 Command Line   : map -ise
-/afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111ph
-one/ise/6111phone2.ise -intstyle ise -p xc2v6000-bf957-4 -cm area -pr off -k 4
--c 100 -tx off -o labkit_map.ncd labkit.ngd labkit.pcf 
+/afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111phone2/6111phone/ise/611
+1phone2.ise -intstyle ise -p xc2v6000-bf957-4 -cm area -pr off -k 4 -c 100 -tx
+off -o labkit_map.ncd labkit.ngd labkit.pcf 
 Target Device  : xc2v6000
 Target Package : bf957
 Target Speed   : -4
 Mapper Version : virtex2 -- $Revision: 1.46.12.2 $
-Mapped Date    : Wed Dec  3 19:06:27 2014
+Mapped Date    : Thu Dec  4 18:58:01 2014
 
 Mapping design into LUTs...
 Running directed packing...
@@ -25,24 +25,24 @@ Design Summary:
 Number of errors:      0
 Number of warnings:  329
 Logic Utilization:
-  Number of Slice Flip Flops:           857 out of  67,584    1%
-  Number of 4 input LUTs:             1,080 out of  67,584    1%
+  Number of Slice Flip Flops:         1,974 out of  67,584    2%
+  Number of 4 input LUTs:             5,942 out of  67,584    8%
 Logic Distribution:
-  Number of occupied Slices:          1,077 out of  33,792    3%
-    Number of Slices containing only related logic:   1,077 out of   1,077 100%
-    Number of Slices containing unrelated logic:          0 out of   1,077   0%
+  Number of occupied Slices:          4,381 out of  33,792   12%
+    Number of Slices containing only related logic:   4,381 out of   4,381 100%
+    Number of Slices containing unrelated logic:          0 out of   4,381   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       1,175 out of  67,584    1%
-    Number used as logic:             1,073
-    Number used as a route-thru:         95
+  Total Number of 4 input LUTs:       6,883 out of  67,584   10%
+    Number used as logic:             5,935
+    Number used as a route-thru:        941
     Number used as Shift registers:       7
   Number of bonded IOBs:                576 out of     684   84%
   Number of RAMB16s:                      4 out of     144    2%
   Number of BUFGMUXs:                     3 out of      16   18%
 
-Peak Memory Usage:  498 MB
-Total REAL time to MAP completion:  4 secs 
-Total CPU time to MAP completion:   4 secs 
+Peak Memory Usage:  581 MB
+Total REAL time to MAP completion:  12 secs 
+Total CPU time to MAP completion:   12 secs 
 
 NOTES:
 

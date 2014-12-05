@@ -115,8 +115,11 @@ Module <receiveBit> compiled
 WARNING:HDLCompilers:301 - "../../../verilog-dumbserial/serial.v" line 50 Too many digits specified in hex constant
 Module <sendFrame> compiled
 WARNING:HDLCompilers:301 - "../../../verilog-dumbserial/serial.v" line 89 Too many digits specified in hex constant
-Compiling verilog file "../../../../lab4/display_16hex.v" in library work
+Compiling verilog file "../../../chacha20-verilog/chacha20.v" in library work
 Module <receiveFrame> compiled
+Module <chacha20_quarter> compiled
+Compiling verilog file "../../../../lab4/display_16hex.v" in library work
+Module <chacha20> compiled
 Compiling verilog file "../../labkit.v" in library work
 Module <display_16hex> compiled
 Module <debounce> compiled
@@ -141,6 +144,9 @@ Analyzing hierarchy for module <debounce> in library <work>.
 
 Analyzing hierarchy for module <lab5audio> in library <work>.
 
+Analyzing hierarchy for module <randomnessExtractorXORBuf> in library <work> with parameters.
+	BUFFER_LOGSIZE = "00000000000000000000000000001000"
+
 Analyzing hierarchy for module <sendFrame> in library <work> with parameters.
 	LOGSIZE = "00000000000000000000000000000100"
 	WIDTH = "00000000000000000000000000001000"
@@ -153,8 +159,9 @@ Analyzing hierarchy for module <receiveFrame> in library <work> with parameters.
 	LOGSIZE = "00000000000000000000000000000100"
 	WIDTH = "00000000000000000000000000001000"
 
-Analyzing hierarchy for module <randomnessExtractorXORBuf> in library <work> with parameters.
-	BUFFER_LOGSIZE = "00000000000000000000000000001000"
+Analyzing hierarchy for module <chacha20> in library <work> with parameters.
+	CONST = "01100101011110000111000001100001011011100110010000100000001100110011001000101101011000100111100101110100011001010010000001101011"
+	ROUNDS = "00000000000000000000000000010100"
 
 Analyzing hierarchy for module <display_16hex> in library <work>.
 
@@ -165,6 +172,8 @@ Analyzing hierarchy for module <ac97commands> in library <work>.
 Analyzing hierarchy for module <sendBit> in library <work>.
 
 Analyzing hierarchy for module <receiveBit> in library <work>.
+
+Analyzing hierarchy for module <chacha20_quarter> in library <work>.
 
 
 =========================================================================
@@ -206,6 +215,10 @@ Module <ac97commands> is correct for synthesis.
     Set user-defined property "INIT =  0" for signal <command_valid> in unit <ac97commands>.
     Set user-defined property "INIT =  0000" for signal <state>.
     Set user-defined property "INIT =  0" for signal <command>.
+Analyzing module <randomnessExtractorXORBuf> in library <work>.
+	BUFFER_LOGSIZE = 32'sb00000000000000000000000000001000
+Module <randomnessExtractorXORBuf> is correct for synthesis.
+ 
 Analyzing module <sendFrame> in library <work>.
 	LOGSIZE = 32'sb00000000000000000000000000000100
 	WIDTH = 32'sb00000000000000000000000000001000
@@ -229,9 +242,67 @@ Module <receiveFrame> is correct for synthesis.
 Analyzing module <receiveBit> in library <work>.
 Module <receiveBit> is correct for synthesis.
  
-Analyzing module <randomnessExtractorXORBuf> in library <work>.
-	BUFFER_LOGSIZE = 32'sb00000000000000000000000000001000
-Module <randomnessExtractorXORBuf> is correct for synthesis.
+Analyzing module <chacha20> in library <work>.
+	CONST = 128'b01100101011110000111000001100001011011100110010000100000001100110011001000101101011000100111100101110100011001010010000001101011
+	ROUNDS = 32'sb00000000000000000000000000010100
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+	Calling function <LE32>.
+INFO:Xst:1607 - Contents of array <x> may be accessed with an index that does not cover the full array size.
+INFO:Xst:1607 - Contents of array <x> may be accessed with an index that does not cover the full array size.
+INFO:Xst:1607 - Contents of array <x> may be accessed with an index that does not cover the full array size.
+INFO:Xst:1607 - Contents of array <x> may be accessed with an index that does not cover the full array size.
+Module <chacha20> is correct for synthesis.
+ 
+Analyzing module <chacha20_quarter> in library <work>.
+Module <chacha20_quarter> is correct for synthesis.
  
 Analyzing module <display_16hex> in library <work>.
 INFO:Xst:1433 - Contents of array <dots> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
@@ -262,16 +333,6 @@ Synthesizing Unit <debounce>.
 Unit <debounce> synthesized.
 
 
-Synthesizing Unit <mybram>.
-    Related source file is "../../labkit.v".
-    Found 16x8-bit single-port RAM <Mram_mem> for signal <mem>.
-    Found 8-bit register for signal <dout>.
-    Summary:
-	inferred   1 RAM(s).
-	inferred   8 D-type flip-flop(s).
-Unit <mybram> synthesized.
-
-
 Synthesizing Unit <randomnessExtractorXORBuf>.
     Related source file is "randomnessExtractorXORBuf.v".
 WARNING:Xst:1305 - Output <out<511:256>> is never assigned. Tied to value 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.
@@ -289,6 +350,16 @@ WARNING:Xst:647 - Input <entropy_bytes> is never used. This port will be preserv
 	inferred   1 Multiplexer(s).
 	inferred   1 Xor(s).
 Unit <randomnessExtractorXORBuf> synthesized.
+
+
+Synthesizing Unit <mybram>.
+    Related source file is "../../labkit.v".
+    Found 16x8-bit single-port RAM <Mram_mem> for signal <mem>.
+    Found 8-bit register for signal <dout>.
+    Summary:
+	inferred   1 RAM(s).
+	inferred   8 D-type flip-flop(s).
+Unit <mybram> synthesized.
 
 
 Synthesizing Unit <display_16hex>.
@@ -412,6 +483,13 @@ WARNING:Xst:646 - Signal <serialClockHistory<5>> is assigned but never used. Thi
 Unit <receiveBit> synthesized.
 
 
+Synthesizing Unit <chacha20_quarter>.
+    Related source file is "../../../chacha20-verilog/chacha20.v".
+    Summary:
+	inferred   4 Adder/Subtractor(s).
+Unit <chacha20_quarter> synthesized.
+
+
 Synthesizing Unit <lab5audio>.
     Related source file is "../../labkit.v".
 WARNING:Xst:646 - Signal <right_in_data> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
@@ -460,6 +538,51 @@ WARNING:Xst:646 - Signal <seekBuffer<7>> is assigned but never used. This unconn
 	inferred  35 D-type flip-flop(s).
 	inferred   1 Adder/Subtractor(s).
 Unit <receiveFrame> synthesized.
+
+
+Synthesizing Unit <chacha20>.
+    Related source file is "../../../chacha20-verilog/chacha20.v".
+    Using one-hot encoding for signal <$COND_36>.
+    Using one-hot encoding for signal <$COND_37>.
+    Using one-hot encoding for signal <$COND_39>.
+    Using one-hot encoding for signal <$COND_40>.
+    Using one-hot encoding for signal <$COND_42>.
+    Using one-hot encoding for signal <$COND_43>.
+    Using one-hot encoding for signal <$COND_45>.
+    Using one-hot encoding for signal <$COND_46>.
+    Found 1-bit register for signal <done>.
+    Found 32-bit 16-to-1 multiplexer for signal <$varindex0000> created at line 41.
+    Found 32-bit 16-to-1 multiplexer for signal <$varindex0003> created at line 43.
+    Found 32-bit 16-to-1 multiplexer for signal <$varindex0006> created at line 45.
+    Found 32-bit 16-to-1 multiplexer for signal <$varindex0009> created at line 47.
+    Found 5-bit up counter for signal <i>.
+    Found 5-bit comparator less for signal <i$cmp_lt0000> created at line 60.
+    Found 512-bit register for signal <x>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_0$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_1$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_10$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_11$mux0000>.
+    Found 6-bit comparator less for signal <x_12$cmp_lt0000> created at line 50.
+    Found 32-bit 4-to-1 multiplexer for signal <x_12$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_13$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_14$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_15$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_2$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_3$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_4$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_5$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_6$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_7$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_8$mux0000>.
+    Found 32-bit 4-to-1 multiplexer for signal <x_9$mux0000>.
+INFO:Xst:738 - HDL ADVISOR - 512 flip-flops were inferred for signal <x>. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
+    Summary:
+	inferred   1 Counter(s).
+	inferred 513 D-type flip-flop(s).
+	inferred  16 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+	inferred 640 Multiplexer(s).
+Unit <chacha20> synthesized.
 
 
 Synthesizing Unit <labkit>.
@@ -764,26 +887,55 @@ WARNING:Xst:2565 - Inout <user3<31>> is never assigned.
 WARNING:Xst:2565 - Inout <user3<2>> is never assigned.
 WARNING:Xst:2565 - Inout <user3<27>> is never assigned.
 WARNING:Xst:2565 - Inout <user3<3>> is never assigned.
+WARNING:Xst:646 - Signal <send_chacha_done> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <sendReadyAtNext> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <recv_chacha_done> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <playback> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <handshakeDone> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <fsmWriteEnable> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <fsmWriteData> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <fsmWriteAddr> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <fsmSendEnable> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <fsmReadAddr> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <from_ac97_wide_data<9:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <filter> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <old_vdown>.
     Found 1-bit register for signal <old_vup>.
+    Found 8-bit register for signal <playbackData>.
+    Found 1-bit xor2 for signal <playbackData$xor0001> created at line 831.
+    Found 1-bit xor2 for signal <playbackData$xor0002> created at line 831.
+    Found 1-bit xor2 for signal <playbackData$xor0003> created at line 831.
+    Found 1-bit xor2 for signal <playbackData$xor0004> created at line 831.
+    Found 1-bit xor2 for signal <playbackData$xor0005> created at line 831.
+    Found 1-bit xor2 for signal <playbackData$xor0006> created at line 831.
+    Found 1-bit xor2 for signal <playbackData$xor0007> created at line 831.
+    Found 1-bit xor2 for signal <playbackData$xor0008> created at line 831.
     Found 1-bit register for signal <playbackRewind>.
     Found 4-bit up counter for signal <receiveBufReadAddr>.
     Found 1-bit register for signal <receivingToB>.
     Found 1-bit register for signal <recordingToB>.
+    Found 1-bit register for signal <recv_chacha_start>.
+    Found 32-bit up counter for signal <recvPacketCount>.
     Found 256-bit register for signal <secret_key_seed>.
+    Found 1-bit register for signal <send_chacha_start>.
     Found 4-bit up counter for signal <sendBufWriteAddr>.
     Found 8-bit register for signal <sendBufWriteData>.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0001> created at line 807.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0002> created at line 807.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0003> created at line 807.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0004> created at line 807.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0005> created at line 807.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0006> created at line 807.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0007> created at line 807.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0008> created at line 807.
     Found 1-bit register for signal <sendBufWriteEnable>.
+    Found 32-bit up counter for signal <sendPacketCount>.
     Found 1-bit register for signal <sendStart>.
     Found 5-bit updown counter for signal <volume>.
 INFO:Xst:738 - HDL ADVISOR - 256 flip-flops were inferred for signal <secret_key_seed>. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
     Summary:
-	inferred   3 Counter(s).
-	inferred 271 D-type flip-flop(s).
+	inferred   5 Counter(s).
+	inferred 281 D-type flip-flop(s).
 Unit <labkit> synthesized.
 
 INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
@@ -796,25 +948,26 @@ Macro Statistics
  16x8-bit single-port RAM                              : 4
 # ROMs                                                 : 1
  16x40-bit ROM                                         : 1
-# Adders/Subtractors                                   : 9
+# Adders/Subtractors                                   : 73
  10-bit addsub                                         : 1
  16-bit subtractor                                     : 2
+ 32-bit adder                                          : 64
  4-bit adder                                           : 1
  4-bit subtractor                                      : 1
  5-bit adder                                           : 1
  9-bit adder                                           : 3
-# Counters                                             : 16
+# Counters                                             : 20
  10-bit up counter                                     : 1
  19-bit up counter                                     : 4
- 32-bit up counter                                     : 1
+ 32-bit up counter                                     : 3
  4-bit up counter                                      : 4
  5-bit down counter                                    : 1
- 5-bit up counter                                      : 1
+ 5-bit up counter                                      : 3
  5-bit updown counter                                  : 1
  8-bit down counter                                    : 1
  8-bit up counter                                      : 2
-# Registers                                            : 322
- 1-bit register                                        : 299
+# Registers                                            : 359
+ 1-bit register                                        : 303
  10-bit register                                       : 1
  16-bit register                                       : 2
  18-bit register                                       : 1
@@ -822,29 +975,34 @@ Macro Statistics
  24-bit register                                       : 1
  256-bit register                                      : 1
  3-bit register                                        : 1
- 32-bit register                                       : 1
+ 32-bit register                                       : 33
  4-bit register                                        : 2
  6-bit register                                        : 1
- 8-bit register                                        : 6
-# Comparators                                          : 24
+ 8-bit register                                        : 7
+# Comparators                                          : 28
  16-bit comparator greatequal                          : 1
  16-bit comparator less                                : 1
  32-bit comparator equal                               : 1
  5-bit comparator greatequal                           : 1
+ 5-bit comparator less                                 : 2
  5-bit comparator lessequal                            : 1
+ 6-bit comparator less                                 : 2
  8-bit comparator greatequal                           : 5
  8-bit comparator greater                              : 4
  8-bit comparator less                                 : 4
  8-bit comparator lessequal                            : 6
-# Multiplexers                                         : 7
+# Multiplexers                                         : 47
  1-bit 16-to-1 multiplexer                             : 1
  1-bit 20-to-1 multiplexer                             : 3
  1-bit 256-to-1 multiplexer                            : 1
  1-bit 40-to-1 multiplexer                             : 1
+ 32-bit 16-to-1 multiplexer                            : 8
+ 32-bit 4-to-1 multiplexer                             : 32
  4-bit 16-to-1 multiplexer                             : 1
-# Xors                                                 : 5
- 1-bit xor2                                            : 4
+# Xors                                                 : 53
+ 1-bit xor2                                            : 20
  1-bit xor33                                           : 1
+ 32-bit xor2                                           : 32
 
 =========================================================================
 
@@ -966,6 +1124,8 @@ WARNING:Xst:2677 - Node <right_in_data_18> of sequential type is unconnected in 
 WARNING:Xst:2677 - Node <right_in_data_19> of sequential type is unconnected in block <ac97>.
 WARNING:Xst:2677 - Node <clean> of sequential type is unconnected in block <benter>.
 WARNING:Xst:2677 - Node <clean> of sequential type is unconnected in block <sw0>.
+WARNING:Xst:2677 - Node <done> of sequential type is unconnected in block <chacha20send>.
+WARNING:Xst:2677 - Node <done> of sequential type is unconnected in block <chacha20recv>.
 
 =========================================================================
 Advanced HDL Synthesis Report
@@ -975,43 +1135,49 @@ Macro Statistics
  16x8-bit single-port block RAM                        : 4
 # ROMs                                                 : 1
  16x40-bit ROM                                         : 1
-# Adders/Subtractors                                   : 9
+# Adders/Subtractors                                   : 73
  10-bit addsub                                         : 1
  16-bit subtractor                                     : 2
+ 32-bit adder                                          : 64
  4-bit adder                                           : 1
  4-bit subtractor                                      : 1
  5-bit adder                                           : 4
-# Counters                                             : 16
+# Counters                                             : 20
  10-bit up counter                                     : 1
  19-bit up counter                                     : 4
- 32-bit up counter                                     : 1
+ 32-bit up counter                                     : 3
  4-bit up counter                                      : 4
  5-bit down counter                                    : 1
- 5-bit up counter                                      : 1
+ 5-bit up counter                                      : 3
  5-bit updown counter                                  : 1
  8-bit down counter                                    : 1
  8-bit up counter                                      : 2
-# Registers                                            : 799
- Flip-Flops                                            : 799
-# Comparators                                          : 24
+# Registers                                            : 1835
+ Flip-Flops                                            : 1835
+# Comparators                                          : 28
  16-bit comparator greatequal                          : 1
  16-bit comparator less                                : 1
  32-bit comparator equal                               : 1
  5-bit comparator greatequal                           : 1
+ 5-bit comparator less                                 : 2
  5-bit comparator lessequal                            : 1
+ 6-bit comparator less                                 : 2
  8-bit comparator greatequal                           : 5
  8-bit comparator greater                              : 4
  8-bit comparator less                                 : 4
  8-bit comparator lessequal                            : 6
-# Multiplexers                                         : 7
+# Multiplexers                                         : 47
  1-bit 16-to-1 multiplexer                             : 1
  1-bit 20-to-1 multiplexer                             : 3
  1-bit 256-to-1 multiplexer                            : 1
  1-bit 40-to-1 multiplexer                             : 1
+ 32-bit 16-to-1 multiplexer                            : 8
+ 32-bit 4-to-1 multiplexer                             : 32
  4-bit 16-to-1 multiplexer                             : 1
-# Xors                                                 : 5
- 1-bit xor2                                            : 4
+# Xors                                                 : 53
+ 1-bit xor2                                            : 20
  1-bit xor33                                           : 1
+ 32-bit xor2                                           : 32
 
 =========================================================================
 
@@ -1042,6 +1208,8 @@ Optimizing unit <lab5audio> ...
 Optimizing unit <sendFrame> ...
 
 Optimizing unit <receiveFrame> ...
+
+Optimizing unit <chacha20> ...
 WARNING:Xst:1710 - FF/Latch <a/ac97/l_cmd_addr_12> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a/ac97/l_cmd_addr_18> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <a/ac97/l_cmd_data_9> (without init value) has a constant value of 0 in block <labkit>. This FF/Latch will be trimmed during the optimization process.
@@ -1078,6 +1246,8 @@ WARNING:Xst:2677 - Node <a/ac97/right_in_data_16> of sequential type is unconnec
 WARNING:Xst:2677 - Node <a/ac97/right_in_data_17> of sequential type is unconnected in block <labkit>.
 WARNING:Xst:2677 - Node <a/ac97/right_in_data_18> of sequential type is unconnected in block <labkit>.
 WARNING:Xst:2677 - Node <a/ac97/right_in_data_19> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <chacha20recv/done> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <chacha20send/done> of sequential type is unconnected in block <labkit>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
@@ -1085,4 +1255,476 @@ INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_4> in Unit <labkit> is equivalen
 INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_5> in Unit <labkit> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_13> 
 INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_6> in Unit <labkit> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_14> 
 INFO:Xst:2261 - The FF/Latch <a/ac97/l_cmd_data_8> in Unit <labkit> is equivalent to the following FF/Latch, which will be removed : <a/ac97/l_cmd_data_16> 
-Found area constraint ratio of 100 (+ 5) on block labkit, actual ratio is 2.
+Found area constraint ratio of 100 (+ 5) on block labkit, actual ratio is 12.
+FlipFlop chacha20recv/i_0 has been replicated 6 time(s)
+FlipFlop chacha20send/i_0 has been replicated 6 time(s)
+FlipFlop recv_chacha_start has been replicated 1 time(s)
+FlipFlop send_chacha_start has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+Processing Unit <labkit> :
+	Found 7-bit shift register for signal <d16h/control_30>.
+	Found 7-bit shift register for signal <d16h/control_22>.
+	Found 7-bit shift register for signal <d16h/control_14>.
+	Found 7-bit shift register for signal <d16h/control_6>.
+	Found 12-bit shift register for signal <a/ac97/left_in_data_12>.
+	Found 2-bit shift register for signal <a/ready_sync_1>.
+Unit <labkit> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 1958
+ Flip-Flops                                            : 1958
+# Shift Registers                                      : 6
+ 12-bit shift register                                 : 1
+ 2-bit shift register                                  : 1
+ 7-bit shift register                                  : 4
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                             *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : labkit.ngr
+Top Level Output File Name         : labkit
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : NO
+
+Design Statistics
+# IOs                              : 576
+
+Cell Usage :
+# BELS                             : 11605
+#      GND                         : 1
+#      INV                         : 224
+#      LUT1                        : 940
+#      LUT2                        : 1177
+#      LUT3                        : 1477
+#      LUT3_D                      : 48
+#      LUT4                        : 2610
+#      LUT4_D                      : 268
+#      LUT4_L                      : 134
+#      MUXCY                       : 1628
+#      MUXF5                       : 775
+#      MUXF6                       : 51
+#      MUXF7                       : 23
+#      MUXF8                       : 8
+#      VCC                         : 1
+#      XORCY                       : 2240
+# FlipFlops/Latches                : 1974
+#      FD                          : 18
+#      FDE                         : 1788
+#      FDE_1                       : 9
+#      FDR                         : 24
+#      FDRE                        : 98
+#      FDRS                        : 14
+#      FDS                         : 5
+#      FDSE                        : 18
+# RAMS                             : 4
+#      RAMB16_S9                   : 4
+# Shift Registers                  : 7
+#      SRL16                       : 2
+#      SRL16E                      : 4
+#      SRL16E_1                    : 1
+# Clock Buffers                    : 3
+#      BUFG                        : 2
+#      BUFGP                       : 1
+# IO Buffers                       : 248
+#      IBUF                        : 6
+#      OBUF                        : 242
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 2v6000bf957-4 
+
+ Number of Slices:                     3637  out of  33792    10%  
+ Number of Slice Flip Flops:           1974  out of  67584     2%  
+ Number of 4 input LUTs:               6885  out of  67584    10%  
+    Number used as logic:              6878
+    Number used as Shift registers:       7
+ Number of IOs:                         576
+ Number of bonded IOBs:                 249  out of    684    36%  
+ Number of BRAMs:                         4  out of    144     2%  
+ Number of GCLKs:                         3  out of     16    18%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clock_27mhz                        | IBUF+BUFG              | 1873  |
+d16h/clock1                        | BUFG                   | 43    |
+ac97_bit_clock                     | BUFGP                  | 65    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 21.161ns (Maximum Frequency: 47.257MHz)
+   Minimum input arrival time before clock: 4.092ns
+   Maximum output required time after clock: 10.854ns
+   Maximum combinational path delay: 5.887ns
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clock_27mhz'
+  Clock period: 21.161ns (frequency: 47.257MHz)
+  Total number of paths / destination ports: 662981820 / 3819
+-------------------------------------------------------------------------
+Delay:               21.161ns (Levels of Logic = 103)
+  Source:            chacha20recv/i_0_1 (FF)
+  Destination:       chacha20recv/x_4_6 (FF)
+  Source Clock:      clock_27mhz rising
+  Destination Clock: clock_27mhz rising
+
+  Data Path: chacha20recv/i_0_1 to chacha20recv/x_4_6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q            15   0.568   1.023  chacha20recv/i_0_1 (chacha20recv/i_0_1)
+     LUT4:I2->O            1   0.439   0.000  chacha20recv/q1/Madd__old_a_47_lut<0> (chacha20recv/q1/Madd__old_a_47_lut<0>)
+     MUXCY:S->O            1   0.298   0.000  chacha20recv/q1/Madd__old_a_47_cy<0> (chacha20recv/q1/Madd__old_a_47_cy<0>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<1> (chacha20recv/q1/Madd__old_a_47_cy<1>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<2> (chacha20recv/q1/Madd__old_a_47_cy<2>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<3> (chacha20recv/q1/Madd__old_a_47_cy<3>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<4> (chacha20recv/q1/Madd__old_a_47_cy<4>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<5> (chacha20recv/q1/Madd__old_a_47_cy<5>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<6> (chacha20recv/q1/Madd__old_a_47_cy<6>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<7> (chacha20recv/q1/Madd__old_a_47_cy<7>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<8> (chacha20recv/q1/Madd__old_a_47_cy<8>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<9> (chacha20recv/q1/Madd__old_a_47_cy<9>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<10> (chacha20recv/q1/Madd__old_a_47_cy<10>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<11> (chacha20recv/q1/Madd__old_a_47_cy<11>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<12> (chacha20recv/q1/Madd__old_a_47_cy<12>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<13> (chacha20recv/q1/Madd__old_a_47_cy<13>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<14> (chacha20recv/q1/Madd__old_a_47_cy<14>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_47_cy<15> (chacha20recv/q1/Madd__old_a_47_cy<15>)
+     XORCY:CI->O           2   1.274   0.736  chacha20recv/q1/Madd__old_a_47_xor<16> (chacha20recv/q1/_old_a_47<16>)
+     LUT4_D:I2->O          2   0.439   0.910  chacha20recv/q1/Mxor__old_d_48_Result<16>1 (chacha20recv/q1/_old_d_48<16>)
+     LUT2:I1->O            1   0.439   0.000  chacha20recv/q1/Madd__old_c_50_lut<0> (chacha20recv/q1/Madd__old_c_50_lut<0>)
+     MUXCY:S->O            1   0.298   0.000  chacha20recv/q1/Madd__old_c_50_cy<0> (chacha20recv/q1/Madd__old_c_50_cy<0>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<1> (chacha20recv/q1/Madd__old_c_50_cy<1>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<2> (chacha20recv/q1/Madd__old_c_50_cy<2>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<3> (chacha20recv/q1/Madd__old_c_50_cy<3>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<4> (chacha20recv/q1/Madd__old_c_50_cy<4>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<5> (chacha20recv/q1/Madd__old_c_50_cy<5>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<6> (chacha20recv/q1/Madd__old_c_50_cy<6>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<7> (chacha20recv/q1/Madd__old_c_50_cy<7>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<8> (chacha20recv/q1/Madd__old_c_50_cy<8>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<9> (chacha20recv/q1/Madd__old_c_50_cy<9>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<10> (chacha20recv/q1/Madd__old_c_50_cy<10>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<11> (chacha20recv/q1/Madd__old_c_50_cy<11>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<12> (chacha20recv/q1/Madd__old_c_50_cy<12>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<13> (chacha20recv/q1/Madd__old_c_50_cy<13>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<14> (chacha20recv/q1/Madd__old_c_50_cy<14>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<15> (chacha20recv/q1/Madd__old_c_50_cy<15>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<16> (chacha20recv/q1/Madd__old_c_50_cy<16>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<17> (chacha20recv/q1/Madd__old_c_50_cy<17>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<18> (chacha20recv/q1/Madd__old_c_50_cy<18>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<19> (chacha20recv/q1/Madd__old_c_50_cy<19>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<20> (chacha20recv/q1/Madd__old_c_50_cy<20>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<21> (chacha20recv/q1/Madd__old_c_50_cy<21>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<22> (chacha20recv/q1/Madd__old_c_50_cy<22>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<23> (chacha20recv/q1/Madd__old_c_50_cy<23>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<24> (chacha20recv/q1/Madd__old_c_50_cy<24>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<25> (chacha20recv/q1/Madd__old_c_50_cy<25>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<26> (chacha20recv/q1/Madd__old_c_50_cy<26>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<27> (chacha20recv/q1/Madd__old_c_50_cy<27>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<28> (chacha20recv/q1/Madd__old_c_50_cy<28>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<29> (chacha20recv/q1/Madd__old_c_50_cy<29>)
+     MUXCY:CI->O           0   0.053   0.000  chacha20recv/q1/Madd__old_c_50_cy<30> (chacha20recv/q1/Madd__old_c_50_cy<30>)
+     XORCY:CI->O           4   1.274   0.781  chacha20recv/q1/Madd__old_c_50_xor<31> (chacha20recv/q1/_old_c_50<31>)
+     LUT3:I2->O            1   0.439   0.000  chacha20recv/q1/Madd__old_a_53_lut<11> (chacha20recv/q1/Madd__old_a_53_lut<11>)
+     MUXCY:S->O            1   0.298   0.000  chacha20recv/q1/Madd__old_a_53_cy<11> (chacha20recv/q1/Madd__old_a_53_cy<11>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<12> (chacha20recv/q1/Madd__old_a_53_cy<12>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<13> (chacha20recv/q1/Madd__old_a_53_cy<13>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<14> (chacha20recv/q1/Madd__old_a_53_cy<14>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<15> (chacha20recv/q1/Madd__old_a_53_cy<15>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<16> (chacha20recv/q1/Madd__old_a_53_cy<16>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<17> (chacha20recv/q1/Madd__old_a_53_cy<17>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<18> (chacha20recv/q1/Madd__old_a_53_cy<18>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<19> (chacha20recv/q1/Madd__old_a_53_cy<19>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<20> (chacha20recv/q1/Madd__old_a_53_cy<20>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<21> (chacha20recv/q1/Madd__old_a_53_cy<21>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<22> (chacha20recv/q1/Madd__old_a_53_cy<22>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<23> (chacha20recv/q1/Madd__old_a_53_cy<23>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<24> (chacha20recv/q1/Madd__old_a_53_cy<24>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<25> (chacha20recv/q1/Madd__old_a_53_cy<25>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<26> (chacha20recv/q1/Madd__old_a_53_cy<26>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<27> (chacha20recv/q1/Madd__old_a_53_cy<27>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<28> (chacha20recv/q1/Madd__old_a_53_cy<28>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<29> (chacha20recv/q1/Madd__old_a_53_cy<29>)
+     MUXCY:CI->O           0   0.053   0.000  chacha20recv/q1/Madd__old_a_53_cy<30> (chacha20recv/q1/Madd__old_a_53_cy<30>)
+     XORCY:CI->O           3   1.274   0.759  chacha20recv/q1/Madd__old_a_53_xor<31> (chacha20recv/a1<31>)
+     LUT3:I2->O            1   0.439   0.000  chacha20recv/q1/Madd__old_c_56_lut<7> (chacha20recv/q1/Madd__old_c_56_lut<7>)
+     MUXCY:S->O            1   0.298   0.000  chacha20recv/q1/Madd__old_c_56_cy<7> (chacha20recv/q1/Madd__old_c_56_cy<7>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<8> (chacha20recv/q1/Madd__old_c_56_cy<8>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<9> (chacha20recv/q1/Madd__old_c_56_cy<9>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<10> (chacha20recv/q1/Madd__old_c_56_cy<10>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<11> (chacha20recv/q1/Madd__old_c_56_cy<11>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<12> (chacha20recv/q1/Madd__old_c_56_cy<12>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<13> (chacha20recv/q1/Madd__old_c_56_cy<13>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<14> (chacha20recv/q1/Madd__old_c_56_cy<14>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<15> (chacha20recv/q1/Madd__old_c_56_cy<15>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<16> (chacha20recv/q1/Madd__old_c_56_cy<16>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<17> (chacha20recv/q1/Madd__old_c_56_cy<17>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<18> (chacha20recv/q1/Madd__old_c_56_cy<18>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<19> (chacha20recv/q1/Madd__old_c_56_cy<19>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<20> (chacha20recv/q1/Madd__old_c_56_cy<20>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<21> (chacha20recv/q1/Madd__old_c_56_cy<21>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<22> (chacha20recv/q1/Madd__old_c_56_cy<22>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<23> (chacha20recv/q1/Madd__old_c_56_cy<23>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<24> (chacha20recv/q1/Madd__old_c_56_cy<24>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<25> (chacha20recv/q1/Madd__old_c_56_cy<25>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<26> (chacha20recv/q1/Madd__old_c_56_cy<26>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<27> (chacha20recv/q1/Madd__old_c_56_cy<27>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<28> (chacha20recv/q1/Madd__old_c_56_cy<28>)
+     MUXCY:CI->O           1   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<29> (chacha20recv/q1/Madd__old_c_56_cy<29>)
+     MUXCY:CI->O           0   0.053   0.000  chacha20recv/q1/Madd__old_c_56_cy<30> (chacha20recv/q1/Madd__old_c_56_cy<30>)
+     XORCY:CI->O           5   1.274   1.056  chacha20recv/q1/Madd__old_c_56_xor<31> (chacha20recv/c1<31>)
+     LUT3:I0->O            1   0.439   0.000  chacha20recv/Mmux_x_4_mux00007172 (chacha20recv/Mmux_x_4_mux00007172)
+     MUXF5:I0->O           1   0.436   0.551  chacha20recv/Mmux_x_4_mux0000717_f5 (chacha20recv/Mmux_x_4_mux0000717)
+     LUT3:I2->O            1   0.439   0.000  chacha20recv/Mmux_x_4_mux0000720 (chacha20recv/x_4_mux0000<358>)
+     FDE:D                     0.370          chacha20recv/x_4_6
+    ----------------------------------------
+    Total                     21.161ns (15.346ns logic, 5.815ns route)
+                                       (72.5% logic, 27.5% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'd16h/clock1'
+  Clock period: 13.466ns (frequency: 74.261MHz)
+  Total number of paths / destination ports: 4954 / 74
+-------------------------------------------------------------------------
+Delay:               13.466ns (Levels of Logic = 15)
+  Source:            d16h/char_index_0 (FF)
+  Destination:       d16h/disp_data_out (FF)
+  Source Clock:      d16h/clock1 rising
+  Destination Clock: d16h/clock1 rising
+
+  Data Path: d16h/char_index_0 to d16h/disp_data_out
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q             38   0.568   1.388  d16h/char_index_0 (d16h/char_index_0)
+     LUT3:I0->O            1   0.439   0.000  d16h/Mmux_nibble_51 (d16h/Mmux_nibble_51)
+     MUXF5:I1->O           1   0.436   0.000  d16h/Mmux_nibble_4_f5_0 (d16h/Mmux_nibble_4_f51)
+     MUXF6:I1->O           1   0.447   0.000  d16h/Mmux_nibble_3_f6_0 (d16h/Mmux_nibble_3_f61)
+     MUXF7:I1->O          29   0.447   1.365  d16h/Mmux_nibble_2_f7_0 (d16h/nibble<1>)
+     LUT4:I0->O            2   0.439   0.735  d16h/Mrom_dots1311 (d16h/Mrom_dots12)
+     LUT3:I2->O            1   0.439   0.000  d16h/Mmux__varindex0000_131 (d16h/Mmux__varindex0000_131)
+     MUXF5:I0->O           1   0.436   0.000  d16h/Mmux__varindex0000_11_f5_0 (d16h/Mmux__varindex0000_11_f51)
+     MUXF6:I1->O           1   0.447   0.000  d16h/Mmux__varindex0000_10_f6 (d16h/Mmux__varindex0000_10_f6)
+     MUXF7:I0->O           1   0.447   0.726  d16h/Mmux__varindex0000_8_f7 (d16h/Mmux__varindex0000_8_f7)
+     LUT2:I1->O            1   0.439   0.000  d16h/disp_data_out_mux0000782 (d16h/disp_data_out_mux0000782)
+     MUXF5:I0->O           1   0.436   0.803  d16h/disp_data_out_mux000078_f5 (d16h/disp_data_out_mux000078)
+     LUT3:I0->O            1   0.439   0.000  d16h/disp_data_out_mux0000131_G (N1604)
+     MUXF5:I1->O           2   0.436   0.910  d16h/disp_data_out_mux0000131 (d16h/disp_data_out_mux0000131)
+     LUT2:I1->O            1   0.439   0.000  d16h/disp_data_out_mux00001692 (d16h/disp_data_out_mux00001691)
+     MUXF5:I0->O           1   0.436   0.000  d16h/disp_data_out_mux0000169_f5 (d16h/disp_data_out_mux0000)
+     FDE:D                     0.370          d16h/disp_data_out
+    ----------------------------------------
+    Total                     13.466ns (7.540ns logic, 5.926ns route)
+                                       (56.0% logic, 44.0% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'ac97_bit_clock'
+  Clock period: 12.211ns (frequency: 81.893MHz)
+  Total number of paths / destination ports: 1640 / 97
+-------------------------------------------------------------------------
+Delay:               6.105ns (Levels of Logic = 3)
+  Source:            a/ac97/bit_count_5 (FF)
+  Destination:       a/ac97/Mshreg_left_in_data_12 (FF)
+  Source Clock:      ac97_bit_clock rising
+  Destination Clock: ac97_bit_clock falling
+
+  Data Path: a/ac97/bit_count_5 to a/ac97/Mshreg_left_in_data_12
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              15   0.568   1.274  a/ac97/bit_count_5 (a/ac97/bit_count_5)
+     LUT3:I0->O            3   0.439   0.724  a/ac97/l_left_data_not0001132 (a/ac97/N18)
+     MUXF5:S->O            1   0.699   0.552  a/ac97/left_in_data_and000013_f5 (a/ac97/left_in_data_and000013)
+     LUT3:I2->O           10   0.439   0.885  a/ac97/left_in_data_and000048 (a/ac97/left_in_data_and0000)
+     SRL16E_1:CE               0.525          a/ac97/Mshreg_left_in_data_12
+    ----------------------------------------
+    Total                      6.105ns (2.670ns logic, 3.436ns route)
+                                       (43.7% logic, 56.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clock_27mhz'
+  Total number of paths / destination ports: 55 / 55
+-------------------------------------------------------------------------
+Offset:              4.092ns (Levels of Logic = 3)
+  Source:            user4<1> (PAD)
+  Destination:       receiveFrame/receive/serialClockHistory_0 (FF)
+  Destination Clock: clock_27mhz rising
+
+  Data Path: user4<1> to receiveFrame/receive/serialClockHistory_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   0.825   0.736  user4_1_IBUF (user4_1_IBUF)
+     LUT3:I2->O            1   0.439   0.558  receiveFrame/receive/serialClockHistory_and0000_SW0 (N35)
+     LUT4:I3->O            7   0.439   0.816  receiveFrame/receive/serialClockHistory_and0000 (receiveFrame/receive/serialClockHistory_and0000)
+     FDR:R                     0.280          receiveFrame/receive/serialClockHistory_0
+    ----------------------------------------
+    Total                      4.092ns (1.983ns logic, 2.109ns route)
+                                       (48.5% logic, 51.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'ac97_bit_clock'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.712ns (Levels of Logic = 1)
+  Source:            ac97_sdata_in (PAD)
+  Destination:       a/ac97/left_in_data_0 (FF)
+  Destination Clock: ac97_bit_clock falling
+
+  Data Path: ac97_sdata_in to a/ac97/left_in_data_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             1   0.825   0.517  ac97_sdata_in_IBUF (ac97_sdata_in_IBUF)
+     FDE_1:D                   0.370          a/ac97/left_in_data_0
+    ----------------------------------------
+    Total                      1.712ns (1.195ns logic, 0.517ns route)
+                                       (69.8% logic, 30.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clock_27mhz'
+  Total number of paths / destination ports: 62 / 38
+-------------------------------------------------------------------------
+Offset:              10.854ns (Levels of Logic = 7)
+  Source:            recordingToB (FF)
+  Destination:       user1<0> (PAD)
+  Source Clock:      clock_27mhz rising
+
+  Data Path: recordingToB to user1<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q             19   0.568   1.320  recordingToB (recordingToB)
+     LUT3:I0->O            1   0.439   0.725  _mux0000<6>1 (_mux0000<6>)
+     LUT3:I1->O            1   0.439   0.000  sendFrame/Mmux__varindex0000_7 (sendFrame/Mmux__varindex0000_7)
+     MUXF5:I1->O           1   0.436   0.000  sendFrame/Mmux__varindex0000_6_f5 (sendFrame/Mmux__varindex0000_6_f5)
+     MUXF6:I1->O           1   0.447   0.726  sendFrame/Mmux__varindex0000_5_f6 (sendFrame/Mmux__varindex0000_5_f6)
+     LUT2:I1->O            1   0.439   0.000  sendFrame/sendBit/serialData2 (sendFrame/sendBit/serialData1)
+     MUXF5:I0->O           1   0.436   0.517  sendFrame/sendBit/serialData_f5 (user1_0_OBUF)
+     OBUF:I->O                 4.361          user1_0_OBUF (user1<0>)
+    ----------------------------------------
+    Total                     10.854ns (7.565ns logic, 3.288ns route)
+                                       (69.7% logic, 30.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'd16h/clock1'
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Offset:              5.630ns (Levels of Logic = 1)
+  Source:            d16h/disp_rs (FF)
+  Destination:       disp_rs (PAD)
+  Source Clock:      d16h/clock1 rising
+
+  Data Path: d16h/disp_rs to disp_rs
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              2   0.568   0.701  d16h/disp_rs (d16h/disp_rs)
+     OBUF:I->O                 4.361          disp_rs_OBUF (disp_rs)
+    ----------------------------------------
+    Total                      5.630ns (4.929ns logic, 0.701ns route)
+                                       (87.5% logic, 12.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'ac97_bit_clock'
+  Total number of paths / destination ports: 6 / 6
+-------------------------------------------------------------------------
+Offset:              5.677ns (Levels of Logic = 1)
+  Source:            a/ac97/left_in_data_18 (FF)
+  Destination:       analyzer3_data<14> (PAD)
+  Source Clock:      ac97_bit_clock falling
+
+  Data Path: a/ac97/left_in_data_18 to analyzer3_data<14>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE_1:C->Q            4   0.568   0.747  a/ac97/left_in_data_18 (a/ac97/left_in_data_18)
+     OBUF:I->O                 4.361          analyzer3_data_14_OBUF (analyzer3_data<14>)
+    ----------------------------------------
+    Total                      5.677ns (4.929ns logic, 0.747ns route)
+                                       (86.8% logic, 13.2% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Delay:               5.887ns (Levels of Logic = 2)
+  Source:            clock_27mhz (PAD)
+  Destination:       analyzer1_clock (PAD)
+
+  Data Path: clock_27mhz to analyzer1_clock
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   0.825   0.701  clock_27mhz_IBUF (analyzer1_clock_OBUF1)
+     OBUF:I->O                 4.361          analyzer1_clock_OBUF (analyzer1_clock)
+    ----------------------------------------
+    Total                      5.887ns (5.186ns logic, 0.701ns route)
+                                       (88.1% logic, 11.9% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 103.00 secs
+Total CPU time to Xst completion: 101.61 secs
+ 
+--> 
+
+
+Total memory usage is 620196 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  454 (   0 filtered)
+Number of infos    :   32 (   0 filtered)
+
