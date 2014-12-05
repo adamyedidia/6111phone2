@@ -721,9 +721,10 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	wire [LOGSIZE-1:0] fsmReadAddr;
 	wire [LOGSIZE-1:0] fsmWriteAddr;
 	wire [WIDTH-1:0] fsmWriteData;
-	wire fsmWriteEnable, fsmSendEnable, handshakeDone;
-	wire [255:0] shared_key_send = 255'hDEADBEEF;
-	wire [255:0] shared_key_recv = 255'hDEADBEEF;
+	wire fsmWriteEnable;
+	wire fsmSendEnable = 0;
+	wire handshakeDone = 1;
+	wire [255:0] shared_key;
 	
 	/*
 	sending_fsm sending_fsm (
@@ -757,15 +758,15 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) bufRA
               (.addr((!recordingToB) ? sendBufWriteAddr : sendAddr),
                .clk(clock_27mhz),
-               .din(sendBufWriteData),
+               .din(handshakeDone ? sendBufWriteData : fsmWriteData),
                .dout(sendBufAReadData),
-               .we((!recordingToB) ? sendBufWriteEnable : 0));
+               .we((!recordingToB) && (handshakeDone ? sendBufWriteEnable : fsmWriteEnable)));
 	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) bufRB
               (.addr(( recordingToB) ? sendBufWriteAddr : sendAddr),
                .clk(clock_27mhz),
-               .din(sendBufWriteData),
+               .din(handshakeDone ? sendBufWriteData : fsmWriteData),
                .dout(sendBufBReadData),
-               .we(( recordingToB) ? sendBufWriteEnable : 0));
+               .we(( recordingToB) && (handshakeDone ? sendBufWriteEnable : fsmWriteEnable)));
 					
 	receiveFrame #(.WIDTH(WIDTH), .LOGSIZE(LOGSIZE)) receiveFrame
                 (.clock(clock_27mhz),
@@ -777,14 +778,14 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
                 .ready(receiveReady));
 	
 	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) receiveBufA
-              (.addr((!receivingToB) ? receiveAddr : receiveBufReadAddr),
+              (.addr((!receivingToB) ? (handshakeDone ? receiveAddr : fsmReadAddr) : receiveBufReadAddr),
                .clk(clock_27mhz),
                .din(receiveData),
                .dout(receiveBufAReadData),
                .we((!receivingToB) ? sampleReady : 0));
 	
 	mybram #(.LOGSIZE(LOGSIZE), .WIDTH(WIDTH)) receiveBufB
-              (.addr(( receivingToB) ? receiveAddr : receiveBufReadAddr),
+              (.addr(( receivingToB) ? (handshakeDone ? receiveAddr : fsmReadAddr) : receiveBufReadAddr),
                .clk(clock_27mhz),
                .din(receiveData),
                .dout(receiveBufBReadData),
@@ -793,30 +794,33 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	reg send_chacha_start; wire send_chacha_done; wire [511:0] send_chacha_out;
 	reg [31:0] sendPacketCount = 1;
 	chacha20 chacha20send(.clock(clock_27mhz), .start(send_chacha_start),
-		.key(shared_key_send), .index(sendBufWriteAddr), .nonce(sendPacketCount),
+		.key(shared_key), .index(sendBufWriteAddr), .nonce(sendPacketCount),
 		.done(send_chacha_done), .out(send_chacha_out));
 		
 	reg recv_chacha_start; wire recv_chacha_done; wire [511:0] recv_chacha_out;
 	reg [31:0] recvPacketCount = 0;
 	chacha20 chacha20recv(.clock(clock_27mhz), .start(recv_chacha_start),
-		.key(shared_key_recv), .index(receiveBufReadAddr), .nonce(recvPacketCount),
+		.key(shared_key), .index(receiveBufReadAddr), .nonce(recvPacketCount),
 		.done(recv_chacha_done), .out(recv_chacha_out));
 	
 	always @(posedge clock_27mhz) begin
-		if (ready) begin
-			sendBufWriteData <= from_ac97_data ^ send_chacha_out;
-			sendBufWriteEnable <= 1;
-		end
-		if (sendBufWriteEnable) begin
-            sendBufWriteEnable <= 0;
-            sendBufWriteAddr <= sendBufWriteAddr + 1;
-				send_chacha_start <= 1;
-			if (&sendBufWriteAddr) begin // buffer full
-				recordingToB <= !recordingToB;
-				sendStart <= 1;
-				sendPacketCount <= sendPacketCount + 1;
+		if (handshakeDone) begin
+			if (handshakeDone && ready) begin
+				sendBufWriteData <= from_ac97_data ^ send_chacha_out;
+				sendBufWriteEnable <= 1;
 			end
-        end
+			if (sendBufWriteEnable) begin
+					sendBufWriteEnable <= 0;
+					sendBufWriteAddr <= sendBufWriteAddr + 1;
+					send_chacha_start <= 1;
+				if (&sendBufWriteAddr) begin // buffer full
+					recordingToB <= !recordingToB;
+					sendStart <= 1;
+					sendPacketCount <= sendPacketCount + 1;
+				end
+			end
+		end
+		else if (sendReadyAtNext && fsmSendEnable) sendStart <= 1;
 		if (sendStart) sendStart <= 0;
 		if (send_chacha_start) send_chacha_start <= 0;
 	end
@@ -824,19 +828,21 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	reg [WIDTH-1:0] playbackData = 0;
 	reg playbackRewind = 0;
 	always @(posedge clock_27mhz) begin
-		if (receiveReady) begin
-			playbackRewind <= 1;
-			recvPacketCount <= recvPacketCount + 1;
-		end else if (ready) begin
-			playbackData <= receiveBufReadData ^ recv_chacha_out;
-			if (playbackRewind) begin
-				playbackRewind <= 0;
-				receiveBufReadAddr <= 0;
-				receivingToB <= !receivingToB;
-			end else receiveBufReadAddr <= receiveBufReadAddr + 1;
-			recv_chacha_start <= 1;
+		if (handshakeDone) begin
+			if (receiveReady) begin
+				playbackRewind <= 1;
+				recvPacketCount <= recvPacketCount + 1;
+			end else if (ready) begin
+				playbackData <= receiveBufReadData ^ recv_chacha_out;
+				if (playbackRewind) begin
+					playbackRewind <= 0;
+					receiveBufReadAddr <= 0;
+					receivingToB <= !receivingToB;
+				end else receiveBufReadAddr <= receiveBufReadAddr + 1;
+				recv_chacha_start <= 1;
+			end
+			if (recv_chacha_start) recv_chacha_start <= 0;
 		end
-		if (recv_chacha_start) recv_chacha_start <= 0;
 	end
 
 	display_16hex d16h (

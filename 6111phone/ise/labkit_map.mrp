@@ -11,7 +11,7 @@ Target Device  : xc2v6000
 Target Package : bf957
 Target Speed   : -4
 Mapper Version : virtex2 -- $Revision: 1.46.12.2 $
-Mapped Date    : Thu Dec  4 18:58:01 2014
+Mapped Date    : Fri Dec  5 14:39:17 2014
 
 Design Summary
 --------------
@@ -19,22 +19,22 @@ Number of errors:      0
 Number of warnings:  329
 Logic Utilization:
   Number of Slice Flip Flops:         1,974 out of  67,584    2%
-  Number of 4 input LUTs:             5,942 out of  67,584    8%
+  Number of 4 input LUTs:             5,894 out of  67,584    8%
 Logic Distribution:
-  Number of occupied Slices:          4,381 out of  33,792   12%
-    Number of Slices containing only related logic:   4,381 out of   4,381 100%
-    Number of Slices containing unrelated logic:          0 out of   4,381   0%
+  Number of occupied Slices:          4,424 out of  33,792   13%
+    Number of Slices containing only related logic:   4,424 out of   4,424 100%
+    Number of Slices containing unrelated logic:          0 out of   4,424   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
   Total Number of 4 input LUTs:       6,883 out of  67,584   10%
-    Number used as logic:             5,935
-    Number used as a route-thru:        941
+    Number used as logic:             5,887
+    Number used as a route-thru:        989
     Number used as Shift registers:       7
   Number of bonded IOBs:                576 out of     684   84%
   Number of RAMB16s:                      4 out of     144    2%
   Number of BUFGMUXs:                     3 out of      16   18%
 
 Peak Memory Usage:  581 MB
-Total REAL time to MAP completion:  12 secs 
+Total REAL time to MAP completion:  13 secs 
 Total CPU time to MAP completion:   12 secs 
 
 NOTES:
@@ -746,7 +746,7 @@ Section 3 - Informational
 INFO:MapLib:562 - No environment variables are currently set.
 INFO:MapLib:533 - The following XORCY(s) is/are demoted to LUTs because there is
    no MUXCY associated with them. Therefore, we cannot recognize the standard
-   carry chain structure (5 of 578 are listed):
+   carry chain structure (5 of 640 are listed):
    XORCY symbol "chacha20recv/Madd__old_LE32_16_a_23_xor<0>" (output
    signal=chacha20recv/LE32_16_LE32<24>),
    XORCY symbol "chacha20recv/Madd__old_LE32_16_a_23_xor<10>" (output

@@ -5,14 +5,14 @@ Parameter TMPDIR set to /afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Parameter xsthdpdir set to /afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111phone2/6111phone/ise/xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Reading design: labkit.prj
@@ -887,29 +887,27 @@ WARNING:Xst:2565 - Inout <user3<31>> is never assigned.
 WARNING:Xst:2565 - Inout <user3<2>> is never assigned.
 WARNING:Xst:2565 - Inout <user3<27>> is never assigned.
 WARNING:Xst:2565 - Inout <user3<3>> is never assigned.
+WARNING:Xst:653 - Signal <shared_key> is used but never assigned. This sourceless signal will be automatically connected to value 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.
 WARNING:Xst:646 - Signal <send_chacha_done> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <sendReadyAtNext> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <recv_chacha_done> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <playback> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <handshakeDone> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <fsmWriteEnable> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <fsmWriteData> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <fsmWriteAddr> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <fsmSendEnable> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <fsmReadAddr> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <from_ac97_wide_data<9:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <filter> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found 1-bit register for signal <old_vdown>.
     Found 1-bit register for signal <old_vup>.
     Found 8-bit register for signal <playbackData>.
-    Found 1-bit xor2 for signal <playbackData$xor0001> created at line 831.
-    Found 1-bit xor2 for signal <playbackData$xor0002> created at line 831.
-    Found 1-bit xor2 for signal <playbackData$xor0003> created at line 831.
-    Found 1-bit xor2 for signal <playbackData$xor0004> created at line 831.
-    Found 1-bit xor2 for signal <playbackData$xor0005> created at line 831.
-    Found 1-bit xor2 for signal <playbackData$xor0006> created at line 831.
-    Found 1-bit xor2 for signal <playbackData$xor0007> created at line 831.
-    Found 1-bit xor2 for signal <playbackData$xor0008> created at line 831.
+    Found 1-bit xor2 for signal <playbackData$xor0001> created at line 836.
+    Found 1-bit xor2 for signal <playbackData$xor0002> created at line 836.
+    Found 1-bit xor2 for signal <playbackData$xor0003> created at line 836.
+    Found 1-bit xor2 for signal <playbackData$xor0004> created at line 836.
+    Found 1-bit xor2 for signal <playbackData$xor0005> created at line 836.
+    Found 1-bit xor2 for signal <playbackData$xor0006> created at line 836.
+    Found 1-bit xor2 for signal <playbackData$xor0007> created at line 836.
+    Found 1-bit xor2 for signal <playbackData$xor0008> created at line 836.
     Found 1-bit register for signal <playbackRewind>.
     Found 4-bit up counter for signal <receiveBufReadAddr>.
     Found 1-bit register for signal <receivingToB>.
@@ -920,14 +918,14 @@ WARNING:Xst:646 - Signal <filter> is assigned but never used. This unconnected s
     Found 1-bit register for signal <send_chacha_start>.
     Found 4-bit up counter for signal <sendBufWriteAddr>.
     Found 8-bit register for signal <sendBufWriteData>.
-    Found 1-bit xor2 for signal <sendBufWriteData$xor0001> created at line 807.
-    Found 1-bit xor2 for signal <sendBufWriteData$xor0002> created at line 807.
-    Found 1-bit xor2 for signal <sendBufWriteData$xor0003> created at line 807.
-    Found 1-bit xor2 for signal <sendBufWriteData$xor0004> created at line 807.
-    Found 1-bit xor2 for signal <sendBufWriteData$xor0005> created at line 807.
-    Found 1-bit xor2 for signal <sendBufWriteData$xor0006> created at line 807.
-    Found 1-bit xor2 for signal <sendBufWriteData$xor0007> created at line 807.
-    Found 1-bit xor2 for signal <sendBufWriteData$xor0008> created at line 807.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0001> created at line 809.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0002> created at line 809.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0003> created at line 809.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0004> created at line 809.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0005> created at line 809.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0006> created at line 809.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0007> created at line 809.
+    Found 1-bit xor2 for signal <sendBufWriteData$xor0008> created at line 809.
     Found 1-bit register for signal <sendBufWriteEnable>.
     Found 32-bit up counter for signal <sendPacketCount>.
     Found 1-bit register for signal <sendStart>.
@@ -1310,17 +1308,17 @@ Design Statistics
 # IOs                              : 576
 
 Cell Usage :
-# BELS                             : 11605
+# BELS                             : 11545
 #      GND                         : 1
-#      INV                         : 224
-#      LUT1                        : 940
+#      INV                         : 176
+#      LUT1                        : 988
 #      LUT2                        : 1177
 #      LUT3                        : 1477
 #      LUT3_D                      : 48
 #      LUT4                        : 2610
 #      LUT4_D                      : 268
 #      LUT4_L                      : 134
-#      MUXCY                       : 1628
+#      MUXCY                       : 1568
 #      MUXF5                       : 775
 #      MUXF6                       : 51
 #      MUXF7                       : 23
@@ -1355,7 +1353,7 @@ Device utilization summary:
 
 Selected Device : 2v6000bf957-4 
 
- Number of Slices:                     3637  out of  33792    10%  
+ Number of Slices:                     3640  out of  33792    10%  
  Number of Slice Flip Flops:           1974  out of  67584     2%  
  Number of 4 input LUTs:               6885  out of  67584    10%  
     Number used as logic:              6878
@@ -1411,7 +1409,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock_27mhz'
   Clock period: 21.161ns (frequency: 47.257MHz)
-  Total number of paths / destination ports: 662981820 / 3819
+  Total number of paths / destination ports: 662979960 / 3819
 -------------------------------------------------------------------------
 Delay:               21.161ns (Levels of Logic = 103)
   Source:            chacha20recv/i_0_1 (FF)
@@ -1716,15 +1714,15 @@ Delay:               5.887ns (Levels of Logic = 2)
 =========================================================================
 
 
-Total REAL time to Xst completion: 103.00 secs
-Total CPU time to Xst completion: 101.61 secs
+Total REAL time to Xst completion: 102.00 secs
+Total CPU time to Xst completion: 100.41 secs
  
 --> 
 
 
-Total memory usage is 620196 kilobytes
+Total memory usage is 621028 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  454 (   0 filtered)
+Number of warnings :  450 (   0 filtered)
 Number of infos    :   32 (   0 filtered)
 
