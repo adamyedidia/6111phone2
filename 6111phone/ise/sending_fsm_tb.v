@@ -29,12 +29,12 @@ module sending_fsm_tb;
 	reg start;
 	reg [254:0] secret_key_seed;
 	reg incoming_packet_new;
-	reg [15:0] incoming_packet_read_data;
+	reg [7:0] incoming_packet_read_data;
 
 	// Outputs
 	wire [3:0] incoming_packet_read_index;
 	wire [3:0] outgoing_packet_write_index;
-	wire [15:0] outgoing_packet_write_data;
+	wire [7:0] outgoing_packet_write_data;
 	wire outgoing_packet_write_enable;
 	wire outgoing_packet_sending;
 	wire [254:0] shared_key;
@@ -79,11 +79,11 @@ module sending_fsm_tb;
 
 		#100;
 		
-		incoming_packet_read_data = 16'h5555;
+		incoming_packet_read_data = 8'h55;
 		
 		#600;
 		
-		incoming_packet_read_data = 16'hAAAA;
+		incoming_packet_read_data = 8'hAA;
 
 	end
       

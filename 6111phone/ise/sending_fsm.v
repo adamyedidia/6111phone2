@@ -22,7 +22,8 @@
 module sending_fsm #(parameter
 	SECRET_KEY_SIZE=255,
    PUBLIC_KEY_SIZE=255,
-	WIDTH=16, 
+	WIDTH=8,
+	// careful about changing width due to array
 	LOG_PUBLIC_KEY_SIZE = 8,
 	LOGSIZE = 4) (
 		input wire clock,
@@ -40,7 +41,9 @@ module sending_fsm #(parameter
 		output reg outgoing_packet_sending,
 		
 		output wire [PUBLIC_KEY_SIZE-1:0] shared_key,
-		output wire done
+		output wire done,
+		
+		output reg [2:0] state = 0
     );
 	
 	reg keygen;
@@ -48,15 +51,22 @@ module sending_fsm #(parameter
 	
 	wire curve_done;
 	
-	localparam [PUBLIC_KEY_SIZE-1:0] BASEPOINT = 9;
-	reg [PUBLIC_KEY_SIZE-1:0] their_pk;
+	localparam [PUBLIC_KEY_SIZE-1:0] BASEPOINT = 9;	
+	
+	reg [WIDTH-1:0] their_pk[32:0];
 	
 	wire [254:0] secret_key = {1'b1, secret_key_seed[0+:251], 3'b000};
 	curve25519 curve25519(
 		.clock(clock),
 		.start(curve_start), // 1-cycle pulse
 		.n(secret_key),
-		.q(keygen ? BASEPOINT : their_pk),
+		.q(keygen ? BASEPOINT : {their_pk[31], their_pk[30], their_pk[29],
+			their_pk[28], their_pk[27], their_pk[26], their_pk[25], their_pk[24],
+			their_pk[23], their_pk[22], their_pk[21], their_pk[20], their_pk[19],
+			their_pk[18], their_pk[17], their_pk[16], their_pk[15], their_pk[14],
+			their_pk[13], their_pk[12], their_pk[11], their_pk[10], their_pk[9],
+			their_pk[8], their_pk[7], their_pk[6], their_pk[5], their_pk[4],
+			their_pk[3], their_pk[2], their_pk[1], their_pk[0]}),
 		// ?? SOMETHING IS BIZARRE, their_pk is 256 bits but q is a 255-bit input
 		// andres: their_pk is 255 bits (255-1:0)
 		.done(curve_done),
@@ -70,14 +80,14 @@ module sending_fsm #(parameter
 	parameter GENERATING_SHARED_KEY_STATE = 4;
 	parameter DONE_STATE = 5;
 	
-	parameter NO_ACK_MESSAGE = 16'h5555;
-	parameter ACK_MESSAGE = 16'hAAAA;
+	parameter NO_ACK_MESSAGE = 8'h55;
+	parameter ACK_MESSAGE = 8'hAA;
 	
-	reg [2:0] state = WAITING_FOR_PK_GENERATION_STATE;
+//	reg [2:0] state = WAITING_FOR_PK_GENERATION_STATE;
 	
 	
 	reg [7:0] pk_index;
-	reg [7:0] their_pk_index;
+	reg [4:0] their_pk_index;
 	
 	reg just_entered_state;
 	
@@ -89,7 +99,7 @@ module sending_fsm #(parameter
 			pk_index <= WIDTH-1;
 			curve_start <= 1;
 			keygen <= 1;
-			their_pk_index <= WIDTH-1;
+			their_pk_index <= 0;
 			outgoing_packet_write_enable <= 0;
 		end
 			
@@ -164,9 +174,11 @@ module sending_fsm #(parameter
 			end
 			
 			READING_THEIR_PK_STATE: begin
-				their_pk[their_pk_index-:WIDTH] <= incoming_packet_read_data;
+				
+				their_pk[their_pk_index] <= incoming_packet_read_data;
+//				their_pk[their_pk_index-:WIDTH] <= incoming_packet_read_data;
 				incoming_packet_read_index <= incoming_packet_read_index + 1;
-				their_pk_index <= their_pk_index + WIDTH;
+				their_pk_index <= their_pk_index + 1;
 				
 				if (&their_pk_index) begin
 					state <= GENERATING_SHARED_KEY_STATE;
@@ -177,10 +189,38 @@ module sending_fsm #(parameter
 			
 			GENERATING_SHARED_KEY_STATE: begin
 				if (curve_start) curve_start <= 0;
-				if (curve_done) state <= DONE_STATE;
+				else if (curve_done) state <= DONE_STATE;
 			end
 		endcase
 	end
 			
+//	assign their_pk = their_pk_substitute;
 	assign done = (state == DONE_STATE);
 endmodule
+
+
+/*module dummy_curve25519(input wire clock, start,
+                  input wire [254:0] n, // scalar
+                  input wire [254:0] q, // point
+                  output reg done = 0,
+                  output wire [254:0] out);
+						
+	reg future_done;
+	reg future_future_done;
+	reg future_future_future_done;
+	
+	always @(posedge clock) begin
+	 
+	 
+		done <= future_done;
+		future_done <= future_future_done;
+		future_future_done <= future_future_future_done;
+		
+		if (start) future_future_future_done <= 1;
+		else future_future_future_done <= 0;
+	end	
+			
+	assign out = (q == 9) ? 255'h3333333333333333333333333333333333333333333333333333333333333333 
+										 : 255'h2222222222222222222222222222222222222222222222222222222222222222;
+
+endmodule*/

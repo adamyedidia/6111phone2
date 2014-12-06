@@ -11,31 +11,32 @@ Target Device  : xc2v6000
 Target Package : bf957
 Target Speed   : -4
 Mapper Version : virtex2 -- $Revision: 1.46.12.2 $
-Mapped Date    : Fri Dec  5 14:39:17 2014
+Mapped Date    : Fri Dec  5 17:14:01 2014
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:  329
+Number of warnings:  330
 Logic Utilization:
-  Number of Slice Flip Flops:         1,974 out of  67,584    2%
-  Number of 4 input LUTs:             5,894 out of  67,584    8%
+  Number of Slice Flip Flops:         7,428 out of  67,584   10%
+  Number of 4 input LUTs:            15,320 out of  67,584   22%
 Logic Distribution:
-  Number of occupied Slices:          4,424 out of  33,792   13%
-    Number of Slices containing only related logic:   4,424 out of   4,424 100%
-    Number of Slices containing unrelated logic:          0 out of   4,424   0%
+  Number of occupied Slices:         10,815 out of  33,792   32%
+    Number of Slices containing only related logic:  10,815 out of  10,815 100%
+    Number of Slices containing unrelated logic:          0 out of  10,815   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       6,883 out of  67,584   10%
-    Number used as logic:             5,887
-    Number used as a route-thru:        989
+  Total Number of 4 input LUTs:      16,863 out of  67,584   24%
+    Number used as logic:            15,313
+    Number used as a route-thru:      1,543
     Number used as Shift registers:       7
   Number of bonded IOBs:                576 out of     684   84%
   Number of RAMB16s:                      4 out of     144    2%
+  Number of MULT18X18s:                  15 out of     144   10%
   Number of BUFGMUXs:                     3 out of      16   18%
 
-Peak Memory Usage:  581 MB
-Total REAL time to MAP completion:  13 secs 
-Total CPU time to MAP completion:   12 secs 
+Peak Memory Usage:  748 MB
+Total REAL time to MAP completion:  28 secs 
+Total CPU time to MAP completion:   28 secs 
 
 NOTES:
 
@@ -86,6 +87,10 @@ WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 326
    user3<6>_IBUF,
    user3<7>_IBUF
    To see the details of these warning messages, please use the -detail switch.
+WARNING:Pack:266 - The function generator sending_fsm/curve25519/r_1_cmp_eq0000
+   failed to merge with F5 multiplexer sending_fsm/curve25519/add1_mux0000<2>24.
+    There is a conflict for the FXMUX.  The design will exhibit suboptimal
+   timing.
 WARNING:PhysDesignRules:367 - The signal <ram0_data<10>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <ram0_data<11>_IBUF> is incomplete. The
@@ -744,19 +749,6 @@ WARNING:PhysDesignRules:367 - The signal <daughtercard<9>_IBUF> is incomplete.
 Section 3 - Informational
 -------------------------
 INFO:MapLib:562 - No environment variables are currently set.
-INFO:MapLib:533 - The following XORCY(s) is/are demoted to LUTs because there is
-   no MUXCY associated with them. Therefore, we cannot recognize the standard
-   carry chain structure (5 of 640 are listed):
-   XORCY symbol "chacha20recv/Madd__old_LE32_16_a_23_xor<0>" (output
-   signal=chacha20recv/LE32_16_LE32<24>),
-   XORCY symbol "chacha20recv/Madd__old_LE32_16_a_23_xor<10>" (output
-   signal=chacha20recv/LE32_16_LE32<18>),
-   XORCY symbol "chacha20recv/Madd__old_LE32_16_a_23_xor<11>" (output
-   signal=chacha20recv/LE32_16_LE32<19>),
-   XORCY symbol "chacha20recv/Madd__old_LE32_16_a_23_xor<12>" (output
-   signal=chacha20recv/LE32_16_LE32<20>),
-   XORCY symbol "chacha20recv/Madd__old_LE32_16_a_23_xor<13>" (output
-   signal=chacha20recv/LE32_16_LE32<21>)
 INFO:LIT:244 - All of the single ended outputs in this design are using slew
    rate limited output drivers. The delay on speed critical single ended outputs
    can be dramatically reduced by designating them as fast outputs.
