@@ -25,7 +25,7 @@ module sending_fsm #(parameter
 	WIDTH=8,
 	// careful about changing width due to array
 	LOG_PUBLIC_KEY_SIZE = 8,
-	LOGSIZE = 4) (
+	LOGSIZE = 6) (
 		input wire clock,
 		
 		input wire start,
@@ -53,7 +53,7 @@ module sending_fsm #(parameter
 	
 	localparam [PUBLIC_KEY_SIZE-1:0] BASEPOINT = 9;	
 	
-	reg [WIDTH-1:0] their_pk[32:0];
+	reg [WIDTH-1:0] their_pk[31:0];
 	
 	wire [254:0] secret_key = {1'b1, secret_key_seed[0+:251], 3'b000};
 	curve25519 curve25519(
@@ -85,8 +85,7 @@ module sending_fsm #(parameter
 	
 //	reg [2:0] state = WAITING_FOR_PK_GENERATION_STATE;
 	
-	
-	reg [7:0] pk_index;
+	reg [8:0] pk_index;
 	reg [4:0] their_pk_index;
 	
 	reg just_entered_state;
@@ -124,12 +123,13 @@ module sending_fsm #(parameter
 					else begin
 						pk_index <= pk_index + WIDTH;
 						
-						if (&outgoing_packet_write_index) begin
+						if (&pk_index[WIDTH:3]) begin
 							outgoing_packet_write_enable <= 0;
 							outgoing_packet_sending <= 1;
+							outgoing_packet_write_data <= {1'b0, shared_key[pk_index-1-:WIDTH-1]};
 						end
 						
-						outgoing_packet_write_data <= shared_key[pk_index-:WIDTH];
+						else outgoing_packet_write_data <= shared_key[pk_index-:WIDTH];
 						outgoing_packet_write_index <= outgoing_packet_write_index + 1;
 					end
 				end
@@ -155,35 +155,44 @@ module sending_fsm #(parameter
 					else begin
 						pk_index <= pk_index + WIDTH;
 						 
-						if (&outgoing_packet_write_index) begin
+						if (&pk_index[WIDTH:3]) begin
 							outgoing_packet_write_enable <= 0;
 							outgoing_packet_sending <= 1;
+							outgoing_packet_write_data <= {1'b0, shared_key[pk_index-1-:WIDTH-1]};
 						end
 						
-						
-						outgoing_packet_write_data <= shared_key[pk_index-:WIDTH];
+						else outgoing_packet_write_data <= shared_key[pk_index-:WIDTH];
 						outgoing_packet_write_index <= outgoing_packet_write_index + 1;
 					end
 				end
 				
 				else if (incoming_packet_read_data == ACK_MESSAGE) begin
 					state <= READING_THEIR_PK_STATE;
-					outgoing_packet_sending <= 0;
+//					outgoing_packet_sending <= 0;
 					incoming_packet_read_index <= 1;
+					their_pk_index <= 0;
+					just_entered_state <= 1;
 				end
 			end
 			
 			READING_THEIR_PK_STATE: begin
 				
-				their_pk[their_pk_index] <= incoming_packet_read_data;
-//				their_pk[their_pk_index-:WIDTH] <= incoming_packet_read_data;
-				incoming_packet_read_index <= incoming_packet_read_index + 1;
-				their_pk_index <= their_pk_index + 1;
+				if (just_entered_state) begin
+					just_entered_state <= 0;
+					incoming_packet_read_index <= incoming_packet_read_index + 1;
+				end
+
+				else begin
+					their_pk[their_pk_index] <= incoming_packet_read_data;
+	//				their_pk[their_pk_index-:WIDTH] <= incoming_packet_read_data;
+					incoming_packet_read_index <= incoming_packet_read_index + 1;
+					their_pk_index <= their_pk_index + 1;
 				
-				if (&their_pk_index) begin
-					state <= GENERATING_SHARED_KEY_STATE;
-					keygen <= 0;
-					curve_start <= 1;
+					if (their_pk_index == 0) begin
+						state <= GENERATING_SHARED_KEY_STATE;
+						keygen <= 0;
+						curve_start <= 1;
+					end
 				end
 			end
 			

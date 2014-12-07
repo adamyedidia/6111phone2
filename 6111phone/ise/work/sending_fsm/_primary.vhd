@@ -6,7 +6,7 @@ entity sending_fsm is
         PUBLIC_KEY_SIZE : integer := 255;
         WIDTH           : integer := 8;
         LOG_PUBLIC_KEY_SIZE: integer := 8;
-        LOGSIZE         : integer := 4
+        LOGSIZE         : integer := 6
     );
     port(
         clock           : in     vl_logic;
@@ -20,6 +20,7 @@ entity sending_fsm is
         outgoing_packet_write_enable: out    vl_logic;
         outgoing_packet_sending: out    vl_logic;
         shared_key      : out    vl_logic_vector;
-        done            : out    vl_logic
+        done            : out    vl_logic;
+        state           : out    vl_logic_vector(2 downto 0)
     );
 end sending_fsm;

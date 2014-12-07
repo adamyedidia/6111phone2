@@ -1,4 +1,4 @@
-# //  ModelSim SE 6.4a Aug 28 2008 Linux 3.2.0-72-generic
+# //  ModelSim SE 6.4a Aug 28 2008 Linux 3.13.0-32-generic
 # //
 # //  Copyright 1991-2008 Mentor Graphics Corporation
 # //              All Rights Reserved.
@@ -32,48 +32,10 @@
 # 	curve25519
 # Model Technology ModelSim SE vlog 6.4a Compiler 2008.08 Aug 28 2008
 # -- Compiling module sending_fsm
-# 
-# Top level modules:
-# 	sending_fsm
-# Model Technology ModelSim SE vlog 6.4a Compiler 2008.08 Aug 28 2008
-# -- Compiling module sending_fsm_tb
-# 
-# Top level modules:
-# 	sending_fsm_tb
-# Model Technology ModelSim SE vlog 6.4a Compiler 2008.08 Aug 28 2008
-# -- Compiling module glbl
-# 
-# Top level modules:
-# 	glbl
-# vsim -L xilinxcorelib_ver -L unisims_ver -L unimacro_ver -lib work -t 1ps sending_fsm_tb glbl 
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: andreser  Hostname: eecs-digital-26  ProcessID: 14758
-#           Attempting to use alternate WLF file "./wlftDzfHj5".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftDzfHj5
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftDzfHj5
-# Design is being optimized...
-# ** Warning: sending_fsm.v(72): (vopt-2241) Connection width does not match width of port 'q'.
-# Loading work.sending_fsm_tb(fast)
-# Loading work.sending_fsm(fast)
-# Loading work.curve25519(fast)
-# ** Warning: (vsim-3009) [TSCALE] - Module 'curve25519' does not have a `timescale directive in effect, but previous modules do.
-#         Region: /sending_fsm_tb/uut/curve25519
-# Loading work.feadd(fast)
-# ** Warning: (vsim-3009) [TSCALE] - Module 'feadd' does not have a `timescale directive in effect, but previous modules do.
-#         Region: /sending_fsm_tb/uut/curve25519/feadd
-# Loading work.fesub(fast)
-# ** Warning: (vsim-3009) [TSCALE] - Module 'fesub' does not have a `timescale directive in effect, but previous modules do.
-#         Region: /sending_fsm_tb/uut/curve25519/fesub
-# Loading work.femul(fast)
-# ** Warning: (vsim-3009) [TSCALE] - Module 'femul' does not have a `timescale directive in effect, but previous modules do.
-#         Region: /sending_fsm_tb/uut/curve25519/femul
-# Loading work.glbl(fast)
-# ** Warning: (vsim-3015) sending_fsm.v(72): [PCDPC] - Port size (255 or 255) does not match connection size (256) for port 'q'.
-#         Region: /sending_fsm_tb/uut/curve25519
-# .main_pane.mdi.interior.cs.vm.paneset.cli_0.wf.clip.cs.pw.wf
-# .main_pane.workspace.interior.cs.nb.canvas.notebook.cs.page2.cs
-# .main_pane.signals.interior.cs
-add wave -r /*
-run 2ms
+# ** Error: sending_fsm.v(129): Illegal concatenation of an unsized constant.
+# ** Error: sending_fsm.v(161): Illegal concatenation of an unsized constant.
+# ** Error: /afs/csail.mit.edu/proj/redsocs/modeltech/linux/vlog failed.
+# Error in macro ./sending_fsm_tb.fdo line 9
+# /afs/csail.mit.edu/proj/redsocs/modeltech/linux/vlog failed.
+#     while executing
+# "vlog +acc  "sending_fsm.v""

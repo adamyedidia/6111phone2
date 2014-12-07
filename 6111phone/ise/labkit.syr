@@ -5,14 +5,14 @@ Parameter TMPDIR set to /afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to /afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111phone2/6111phone/ise/xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: labkit.prj
@@ -1063,6 +1063,22 @@ INFO:Xst:2261 - The FF/Latch <l_right_data_0> in Unit <ac97> is equivalent to th
 INFO:Xst:2261 - The FF/Latch <out_data_0> in Unit <lab5audio> is equivalent to the following 9 FFs/Latches, which will be removed : <out_data_1> <out_data_2> <out_data_3> <out_data_4> <out_data_5> <out_data_6> <out_data_7> <out_data_8> <out_data_9> 
 WARNING:Xst:1710 - FF/Latch <l_right_data_0> (without init value) has a constant value of 0 in block <ac97>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <out_data_0> (without init value) has a constant value of 0 in block <lab5audio>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <recvPacketNumber_8> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_9> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_10> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_11> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_12> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_13> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_14> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_15> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_16> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_17> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_18> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_19> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_20> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_21> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_22> of sequential type is unconnected in block <labkit>.
+WARNING:Xst:2677 - Node <recvPacketNumber_23> of sequential type is unconnected in block <labkit>.
 WARNING:Xst:2677 - Node <recvPacketNumber_24> of sequential type is unconnected in block <labkit>.
 WARNING:Xst:2677 - Node <recvPacketNumber_25> of sequential type is unconnected in block <labkit>.
 WARNING:Xst:2677 - Node <recvPacketNumber_26> of sequential type is unconnected in block <labkit>.
@@ -1147,8 +1163,8 @@ Unit <labkit> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 945
- Flip-Flops                                            : 945
+# Registers                                            : 929
+ Flip-Flops                                            : 929
 # Shift Registers                                      : 6
  12-bit shift register                                 : 1
  2-bit shift register                                  : 1
@@ -1181,27 +1197,27 @@ Design Statistics
 # IOs                              : 576
 
 Cell Usage :
-# BELS                             : 2338
+# BELS                             : 2319
 #      GND                         : 1
 #      INV                         : 70
 #      LUT1                        : 200
-#      LUT2                        : 360
-#      LUT2_D                      : 1
-#      LUT3                        : 574
-#      LUT3_D                      : 5
-#      LUT3_L                      : 5
-#      LUT4                        : 387
+#      LUT2                        : 358
+#      LUT2_D                      : 2
+#      LUT3                        : 570
+#      LUT3_D                      : 6
+#      LUT3_L                      : 8
+#      LUT4                        : 372
 #      LUT4_D                      : 7
-#      LUT4_L                      : 40
+#      LUT4_L                      : 38
 #      MUXCY                       : 272
-#      MUXF5                       : 115
+#      MUXF5                       : 114
 #      MUXF6                       : 43
 #      MUXF7                       : 19
 #      MUXF8                       : 8
 #      VCC                         : 1
 #      XORCY                       : 230
-# FlipFlops/Latches                : 961
-#      FD                          : 42
+# FlipFlops/Latches                : 945
+#      FD                          : 26
 #      FDE                         : 738
 #      FDE_1                       : 9
 #      FDR                         : 26
@@ -1229,10 +1245,10 @@ Device utilization summary:
 
 Selected Device : 2v6000bf957-4 
 
- Number of Slices:                      890  out of  33792     2%  
- Number of Slice Flip Flops:            961  out of  67584     1%  
- Number of 4 input LUTs:               1656  out of  67584     2%  
-    Number used as logic:              1649
+ Number of Slices:                      880  out of  33792     2%  
+ Number of Slice Flip Flops:            945  out of  67584     1%  
+ Number of 4 input LUTs:               1638  out of  67584     2%  
+    Number used as logic:              1631
     Number used as Shift registers:       7
  Number of IOs:                         576
  Number of bonded IOBs:                 251  out of    684    36%  
@@ -1260,7 +1276,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clock_27mhz                        | IBUF+BUFG              | 860   |
+clock_27mhz                        | IBUF+BUFG              | 844   |
 d16h/clock1                        | BUFG                   | 43    |
 ac97_bit_clock                     | BUFGP                  | 65    |
 -----------------------------------+------------------------+-------+
@@ -1285,7 +1301,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock_27mhz'
   Clock period: 8.639ns (frequency: 115.754MHz)
-  Total number of paths / destination ports: 274521 / 1783
+  Total number of paths / destination ports: 274401 / 1767
 -------------------------------------------------------------------------
 Delay:               8.639ns (Levels of Logic = 5)
   Source:            secret_key_seed_118 (FF)
@@ -1311,7 +1327,7 @@ Delay:               8.639ns (Levels of Logic = 5)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'd16h/clock1'
   Clock period: 11.042ns (frequency: 90.564MHz)
-  Total number of paths / destination ports: 2374 / 72
+  Total number of paths / destination ports: 2375 / 72
 -------------------------------------------------------------------------
 Delay:               11.042ns (Levels of Logic = 10)
   Source:            d16h/char_index_2 (FF)
@@ -1325,11 +1341,11 @@ Delay:               11.042ns (Levels of Logic = 10)
     ----------------------------------------  ------------
      FDE:C->Q             19   0.568   1.075  d16h/char_index_2 (d16h/char_index_2)
      LUT4:I3->O            2   0.439   0.986  d16h/Mmux_nibble280 (d16h/Mmux_nibble280)
-     LUT3:I0->O            1   0.439   0.000  d16h/Mmux_nibble2160_G (N174)
+     LUT3:I0->O            1   0.439   0.000  d16h/Mmux_nibble2160_G (N178)
      MUXF5:I1->O          30   0.436   1.122  d16h/Mmux_nibble2160 (d16h/nibble<2>)
      LUT4:I3->O            2   0.439   0.741  d16h/Mrom_dots191 (d16h/Mrom_dots19)
      LUT4:I3->O            1   0.439   0.552  d16h/Mrom_dots30 (d16h/Mrom_dots30)
-     LUT3:I2->O            1   0.439   0.000  d16h/disp_data_out_mux000014_G (N148)
+     LUT3:I2->O            1   0.439   0.000  d16h/disp_data_out_mux000014_G (N150)
      MUXF5:I1->O           1   0.436   0.551  d16h/disp_data_out_mux000014 (d16h/disp_data_out_mux000014)
      LUT4:I2->O            1   0.439   0.558  d16h/disp_data_out_mux000033 (d16h/disp_data_out_mux000033)
      LUT4_L:I3->LO         1   0.439   0.134  d16h/disp_data_out_mux000078 (d16h/disp_data_out_mux000078)
@@ -1345,16 +1361,16 @@ Timing constraint: Default period analysis for Clock 'ac97_bit_clock'
   Total number of paths / destination ports: 1654 / 97
 -------------------------------------------------------------------------
 Delay:               5.244ns (Levels of Logic = 3)
-  Source:            a/ac97/bit_count_6 (FF)
+  Source:            a/ac97/bit_count_5 (FF)
   Destination:       a/ac97/Mshreg_left_in_data_12 (FF)
   Source Clock:      ac97_bit_clock rising
   Destination Clock: ac97_bit_clock falling
 
-  Data Path: a/ac97/bit_count_6 to a/ac97/Mshreg_left_in_data_12
+  Data Path: a/ac97/bit_count_5 to a/ac97/Mshreg_left_in_data_12
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q              14   0.568   1.263  a/ac97/bit_count_6 (a/ac97/bit_count_6)
+     FD:C->Q              14   0.568   1.263  a/ac97/bit_count_5 (a/ac97/bit_count_5)
      LUT4:I0->O            1   0.439   0.552  a/ac97/left_in_data_and000024 (a/ac97/left_in_data_and000024)
      LUT4_L:I2->LO         1   0.439   0.134  a/ac97/left_in_data_and000026 (a/ac97/left_in_data_and000026)
      LUT4:I2->O           10   0.439   0.885  a/ac97/left_in_data_and000049 (a/ac97/left_in_data_and0000)
@@ -1487,15 +1503,15 @@ Delay:               5.887ns (Levels of Logic = 2)
 =========================================================================
 
 
-Total REAL time to Xst completion: 30.00 secs
-Total CPU time to Xst completion: 28.91 secs
+Total REAL time to Xst completion: 29.00 secs
+Total CPU time to Xst completion: 28.76 secs
  
 --> 
 
 
-Total memory usage is 511396 kilobytes
+Total memory usage is 510988 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  441 (   0 filtered)
+Number of warnings :  457 (   0 filtered)
 Number of infos    :   27 (   0 filtered)
 

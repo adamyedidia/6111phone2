@@ -4,61 +4,61 @@ K3
 cModel Technology
 Z0 d/afs/athena.mit.edu/user/a/d/adamy/Desktop/6.111/final_project/6111phone2/6111phone/ise
 T_opt
-Z1 VJ7]MhYH0h94XzaT@[KDcN1
-Z2 04 14 4 work sending_fsm_tb fast 0
-Z3 04 4 4 work glbl fast 0
-Z4 =1-f04da20f0d2f-54821e0f-979b-3982
-Z5 o-quiet -auto_acc_if_foreign -work work -L xilinxcorelib_ver -L unisims_ver -L unimacro_ver
-Z6 OE;O;6.4a;39
+V:eMW7nXC:GMi^G5X<FE_a2
+Z1 04 14 4 work sending_fsm_tb fast 0
+Z2 04 4 4 work glbl fast 0
+Z3 =3--5483c39e-6446c-18cc
+Z4 o-quiet -auto_acc_if_foreign -work work -L xilinxcorelib_ver -L unisims_ver -L unimacro_ver
+Z5 OE;O;6.4a;39
 T_opt1
-Z7 VMjgzaLniKHFff5zcIDc>61
+Z6 VMjgzaLniKHFff5zcIDc>61
+R1
 R2
-R3
-Z8 =1-f04da20f0d2f-54821ea6-cdb15-39c6
+Z7 =1-f04da20f0d2f-54821ea6-cdb15-39c6
+R4
 R5
-R6
 T_opt2
-Z9 Vh6hd;f85DkFi`WoFcoa`L0
+Z8 V^d4bk9J;VNQ<B`M<JT7lM0
+R1
 R2
-R3
-Z10 =1-f04da20f0d2f-54821f98-3095b-39ef
+Z9 =1--5483c2af-d11c4-197c
+R4
 R5
-R6
 T_opt3
-Z11 VXUDXda]YNGA82bgVRVAJ`0
+Z10 VXUDXda]YNGA82bgVRVAJ`0
+R1
 R2
-R3
-Z12 =1-f04da20f0d2f-54822157-6041a-3a27
+Z11 =1-f04da20f0d2f-54822157-6041a-3a27
+R4
 R5
-R6
 T_opt4
-Z13 VNF8MMI]MAX^?P_fniQPBo3
-Z14 04 13 4 work receiveBit_tb fast 0
-R3
-Z15 =1-f04da20f0d40-54750cd0-4151d-14a3
+Z12 VNF8MMI]MAX^?P_fniQPBo3
+Z13 04 13 4 work receiveBit_tb fast 0
+R2
+Z14 =1-f04da20f0d40-54750cd0-4151d-14a3
+R4
 R5
-R6
 T_opt5
-Z16 Vk63_`6JDi[R2>QdAojk6^0
+Z15 Vk63_`6JDi[R2>QdAojk6^0
+R1
 R2
-R3
-Z17 =1-f04da20f0d2f-54822216-d6178-3a49
+Z16 =1-f04da20f0d2f-54822216-d6178-3a49
+R4
 R5
-R6
 T_opt6
-Z18 VSLof8:]z[GPLDLnEnhGm62
+Z17 VSLof8:]z[GPLDLnEnhGm62
+R1
 R2
-R3
-Z19 =1-f04da20f0d2f-5482230b-51bf9-3a6e
+Z18 =1-f04da20f0d2f-5482230b-51bf9-3a6e
+R4
 R5
-R6
 T_opt7
-VQgCbRNcoXFQgon9JWdAVU0
+Z19 VQgCbRNcoXFQgon9JWdAVU0
+R1
 R2
-R3
 Z20 =1-f04da20f0d2f-548223a3-d89c3-3a95
+R4
 R5
-R6
 vac97
 Z21 I8Do@:Sdi01MPnZ;Wz:lg33
 Z22 VYXk6kHT]QSF:^OA@:mF2J1
@@ -86,10 +86,10 @@ R28
 Z33 !s100 @OcCEK^n3J7;63F2;7=mW3
 !s85 0
 vcurve25519
-Z34 IAA7lfbkj_`UjO3_ZXOcN53
+Z34 I^DnR>b5VK=ek=fH]8VY5b2
 Z35 VMO<XPW:Qe1Fo]E5T08Vhg1
 Z36 d/afs/athena.mit.edu/user/a/n/andreser/6.111/project/6111phone2/6111phone/ise
-Z37 w1417814337
+Z37 w1417906642
 Z38 8../../../curve25519-verilog/curve25519.v
 Z39 F../../../curve25519-verilog/curve25519.v
 L0 7
@@ -97,7 +97,7 @@ R27
 r1
 31
 R28
-Z40 !s100 ^hB7JQ@zD2B5maWK5IN6M3
+Z40 !s100 jK8Y4?2biK7gM5zTb7XNa3
 !s85 0
 vdebounce
 Z41 I82EaBlS?^?Ehak3eMIlAQ2
@@ -332,10 +332,10 @@ Z129 nsend@frame
 Z130 !s100 gE0GMSfdHTg381nWHPRFR3
 !s85 0
 vsending_fsm
-Z131 Ii7FdI6UP<kP?7kLETQVB;2
-Z132 VVNVj]:UA9^hlJ_kKzVdWP2
+Z131 I1jGZhXF@HYSc3o>3YmF4R1
+Z132 VMmR>l>JQG1G:6_Lokj;;<0
 R36
-Z133 w1417814941
+Z133 w1417921189
 Z134 8sending_fsm.v
 Z135 Fsending_fsm.v
 L0 22
@@ -343,13 +343,13 @@ R27
 r1
 31
 R28
-Z136 !s100 :eLFo]9Y2MO2a1F[H6DNJ0
+Z136 !s100 cUjb`nJgUfe9?2aLBo]HI1
 !s85 0
 vsending_fsm_tb
-Z137 IBm>zAjK[jQI@Kdl7Z@D083
+Z137 I<:25P>ICbe4e:9h4^Hz1i0
 Z138 VEK:>JUW^1AB=D6j8SLOaH2
 R36
-Z139 w1417813905
+Z139 w1417920812
 Z140 8sending_fsm_tb.v
 Z141 Fsending_fsm_tb.v
 L0 25
@@ -357,7 +357,7 @@ R27
 r1
 31
 R28
-Z142 !s100 BQ^f<^T3jhRLUSjfD1RS02
+Z142 !s100 =0cBH6Rb54e>1E0SVYmha1
 !s85 0
 vtestSerial
 Z143 I>5GYfNKB50a01eBii_kbV1

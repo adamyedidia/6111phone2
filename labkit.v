@@ -641,9 +641,12 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
    // and the FPGA's internal clocks begin toggling.
    //
    ////////////////////////////////////////////////////////////////////////////
-   wire reset;
-   SRL16 #(.INIT(16'hFFFF)) reset_sr(.D(1'b0), .CLK(clock_27mhz), .Q(reset),
-                                     .A0(1'b1), .A1(1'b1), .A2(1'b1), .A3(1'b1));
+   // SRL16 #(.INIT(16'hFFFF)) reset_sr(.D(1'b0), .CLK(clock_27mhz), .Q(reset), .A0(1'b1), .A1(1'b1), .A2(1'b1), .A3(1'b1));
+   reg [3:0] resetCount = 15;
+   always @(posedge clock_27mhz) begin
+	   if (resetCount >= 0) resetCount <= resetCount - 1;
+   end
+   wire reset = resetCount != 0;
 			    
 	wire [17:0] from_ac97_wide_data;
 	wire [7:0] from_ac97_data = from_ac97_wide_data[17:10];
@@ -828,8 +831,8 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 				sendBufWriteEnable <= 1;
 			end
 			if (sendBufWriteEnable) begin
-					sendBufWriteAddr <= sendBufWriteAddr + 1;
-					send_chacha_start <= 1;
+				sendBufWriteAddr <= sendBufWriteAddr + 1;
+				send_chacha_start <= 1;
 				if (&sendBufWriteAddr) begin // buffer full
 					recordingToB <= !recordingToB;
 					sendStart <= 1;
@@ -865,12 +868,12 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 					recv_chacha_start <= 1;
 				end
 			end
-			if (receiveBufReadAddr < 4) receiveBufReadAddr <= receiveBufReadAddr + 1;
-			if (receiveBufReadAddr == 0) recvPacketNumber <= {                         receiveBufReadData, 24'b0};
-			if (receiveBufReadAddr == 1) recvPacketNumber <= {recvPacketNumber[31:24], receiveBufReadData, 16'b0};
-			if (receiveBufReadAddr == 2) recvPacketNumber <= {recvPacketNumber[31:16], receiveBufReadData,  8'b0};
-			if (receiveBufReadAddr == 3) recvPacketNumber <= {recvPacketNumber[31: 8], receiveBufReadData       };
-			if (receiveBufReadAddr == 3) recv_chacha_start <= 1;
+			if (receiveBufReadAddr < 5) receiveBufReadAddr <= receiveBufReadAddr + 1;
+			if (receiveBufReadAddr == 1) recvPacketNumber <= {                         receiveBufReadData, 24'b0};
+			if (receiveBufReadAddr == 2) recvPacketNumber <= {recvPacketNumber[31:24], receiveBufReadData, 16'b0};
+			if (receiveBufReadAddr == 3) recvPacketNumber <= {recvPacketNumber[31:16], receiveBufReadData,  8'b0};
+			if (receiveBufReadAddr == 4) recvPacketNumber <= {recvPacketNumber[31: 8], receiveBufReadData       };
+			if (receiveBufReadAddr == 4) recv_chacha_start <= 1;
 			if (recv_chacha_start) recv_chacha_start <= 0;
 		end
 	end
@@ -890,13 +893,14 @@ module labkit(beep, audio_reset_b, ac97_sdata_out, ac97_sdata_in, ac97_synch,
 	assign led = ~volume;
 	assign to_ac97_data = playbackData;	
 	assign analyzer1_clock = clock_27mhz;
-	// assign analyzer1_data = {recvPacketNumber[7:0], sendPacketNumber[7:0]};
+	assign analyzer1_data = {recvPacketNumber[7:0], sendPacketNumber[7:0]};
 	assign analyzer3_clock = ready;
-	assign analyzer1_data = recvPacketNumber[23:8];
-	assign analyzer3_data = {recvPacketNumber[7:0], receiveBufReadAddr[3:0], receiveReady, playbackRewind, recv_chacha_start, receivingToB};
-	// assign analyzer3_data = {from_ac97_data[7:1], sendStart, to_ac97_data[7:1], receiveReady};
+	// assign analyzer1_data = recvPacketNumber[15:0];
+	// assign analyzer1_data = {sendBufWriteData, sendBufWriteAddr[3:0], sendStart, sendPacketNumber[0], send_chacha_start, recordingToB};
+	// assign analyzer3_data = {receiveBufReadData, receiveBufReadAddr[3:0], receiveReady, playbackRewind, recv_chacha_start, receivingToB};
+	assign analyzer3_data = {receiveBufReadAddr[3:0], receiveReady, playbackRewind, recv_chacha_start, receivingToB, to_ac97_data[7:1], receiveReady};
    //assign analyzer3_data = {sendBufWriteAddr[3:0], sendStart, sendBufWriteEnable, send_chacha_start, recordingToB,
-	                         //receiveBufReadAddr[3:0], receiveReady, playbackRewind, recv_chacha_start, receivingToB}
+	//                         receiveBufReadAddr[3:0], receiveReady, playbackRewind, recv_chacha_start, receivingToB}
    // assign analyzer3_data = {sendBufWriteAddr[3:0], receiveBufReadAddr[3:0], sendBufWriteData[7:0]};
 endmodule
 
